@@ -1,0 +1,24 @@
+.inline-components,
+.components-modal__content--single,
+.components-modal__content--splitted {
+    .components-radio-control {
+        &__option {
+            font-size: $font-size-sm;
+
+            label {
+                &::before {
+                    border-radius: 50%;
+                }
+
+                &::after {
+                    top: 9px;
+                	left: 6px;
+                	width: 6px;
+                	height: 6px;
+                	border-radius: 50%;
+                	background: white;
+                }
+            }
+        }
+    }
+}

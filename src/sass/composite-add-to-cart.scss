@@ -1,0 +1,322 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "./controls";
+@import "./thumbnail-control";
+@import "./radio-control";
+@import "./checkbox-control";
+@import "./single-product";
+
+.composite-product {
+	&__wrap-totals {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		.price del + ins {
+			margin-left: 0;
+		}
+
+		.components-text-control__input {
+			width: 100%;
+			text-align: center;
+		}
+	}
+}
+
+.inline-components {
+	width: 100%;
+	display: block;
+	overflow: hidden;
+	margin-bottom: 2rem;
+	border: 1px solid $gray-200;
+	border-radius: $border-radius;
+}
+
+.components-placeholder {
+	margin-bottom: 0;
+}
+
+.ReactModal__Content {
+	display: flex;
+	align-items: center;
+	max-width: 700px;
+}
+
+.components-modal {
+	&__row {
+		@include make-row();
+	}
+
+	&__col {
+		@include make-col-ready();
+		@include make-col(12);
+	}
+
+	&__body,
+	&__bottom,
+	&__head,
+	&__product-details {
+		padding: 0.75rem 1.5rem;
+	}
+
+	&__head {
+		@include make-row();
+		align-items: center;
+		border-bottom: 1px solid $gray-200;
+
+		&-section {
+			@include make-col-ready();
+			@include make-col(6);
+			display: inline-flex;
+			align-items: center;
+
+			&--start {
+				justify-content: flex-start;
+			}
+
+			&--end {
+				justify-content: flex-end;
+			}
+		}
+
+		.components-text-control__input {
+			max-width: 100%;
+			text-align: center;
+		}
+	}
+
+	&__product-details {
+		h2 {
+			margin-bottom: 1rem;
+			font-size: $font-size-lg;
+		}
+	}
+
+	&__body {
+		max-height: calc(100vh - 200px);
+		overflow-y: scroll;
+		/* width */
+		&::-webkit-scrollbar {
+			width: 3px;
+		}
+		/* Track */
+		&::-webkit-scrollbar-track {
+			// background: #f1f1f1;
+		}
+		/* Handle */
+		&::-webkit-scrollbar-thumb {
+			background: #888;
+		}
+		/* Handle on hover */
+		&::-webkit-scrollbar-thumb:hover {
+			background: #555;
+		}
+	}
+
+	&__bottom {
+		display: flex;
+		justify-content: flex-end;
+		border-top: 1px solid $gray-200;
+
+		a.button {
+			margin-left: 0.75rem;
+			cursor: pointer;
+
+			div {
+				display: inline-block;
+			}
+		}
+	}
+
+	&__head,
+	&__wrap {
+		.composite-product {
+			&__quantity {
+				flex: 0 0 75px;
+				max-width: 75px;
+			}
+
+			&__title {
+				margin-bottom: 0;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+
+			&__description {
+				font-size: $font-size-sm;
+			}
+
+			&__title,
+			&__totals {
+				font-size: $font-size-base * 1.5;
+				color: $black;
+			}
+
+			&__totals {
+				flex: 0 0 100px;
+				max-width: 100px;
+				margin-bottom: 0;
+				text-align: right;
+
+				.price {
+					margin-bottom: 0;
+				}
+
+				del,
+				ins {
+					display: block;
+					line-height: 1;
+				}
+
+				del {
+					font-size: $font-size-lg;
+				}
+			}
+		}
+	}
+
+	&__wrap {
+		.composite-product {
+			&__quantity-control {
+				display: flex;
+				justify-content: flex-end;
+			}
+
+			&__totals .price {
+				text-align: left;
+			}
+		}
+
+		.components-base-control__field {
+			margin-left: 0;
+		}
+	}
+
+	&__product-details {
+		display: none;
+		padding: 0.75rem 1.5rem;
+	}
+	@include media-breakpoint-up(lg) {
+		&__content--splitted {
+			.components-modal__head {
+				display: none;
+			}
+
+			.components-modal__product-details {
+				padding-right: 0;
+			}
+
+			.components-modal__body {
+				padding-left: 0;
+			}
+		}
+
+		&__product-details {
+			display: block;
+
+			.components-base-control {
+				display: inline-block;
+				width: auto;
+			}
+		}
+
+		&__col {
+			@include make-col(6);
+
+			&:first-child {
+				&::before {
+					content: '';
+					position: absolute;
+					top: 16px;
+					right: 0;
+					width: 1px;
+					height: calc(100vh - 232px);
+					background-color: $gray-200;
+				}
+			}
+		}
+	}
+}
+
+.components-number-control {
+	.components-base-control__field {
+		position: relative;
+		display: flex;
+		flex-wrap: wrap; // For form validation feedback
+		align-items: stretch;
+		width: 100%;
+	}
+}
+
+.components-modal__body {
+	.components-base-control {
+		padding-bottom: 1rem;
+		margin-bottom: 1rem;
+		border-bottom: 1px solid $gray-200;
+
+		&:last-child {
+			margin-bottom: 0;
+			border-bottom: 0;
+		}
+
+		&__help {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.components-modal__content {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	width: 100%; // Ensure `.modal-content` extends the full width of the parent `.modal-dialog`
+	// counteract the pointer-events: none; in the .modal-dialog
+	color: $modal-content-color;
+	pointer-events: auto;
+	background-color: $modal-content-bg;
+	background-clip: padding-box;
+	border: $modal-content-border-width solid $modal-content-border-color;
+	@include border-radius($modal-content-border-radius);
+	@include box-shadow($modal-content-box-shadow-xs);
+	// Remove focus outline from opened modal
+	outline: 0;
+}
+
+.summary {
+	.inline-components .button--add {
+		display: block;
+		width: 100%;
+		margin-left: 0;
+		text-align: center;
+	}
+}
+
+.single-product div.product .inline-components p.price {
+	margin: 0;
+}
+
+.components-modal__content--splitted {
+	.composite-product {
+		&__thumbnail,
+		&__wrap-totals {
+			margin-bottom: 1rem;
+		}
+	}
+}
+@include media-breakpoint-down(sm) {
+	.ReactModal__Content {
+		max-width: 100%;
+		align-items: end;
+	}
+
+	.components-modal__content {
+		border: 0;
+		border-radius: 0;
+	}
+
+	.components-modal__body {
+		max-height: calc(100vh - 209px);
+	}
+}

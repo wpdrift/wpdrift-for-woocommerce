@@ -1,0 +1,13 @@
+{
+	"name": "wpdrift/wpdrift-woocommerce-modules",
+	"authors": [{
+		"name": "upnrunn®",
+		"email": "dev@upnrunn.com"
+	}],
+	"require": {},
+	"autoload": {
+		"psr-4": {
+			"WPdrift\\": "includes/"
+		}
+	}
+}

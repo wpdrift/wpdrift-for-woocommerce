@@ -1,0 +1,27 @@
+@include media-breakpoint-up(lg) {
+	.storefront-full-width-content.single-product,
+	.single-product {
+		div.product-type-composite {
+			.summary__wrapper {
+				width: 35%;
+				float: left;
+				margin-right: 4.347826087%;
+				margin-bottom: 3.706325903em;
+
+				.summary,
+				.woocommerce-product-gallery {
+					width: 100%;
+					float: none;
+				    margin: 0;
+				}
+
+				+ .composite-components {
+					width: 60%;
+					float: right;
+					margin-right: 0;
+					margin-bottom: 3.706325903em;
+				}
+			}
+		}
+	}
+}

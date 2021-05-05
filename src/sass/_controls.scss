@@ -1,0 +1,93 @@
+.inline-components,
+.components-modal__content--single,
+.components-modal__content--splitted {
+	.components-base-control {
+		display: block;
+		float: left;
+		width: 100%;
+
+		&__label {
+			text-align: left;
+		}
+
+		&__help {
+			margin-top: 0;
+		}
+	}
+
+	.components-checkbox-control,
+	.components-radio-control {
+		&__price,
+		&__title {
+			display: block;
+		}
+
+		&__price {
+			ins {
+				background-color: inherit;
+				color: inherit;
+			}
+		}
+
+		&__option {
+			text-align: left;
+
+			label {
+				position: relative;
+
+				&::before {
+					content: "";
+					position: absolute;
+					top: 3px;
+					left: 0;
+					height: 18px;
+					width: 18px;
+					background-color: #eee;
+				}
+
+				&::after {
+					content: "";
+					display: none;
+					position: absolute;
+				}
+
+				&:hover {
+					&::before {
+						background-color: #ccc;
+					}
+				}
+			}
+		}
+
+		&__option--selected {
+			label {
+				&::before,
+				&:hover::before {
+					background-color: theme-color('success');
+				}
+
+				&::after {
+					display: block;
+				}
+			}
+		}
+
+		input[type='checkbox'],
+		input[type='radio'] {
+			+ label {
+				display: flex;
+				justify-content: space-between;
+				margin-bottom: 8px;
+				margin-left: 0;
+				padding-left: 2rem;
+				cursor: pointer;
+			}
+		}
+
+		&__input {
+			position: absolute;
+			opacity: 0;
+			cursor: pointer;
+		}
+	}
+}
