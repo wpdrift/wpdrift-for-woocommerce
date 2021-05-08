@@ -1,44 +1,38 @@
-.inline-components,
 .components-modal__content--single,
-.components-modal__content--splitted {
-    .components-checkbox-control {
-        &__option {
-            font-size: $font-size-sm;
+.components-modal__content--splitted,
+.inline-components {
+	.components-checkbox-control {
+		&__option {
+			font-size: $font-size-sm;
 
-            label {
-                &::after,
-                &::before {
-                    display: none;
-                }
-            }
-        }
+			label {
+				&::after,
+				&::before {
+					display: none;
+				}
+			}
+		}
 
-        &__input[type="checkbox"] {
-            display: none;
-        }
+		&__input[type="checkbox"] {
+			display: none;
+		}
 
-        &__checkbox {
-            display: inline-block;
-    		width: 18px;
-    		height: 18px;
-    		line-height: 18px;
-            border-radius: $border-radius;
-    		position: absolute;
-    		top: 3px;
-    		left: 0;
-    		z-index: 2;
-            background-color: $gray-200;
+		&__checkbox {
+			display: inline-block;
+			width: 20px;
+			height: 20px;
+			line-height: 18px;
+			border-radius: $border-radius;
+			position: absolute;
+			top: 3px;
+			left: 0;
+			z-index: 2;
+			background-color: $gray-200;
+			color: $white;
 
-            &-checked {
-                background: theme-color('success');
-
-                svg.dashicon {
-        			fill: #fff;
-        			cursor: pointer;
-        			user-select: none;
-        			pointer-events: none;
-        		}
-            }
-    	}
-    }    
+			&-checked {
+				background: theme-color('success');
+			}
+		}
+	}
 }
