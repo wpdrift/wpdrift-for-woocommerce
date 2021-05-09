@@ -27,7 +27,6 @@ class RestAPI {
 		'composite_sold_individually_context' => array( 'get', 'update' ),
 		'composite_shop_price_calc'           => array( 'get', 'update' ),
 		'composite_components'                => array( 'get', 'update' ),
-		'composite_scenarios'                 => array( 'get', 'update' ),
 	);
 
 	/**
@@ -328,84 +327,6 @@ class RestAPI {
 					),
 				),
 			),
-			'composite_scenarios'                 => array(
-				'description' => __( 'Scenarios data. Applicable to composite-type products.', 'wpdrift-woocommerce-modules' ),
-				'type'        => 'array',
-				'context'     => array( 'view', 'edit' ),
-				'items'       => array(
-					'type'       => 'object',
-					'properties' => array(
-						'id'            => array(
-							'description' => __( 'Scenario ID.', 'wpdrift-woocommerce-modules' ),
-							'type'        => 'string',
-							'context'     => array( 'view', 'edit' ),
-							'readonly'    => true,
-						),
-						'name'          => array(
-							'description' => __( 'Name of the scenario.', 'wpdrift-woocommerce-modules' ),
-							'type'        => 'string',
-							'context'     => array( 'view', 'edit' ),
-						),
-						'description'   => array(
-							'description' => __( 'Optional short description of the scenario.', 'wpdrift-woocommerce-modules' ),
-							'type'        => 'string',
-							'context'     => array( 'view', 'edit' ),
-						),
-						'configuration' => array(
-							'description' => __( 'Scenario matching conditions.', 'wpdrift-woocommerce-modules' ),
-							'type'        => 'array',
-							'context'     => array( 'view', 'edit' ),
-							'properties'  => array(
-								'component_id'      => array(
-									'description' => __( 'Component ID.', 'wpdrift-woocommerce-modules' ),
-									'type'        => 'string',
-									'context'     => array( 'view', 'edit' ),
-								),
-								'component_options' => array(
-									'description' => __( 'Product/variation IDs in component targeted by the scenario (0 = any product or variation, -1 = no selection)', 'wpdrift-woocommerce-modules' ),
-									'type'        => 'array',
-									'items'       => array(
-										'type' => 'integer',
-									),
-									'context'     => array( 'view', 'edit' ),
-								),
-								'options_modifier'  => array(
-									'description' => __( 'Comparison modifier for the referenced product/variation IDs.', 'wpdrift-woocommerce-modules' ),
-									'type'        => 'string',
-									'context'     => array( 'view', 'edit' ),
-									'enum'        => array( 'in', 'not-in', 'masked' ),
-								),
-							),
-						),
-						'actions'       => array(
-							'description' => __( 'Scenario actions.', 'wpdrift-woocommerce-modules' ),
-							'type'        => 'array',
-							'context'     => array( 'view', 'edit' ),
-							'items'       => array(
-								'type'       => 'object',
-								'properties' => array(
-									'action_id'   => array(
-										'description' => __( 'Scenario action ID (by default \'compat_group\' or \'conditional_components\').', 'wpdrift-woocommerce-modules' ),
-										'type'        => 'string',
-										'enum'        => array( 'compat_group', 'conditional_components' ),
-										'context'     => array( 'view', 'edit' ),
-									),
-									'is_active'   => array(
-										'description' => __( 'Indicates whether the scenario action is active.', 'wpdrift-woocommerce-modules' ),
-										'type'        => 'boolean',
-										'context'     => array( 'view', 'edit' ),
-									),
-									'action_data' => array(
-										'description' => __( 'Scenario action data.', 'wpdrift-woocommerce-modules' ),
-										'type'        => 'object',
-										'context'     => array( 'view', 'edit' ),
-									),
-								),
-							),
-						),
-					),
-				),
-			),
 		);
 	}
 
@@ -613,109 +534,6 @@ class RestAPI {
 					$product->save();
 
 					break;
-
-				case 'composite_scenarios':
-					$timestamp = current_time( 'timestamp' );
-					$loop      = 0;
-
-					$new     = array();
-					$updated = array();
-					$deleted = array();
-
-					$scenarios_rest_api_data = self::get_rest_api_scenario_data( $product );
-
-					if ( ! empty( $field_value ) && is_array( $field_value ) ) {
-						foreach ( $field_value as $data ) {
-
-							$action = empty( $data['id'] ) ? 'create' : '';
-							$delete = isset( $data['delete'] ) && true === $data['delete'];
-
-							// Creating scenario.
-							if ( 'create' === $action ) {
-
-								$scenario_id = strval( $timestamp + $loop );
-								$loop++;
-
-								// Validate.
-								$scenario_data = self::validate_rest_api_scenario_data( self::sanitize_rest_api_scenario_data( $data ) );
-
-								// Add scenario to 'new' array.
-								$new[ $scenario_id ] = $scenario_data;
-
-								// Updating or deleting scenario.
-							} else {
-
-								$scenario_id = strval( $data['id'] );
-								$action      = 'update';
-
-								if ( ! isset( $scenarios_rest_api_data[ $scenario_id ] ) ) {
-									throw new WC_REST_Exception( 'woocommerce_rest_invalid_scenario_id', sprintf( __( 'Scenario ID #%s does not exist.', 'wpdrift-woocommerce-modules' ), $scenario_id ), 400 );
-								}
-
-								// Deleting scenario.
-								if ( $delete ) {
-									// Add scenario to 'deleted' array.
-									$deleted[] = $scenario_id;
-									continue;
-								}
-
-								$scenario_data = $scenarios_rest_api_data[ $scenario_id ];
-
-								// Clean up source data.
-								$data = array_diff_key(
-									$data,
-									array(
-										'id'     => 1,
-										'delete' => 1,
-									)
-								);
-
-								// Merge into scenario data.
-								$scenario_data = array_merge( $scenario_data, $data );
-
-								// Validate.
-								$scenario_data = self::validate_rest_api_scenario_data( self::sanitize_rest_api_scenario_data( $scenario_data ) );
-
-								// Add scenario to 'updated' array.
-								$updated[ $scenario_id ] = $scenario_data;
-							}
-						}
-
-						$scenarios_rest_api_data_array = array();
-
-						if ( ! empty( $scenarios_rest_api_data ) ) {
-							foreach ( $scenarios_rest_api_data as $scenario_id => $scenario_rest_api_data ) {
-
-								// Omit scenario data if scenario deleted.
-								if ( in_array( $scenario_id, $deleted ) ) {
-									continue;
-									// Add modified scenario data if scenario updated.
-								} elseif ( isset( $updated[ $scenario_id ] ) ) {
-									$scenarios_rest_api_data_array[ $scenario_id ] = $updated[ $scenario_id ];
-									// Preserve scenario unless updated/deleted.
-								} else {
-									$scenarios_rest_api_data_array[ $scenario_id ] = $scenario_rest_api_data;
-								}
-							}
-						}
-
-						// Add new scenarios.
-						$scenarios_rest_api_data_array = $scenarios_rest_api_data_array + $new;
-						$scenarios_internal_data_array = array();
-
-						/*
-						 * Convert REST API schema to internal schema.
-						 */
-
-						foreach ( $scenarios_rest_api_data_array as $scenario_id => $scenario_rest_api_data ) {
-							$scenarios_internal_data_array[ $scenario_id ] = self::convert_rest_api_scenario_data( $scenario_rest_api_data );
-						}
-					}
-
-					$product->set_scenario_data( $scenarios_internal_data_array );
-					$product->save();
-
-					break;
 			}
 		}
 
@@ -788,15 +606,6 @@ class RestAPI {
 
 				if ( 'composite' === $product_type ) {
 					$value = array_values( self::get_rest_api_component_data( $product ) );
-				}
-
-				break;
-
-			case 'composite_scenarios':
-				$value = array();
-
-				if ( 'composite' === $product_type ) {
-					$value = array_values( self::get_rest_api_scenario_data( $product ) );
 				}
 
 				break;
@@ -1008,71 +817,6 @@ class RestAPI {
 		}
 
 		return $component_data;
-	}
-
-	/**
-	 * Validates scenario data with REST API schema.
-	 *
-	 * @param  array  $scenario_data
-	 * @return array
-	 */
-	public static function sanitize_rest_api_scenario_data( $data ) {
-
-		$validated_configuration = array();
-		$validated_actions       = array();
-
-		if ( ! empty( $data['configuration'] ) && is_array( $data['configuration'] ) ) {
-			foreach ( $data['configuration'] as $component_config_data ) {
-
-				if ( empty( $component_config_data['component_id'] ) ) {
-					continue;
-				}
-
-				$component_id = strval( $component_config_data['component_id'] );
-
-				if ( in_array( $component_id, wp_list_pluck( $validated_configuration, 'component_id' ) ) ) {
-					continue;
-				}
-
-				if ( empty( $component_config_data['component_options'] ) || ! is_array( $component_config_data['component_options'] ) ) {
-					$component_config_data['component_options'] = array( 0 );
-				}
-
-				$validated_configuration[] = array(
-					'component_id'      => $component_id,
-					'component_options' => array_map( 'intval', $component_config_data['component_options'] ),
-					'options_modifier'  => isset( $component_config_data['options_modifier'] ) && in_array( $component_config_data['options_modifier'], array( 'in', 'not-in', 'masked' ) ) ? $component_config_data['options_modifier'] : 'in',
-				);
-			}
-		}
-
-		if ( ! empty( $data['actions'] ) && is_array( $data['actions'] ) ) {
-			foreach ( $data['actions'] as $action_data ) {
-
-				if ( empty( $action_data['action_id'] ) ) {
-					continue;
-				}
-
-				$action_id = strval( $action_data['action_id'] );
-
-				if ( in_array( $action_id, wp_list_pluck( $validated_actions, 'action_id' ) ) ) {
-					continue;
-				}
-
-				$validated_actions[] = array(
-					'action_id'   => $action_id,
-					'action_data' => ! empty( $action_data['action_data'] ) && is_array( $action_data['action_data'] ) ? $action_data['action_data'] : array(),
-					'is_active'   => isset( $action_data['is_active'] ) && wc_string_to_bool( $action_data['is_active'] ),
-				);
-			}
-		}
-
-		return array(
-			'name'          => ! empty( $data['name'] ) ? strip_tags( $data['name'] ) : '',
-			'description'   => isset( $data['description'] ) ? wp_kses_post( $data['description'] ) : '',
-			'configuration' => $validated_configuration,
-			'actions'       => $validated_actions,
-		);
 	}
 
 	/**
