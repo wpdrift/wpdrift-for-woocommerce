@@ -65,6 +65,17 @@ final class Wocommerce_Modules {
 	}
 
 	/**
+	 * Plugin base path name getter.
+	 *
+	 * @since  1.0.0
+	 *
+	 * @return string
+	 */
+	public function plugin_basename() {
+		return plugin_basename( WPDRIFT_WOOCOMMERCE_MODULES_PLUGIN_FILE );
+	}
+
+	/**
 	 * Load textdomain.
 	 */
 	public function load_translation() {

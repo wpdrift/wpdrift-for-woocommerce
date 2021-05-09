@@ -28,7 +28,7 @@ class Wocommerce_Modules_Install {
 	 */
 	public static function plugin_row_meta( $links, $file ) {
 
-		if ( $file == Module::instance()->plugin_basename() ) {
+		if ( woocommerce_modules()->plugin_basename() === $file ) {
 			$row_meta = array(
 				'docs'    => '<a href="https://docs.woocommerce.com/document/composite-products/">' . __( 'Documentation', 'wpdrift-woocommerce-modules' ) . '</a>',
 				'support' => '<a href="' . esc_url( WC_CP_SUPPORT_URL ) . '">' . __( 'Support', 'wpdrift-woocommerce-modules' ) . '</a>',
