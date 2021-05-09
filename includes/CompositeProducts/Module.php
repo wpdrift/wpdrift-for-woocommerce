@@ -136,7 +136,7 @@ class Module {
 	 * @return string
 	 */
 	public function plugin_basename() {
-		return plugin_basename( __FILE__ );
+		return plugin_basename( WPDRIFT_WOOCOMMERCE_MODULES_PLUGIN_FILE );
 	}
 
 	/**

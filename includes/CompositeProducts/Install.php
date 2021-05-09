@@ -58,9 +58,6 @@ class Install {
 		add_action( 'admin_init', array( __CLASS__, 'maybe_install' ) );
 		add_action( 'admin_init', array( __CLASS__, 'maybe_update' ) );
 
-		// Show row meta on the plugin screen.
-		add_filter( 'plugin_row_meta', array( __CLASS__, 'plugin_row_meta' ), 10, 2 );
-
 		// Adds support for the Composite type - added here instead of 'ProductData' as it's used in REST context.
 		add_filter( 'product_type_selector', array( __CLASS__, 'add_composite_type' ) );
 		add_filter( 'woocommerce_product_class', array( __CLASS__, 'filter_product_class' ), 10, 4 );
@@ -405,26 +402,5 @@ class Install {
 	 */
 	public static function get_db_update_callbacks() {
 		return self::$db_updates;
-	}
-
-	/**
-	 * Show row meta on the plugin screen.
-	 *
-	 * @param   mixed  $links
-	 * @param   mixed  $file
-	 * @return  array
-	 */
-	public static function plugin_row_meta( $links, $file ) {
-
-		if ( $file == Module::instance()->plugin_basename() ) {
-			$row_meta = array(
-				'docs'    => '<a href="https://docs.woocommerce.com/document/composite-products/">' . __( 'Documentation', 'wpdrift-woocommerce-modules' ) . '</a>',
-				'support' => '<a href="' . esc_url( WC_CP_SUPPORT_URL ) . '">' . __( 'Support', 'wpdrift-woocommerce-modules' ) . '</a>',
-			);
-
-			return array_merge( $links, $row_meta );
-		}
-
-		return $links;
 	}
 }
