@@ -53,14 +53,12 @@ class Product_Import {
 	 * @return array  $options
 	 */
 	public static function map_columns( $options ) {
-
-		$options[ 'wc_cp_components' ]                = __( 'Composite Components (JSON-encoded)', 'wpdrift-woocommerce-modules' );
-		$options[ 'wc_cp_scenarios' ]                 = __( 'Composite Scenarios (JSON-encoded)', 'wpdrift-woocommerce-modules' );
-		$options[ 'wc_cp_layout' ]                    = __( 'Composite Layout', 'wpdrift-woocommerce-modules' );
-		$options[ 'wc_cp_editable_in_cart' ]          = __( 'Composite Cart Editing', 'wpdrift-woocommerce-modules' );
-		$options[ 'wc_cp_sold_individually_context' ] = __( 'Composite Sold Individually', 'wpdrift-woocommerce-modules' );
-		$options[ 'wc_cp_shop_price_calc' ]           = __( 'Composite Catalog Price', 'wpdrift-woocommerce-modules' );
-		$options[ 'wc_cp_add_to_cart_form_location' ] = __( 'Composite Form Location', 'wpdrift-woocommerce-modules' );
+		$options['wc_cp_components']                = __( 'Composite Components (JSON-encoded)', 'wpdrift-woocommerce-modules' );
+		$options['wc_cp_layout']                    = __( 'Composite Layout', 'wpdrift-woocommerce-modules' );
+		$options['wc_cp_editable_in_cart']          = __( 'Composite Cart Editing', 'wpdrift-woocommerce-modules' );
+		$options['wc_cp_sold_individually_context'] = __( 'Composite Sold Individually', 'wpdrift-woocommerce-modules' );
+		$options['wc_cp_shop_price_calc']           = __( 'Composite Catalog Price', 'wpdrift-woocommerce-modules' );
+		$options['wc_cp_add_to_cart_form_location'] = __( 'Composite Form Location', 'wpdrift-woocommerce-modules' );
 
 		return $options;
 	}
@@ -72,9 +70,7 @@ class Product_Import {
 	 * @return array  $columns
 	 */
 	public static function add_columns_to_mapping_screen( $columns ) {
-
 		$columns[ __( 'Composite Components (JSON-encoded)', 'wpdrift-woocommerce-modules' ) ] = 'wc_cp_components';
-		$columns[ __( 'Composite Scenarios (JSON-encoded)', 'wpdrift-woocommerce-modules' ) ]  = 'wc_cp_scenarios';
 		$columns[ __( 'Composite Layout', 'wpdrift-woocommerce-modules' ) ]                    = 'wc_cp_layout';
 		$columns[ __( 'Composite Cart Editing', 'wpdrift-woocommerce-modules' ) ]              = 'wc_cp_editable_in_cart';
 		$columns[ __( 'Composite Sold Individually', 'wpdrift-woocommerce-modules' ) ]         = 'wc_cp_sold_individually_context';
@@ -82,13 +78,12 @@ class Product_Import {
 		$columns[ __( 'Composite Form Location', 'wpdrift-woocommerce-modules' ) ]             = 'wc_cp_add_to_cart_form_location';
 
 		// Always add English mappings.
-		$columns[ 'Composite Components (JSON-encoded)' ] = 'wc_cp_components';
-		$columns[ 'Composite Scenarios (JSON-encoded)' ]  = 'wc_cp_scenarios';
-		$columns[ 'Composite Layout' ]                    = 'wc_cp_layout';
-		$columns[ 'Composite Cart Editing' ]              = 'wc_cp_editable_in_cart';
-		$columns[ 'Composite Sold Individually' ]         = 'wc_cp_sold_individually_context';
-		$columns[ 'Composite Catalog Price' ]             = 'wc_cp_shop_price_calc';
-		$columns[ 'Composite Form Location' ]             = 'wc_cp_add_to_cart_form_location';
+		$columns['Composite Components (JSON-encoded)'] = 'wc_cp_components';
+		$columns['Composite Layout']                    = 'wc_cp_layout';
+		$columns['Composite Cart Editing']              = 'wc_cp_editable_in_cart';
+		$columns['Composite Sold Individually']         = 'wc_cp_sold_individually_context';
+		$columns['Composite Catalog Price']             = 'wc_cp_shop_price_calc';
+		$columns['Composite Form Location']             = 'wc_cp_add_to_cart_form_location';
 
 		return $columns;
 	}
@@ -101,21 +96,16 @@ class Product_Import {
 	 * @return array
 	 */
 	public static function formatting_callbacks( $callbacks, $importer ) {
-
 		$mapped_keys    = $importer->get_mapped_keys();
 		$components_key = '';
-		$scenarios_key  = '';
 
 		foreach ( $mapped_keys as $key => $value ) {
 			if ( 'wc_cp_components' === $value ) {
 				$components_key = $key;
-			} elseif ( 'wc_cp_scenarios' === $value ) {
-				$scenarios_key  = $key;
 			}
 		}
 
 		$callbacks[ $components_key ] = 'strval';
-		$callbacks[ $scenarios_key ]  = 'strval';
 
 		return $callbacks;
 	}
@@ -131,46 +121,46 @@ class Product_Import {
 
 		self::$importer = $importer;
 
-		if ( ! empty( $parsed_data[ 'wc_cp_components' ] ) ) {
+		if ( ! empty( $parsed_data['wc_cp_components'] ) ) {
 
-			$components_rest_data = json_decode( $parsed_data[ 'wc_cp_components' ], true );
+			$components_rest_data = json_decode( $parsed_data['wc_cp_components'], true );
 
-			unset( $parsed_data[ 'wc_cp_components' ] );
+			unset( $parsed_data['wc_cp_components'] );
 
 			if ( is_array( $components_rest_data ) ) {
 
-				$parsed_data[ 'wc_cp_components' ] = array();
+				$parsed_data['wc_cp_components'] = array();
 
 				foreach ( $components_rest_data as $component_rest_data ) {
 
 					$parsed_component_data = $component_rest_data;
 
 					// Parse query data.
-					if ( ! empty( $component_rest_data[ 'query_ids' ] ) ) {
-						if ( isset( $component_rest_data[ 'query_type' ] ) && 'category_ids' === $component_rest_data[ 'query_type' ] ) {
-							$parsed_component_data[ 'query_ids' ] = $importer->parse_categories_field( $component_rest_data[ 'query_ids' ] );
+					if ( ! empty( $component_rest_data['query_ids'] ) ) {
+						if ( isset( $component_rest_data['query_type'] ) && 'category_ids' === $component_rest_data['query_type'] ) {
+							$parsed_component_data['query_ids'] = $importer->parse_categories_field( $component_rest_data['query_ids'] );
 						} else {
-							$parsed_component_data[ 'query_ids' ] = $importer->parse_relative_comma_field( $component_rest_data[ 'query_ids' ] );
+							$parsed_component_data['query_ids'] = $importer->parse_relative_comma_field( $component_rest_data['query_ids'] );
 						}
 					}
 
 					// Parse default option.
-					if ( ! empty( $component_rest_data[ 'default_option_id' ] ) ) {
-						$parsed_component_data[ 'default_option_id' ] = $importer->parse_relative_field( $component_rest_data[ 'default_option_id' ] );
+					if ( ! empty( $component_rest_data['default_option_id'] ) ) {
+						$parsed_component_data['default_option_id'] = $importer->parse_relative_field( $component_rest_data['default_option_id'] );
 					}
 
 					// Parse attribute filter labels.
-					if ( ! empty( $component_rest_data[ 'attribute_filters' ] ) ) {
+					if ( ! empty( $component_rest_data['attribute_filters'] ) ) {
 
-						$parsed_component_data[ 'attribute_filter_ids' ] = array();
+						$parsed_component_data['attribute_filter_ids'] = array();
 
-						foreach ( $component_rest_data[ 'attribute_filters' ] as $attribute_label ) {
-							$parsed_component_data[ 'attribute_filter_ids' ][] = $importer->get_attribute_taxonomy_id( $attribute_label );
+						foreach ( $component_rest_data['attribute_filters'] as $attribute_label ) {
+							$parsed_component_data['attribute_filter_ids'][] = $importer->get_attribute_taxonomy_id( $attribute_label );
 						}
 					}
 
 					// Sanitize.
-					$parsed_data[ 'wc_cp_components' ][] = REST_API::sanitize_rest_api_component_data( $parsed_component_data );
+					$parsed_data['wc_cp_components'][] = REST_API::sanitize_rest_api_component_data( $parsed_component_data );
 				}
 			}
 		}
@@ -190,46 +180,46 @@ class Product_Import {
 
 			$props = array();
 
-			if ( isset( $data[ 'wc_cp_layout' ] ) ) {
-				$props[ 'layout' ] = strval( $data[ 'wc_cp_layout' ] );
+			if ( isset( $data['wc_cp_layout'] ) ) {
+				$props['layout'] = strval( $data['wc_cp_layout'] );
 			}
 
-			if ( isset( $data[ 'wc_cp_sold_individually_context' ] ) ) {
-				$props[ 'sold_individually_context' ] = strval( $data[ 'wc_cp_sold_individually_context' ] );
+			if ( isset( $data['wc_cp_sold_individually_context'] ) ) {
+				$props['sold_individually_context'] = strval( $data['wc_cp_sold_individually_context'] );
 			}
 
-			if ( isset( $data[ 'wc_cp_shop_price_calc' ] ) ) {
-				$props[ 'shop_price_calc' ] = strval( $data[ 'wc_cp_shop_price_calc' ] );
+			if ( isset( $data['wc_cp_shop_price_calc'] ) ) {
+				$props['shop_price_calc'] = strval( $data['wc_cp_shop_price_calc'] );
 			}
 
-			if ( isset( $data[ 'wc_cp_editable_in_cart' ] ) ) {
-				$props[ 'editable_in_cart' ] = 1 === intval( $data[ 'wc_cp_editable_in_cart' ] ) ? 'yes' : 'no';
+			if ( isset( $data['wc_cp_editable_in_cart'] ) ) {
+				$props['editable_in_cart'] = 1 === intval( $data['wc_cp_editable_in_cart'] ) ? 'yes' : 'no';
 			}
 
-			if ( isset( $data[ 'wc_cp_add_to_cart_form_location' ] ) ) {
-				$props[ 'add_to_cart_form_location' ] = strval( $data[ 'wc_cp_add_to_cart_form_location' ] );
+			if ( isset( $data['wc_cp_add_to_cart_form_location'] ) ) {
+				$props['add_to_cart_form_location'] = strval( $data['wc_cp_add_to_cart_form_location'] );
 			}
 
 			$product->set_props( $props );
 
 			try {
 
-				if ( isset( $data[ 'wc_cp_components' ] ) ) {
+				if ( isset( $data['wc_cp_components'] ) ) {
 
 					$composite_data = array();
 
-					if ( ! empty( $data[ 'wc_cp_components' ] ) ) {
+					if ( ! empty( $data['wc_cp_components'] ) ) {
 
 						$timestamp = current_time( 'timestamp' );
 						$loop      = 0;
 
-						foreach ( $data[ 'wc_cp_components' ] as $component_data ) {
+						foreach ( $data['wc_cp_components'] as $component_data ) {
 
-							if ( empty( $component_data[ 'id' ] ) ) {
+							if ( empty( $component_data['id'] ) ) {
 								$component_id = strval( $timestamp + $loop );
 								$loop++;
 							} else {
-								$component_id = $component_data[ 'id' ];
+								$component_id = $component_data['id'];
 							}
 
 							// Convert schema.
@@ -238,8 +228,8 @@ class Product_Import {
 							// Validate data.
 							$composite_data[ $component_id ] = REST_API::validate_internal_component_data( $component_data, 'import' );
 
-							$thumbnail_id  = ! empty( $component_data[ 'thumbnail_id' ] ) ? $component_data[ 'thumbnail_id' ] : '';
-							$thumbnail_src = ! empty( $component_data[ 'thumbnail_src' ] ) ? $component_data[ 'thumbnail_src' ] : '';
+							$thumbnail_id  = ! empty( $component_data['thumbnail_id'] ) ? $component_data['thumbnail_id'] : '';
+							$thumbnail_src = ! empty( $component_data['thumbnail_src'] ) ? $component_data['thumbnail_src'] : '';
 
 							// Parse component thumbnail.
 							if ( ! $thumbnail_id && $thumbnail_src ) {
@@ -253,7 +243,7 @@ class Product_Import {
 							}
 
 							if ( $thumbnail_id || $thumbnail_src ) {
-								$composite_data[ $component_id ][ 'thumbnail_id' ] = Component::set_thumbnail( $thumbnail_id, $thumbnail_src, $product );
+								$composite_data[ $component_id ]['thumbnail_id'] = Component::set_thumbnail( $thumbnail_id, $thumbnail_src, $product );
 							}
 						}
 					}
@@ -262,38 +252,6 @@ class Product_Import {
 						$product->set_composite_data( $composite_data );
 					}
 				}
-
-				if ( isset( $data[ 'wc_cp_scenarios' ] ) ) {
-
-					$scenarios_data = array();
-
-					if ( ! empty( $data[ 'wc_cp_scenarios' ] ) ) {
-
-						$timestamp = current_time( 'timestamp' );
-						$loop      = 0;
-
-						foreach ( $data[ 'wc_cp_scenarios' ] as $scenario_data ) {
-
-							if ( empty( $scenario_data[ 'id' ] ) ) {
-								$scenario_id = strval( $timestamp + $loop );
-								$loop++;
-							} else {
-								$scenario_id = $scenario_data[ 'id' ];
-							}
-
-							// Validate data.
-							$scenario_data = REST_API::validate_rest_api_scenario_data( $scenario_data );
-
-							// Convert schema.
-							$scenarios_data[ $scenario_id ] = REST_API::convert_rest_api_scenario_data( $scenario_data );
-						}
-					}
-
-					if ( ! empty( $scenarios_data ) ) {
-						$product->set_scenario_data( $scenarios_data );
-					}
-				}
-
 			} catch ( WC_REST_Exception $e ) {
 				throw $e;
 			}
