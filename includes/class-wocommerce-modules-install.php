@@ -30,8 +30,8 @@ class Wocommerce_Modules_Install {
 
 		if ( woocommerce_modules()->plugin_basename() === $file ) {
 			$row_meta = array(
-				'docs'    => '<a href="https://docs.woocommerce.com/document/composite-products/">' . __( 'Documentation', 'wpdrift-woocommerce-modules' ) . '</a>',
-				'support' => '<a href="' . esc_url( WC_CP_SUPPORT_URL ) . '">' . __( 'Support', 'wpdrift-woocommerce-modules' ) . '</a>',
+				'docs'    => '<a href="https://wpdrift.com/wpdrift-for-woocommerce/">' . __( 'Documentation', 'wpdrift-woocommerce-modules' ) . '</a>',
+				'support' => '<a href="' . esc_url( WPDRIFT_WOOCOMMERCE_MODULES_SUPPORT_URL ) . '">' . __( 'Support', 'wpdrift-woocommerce-modules' ) . '</a>',
 			);
 
 			return array_merge( $links, $row_meta );
