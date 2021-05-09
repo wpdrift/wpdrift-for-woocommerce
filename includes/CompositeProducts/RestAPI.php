@@ -820,55 +820,6 @@ class RestAPI {
 	}
 
 	/**
-	 * Converts scenario data supplied using the api schema to the internal schema.
-	 *
-	 * @param  array  $scenario_rest_api_data
-	 * @return array
-	 */
-	public static function convert_rest_api_scenario_data( $data ) {
-
-		$component_data = array();
-		$modifier_data  = array();
-		$actions_data   = array();
-
-		if ( ! empty( $data['configuration'] ) ) {
-			foreach ( $data['configuration'] as $component_config_data ) {
-
-				$component_id                    = $component_config_data['component_id'];
-				$component_data[ $component_id ] = $component_config_data['component_options'];
-				$modifier_data[ $component_id ]  = $component_config_data['options_modifier'];
-			}
-		}
-
-		if ( ! empty( $data['actions'] ) ) {
-			foreach ( $data['actions'] as $action_data ) {
-
-				$action_id = $action_data['action_id'];
-
-				$actions_data[ $action_id ] = array_merge( $action_data['action_data'], array( 'is_active' => wc_bool_to_string( $action_data['is_active'] ) ) );
-			}
-		}
-
-		return array(
-			'component_data'   => $component_data,
-			'modifier'         => $modifier_data,
-			'scenario_actions' => $actions_data,
-			'description'      => isset( $data['description'] ) ? $data['description'] : '',
-			'title'            => isset( $data['name'] ) ? $data['name'] : '',
-		);
-	}
-
-	/**
-	 * Converts scenario data with internal schema to REST API schema.
-	 *
-	 * @param  ProductComposite  $product
-	 * @return array
-	 */
-	private static function get_rest_api_scenario_data( $product ) {
-		return $product->get_scenario_data( 'rest' );
-	}
-
-	/**
 	 * Converts component data with internal schema to REST API schema.
 	 *
 	 * @param  ProductComposite  $product
