@@ -820,21 +820,6 @@ class RestAPI {
 	}
 
 	/**
-	 * Validates scenario data with REST API schema.
-	 *
-	 * @param  array  $scenario_data
-	 * @return array
-	 */
-	public static function validate_rest_api_scenario_data( $data ) {
-
-		if ( empty( $data['name'] ) ) {
-			throw new WC_REST_Exception( 'woocommerce_rest_invalid_scenario_data', __( 'Invalid data - Undefined name.', 'wpdrift-woocommerce-modules' ), 400 );
-		}
-
-		return $data;
-	}
-
-	/**
 	 * Converts scenario data supplied using the api schema to the internal schema.
 	 *
 	 * @param  array  $scenario_rest_api_data
