@@ -278,9 +278,6 @@ class Ajax {
 				$_GET['include_parent_ids'] = $composite->get_data_store()->get_expanded_component_options( $component_options, 'mapped' );
 				$_GET['include']            = $composite->get_data_store()->get_expanded_component_options( $component_options, 'merged' );
 
-				// Add 'Any Variation' suffix to variable products.
-				add_filter( 'woocommerce_json_search_found_products', array( __CLASS__, 'component_options_in_scenario_search_results' ) );
-
 			} else {
 
 				$_GET['include'] = $component_options;
@@ -320,31 +317,6 @@ class Ajax {
 			}
 
 			$search_results = $search_results_filtered;
-		}
-
-		return $search_results;
-	}
-
-	/**
-	 * Modify variable product titles when searching in scenarios.
-	 *
-	 * @since  1.0.0
-	 *
-	 * @param  array  $search_results
-	 * @return array
-	 */
-	public static function component_options_in_scenario_search_results( $search_results ) {
-
-		if ( ! empty( $search_results ) && ! empty( $_GET['include_parent_ids'] ) ) {
-
-			$variable_product_ids = $_GET['include_parent_ids'];
-
-			foreach ( $search_results as $product_id => $product_title ) {
-
-				if ( in_array( $product_id, $variable_product_ids ) ) {
-					$search_results[ $product_id ] = Helpers::format_product_title( $search_results[ $product_id ], '', __( 'Any Variation', 'wpdrift-woocommerce-modules' ), false );
-				}
-			}
 		}
 
 		return $search_results;
