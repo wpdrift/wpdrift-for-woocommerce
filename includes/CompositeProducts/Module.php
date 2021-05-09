@@ -177,8 +177,6 @@ class Module {
 	 * Constants.
 	 */
 	public function define_constants() {
-
-		wc_maybe_define_constant( 'WC_CP_SUPPORT_URL', 'https://woocommerce.com/my-account/marketplace-ticket-form/' );
 		wc_maybe_define_constant( 'WC_CP_ABSPATH', trailingslashit( plugin_dir_path( __FILE__ ) ) );
 
 		if ( 'yes' === get_option( 'woocommerce_composite_products_debug_query_transients', null ) ) {

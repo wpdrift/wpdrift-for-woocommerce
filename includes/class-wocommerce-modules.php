@@ -47,10 +47,19 @@ final class Wocommerce_Modules {
 	 * Constructor.
 	 */
 	public function __construct() {
+		$this->define_constants();
 		// Autoload classes.
 		require WPDRIFT_WOOCOMMERCE_MODULES_PLUGIN_DIR . '/vendor/autoload.php';
 		require WPDRIFT_WOOCOMMERCE_MODULES_PLUGIN_DIR . '/includes/class-wocommerce-modules-install.php';
 		require WPDRIFT_WOOCOMMERCE_MODULES_PLUGIN_DIR . '/includes/wocommerce-modules-core-functions.php';
+
+	}
+
+	/**
+	 * Define Constants.
+	 */
+	private function define_constants() {
+		$this->define( 'WC_CP_SUPPORT_URL', 'https://github.com/wpdrift/WPdrift-IO/issues' );
 	}
 
 	/**
