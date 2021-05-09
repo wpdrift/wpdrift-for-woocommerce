@@ -24,7 +24,6 @@ class DataStore extends WC_Product_Data_Store_CPT {
 	 */
 	protected $extended_internal_meta_keys = array(
 		'_bto_data',
-		'_bto_scenario_data',
 		'_bto_base_price',
 		'_bto_base_regular_price',
 		'_bto_base_sale_price',
@@ -142,9 +141,8 @@ class DataStore extends WC_Product_Data_Store_CPT {
 			}
 		}
 
-		// Save components/scenarios.
+		// Save components.
 		update_post_meta( $id, '_bto_data', $product->get_composite_data( 'edit' ) );
-		update_post_meta( $id, '_bto_scenario_data', $product->get_scenario_data( 'edit' ) );
 	}
 
 	/**
@@ -317,7 +315,7 @@ class DataStore extends WC_Product_Data_Store_CPT {
 		foreach ( $product->get_components() as $component_id => $component ) {
 
 			// Skip component?
-			if ( sizeof( $product->scenarios()->get_ids_by_action( 'conditional_components' ) ) || $component->is_priced_individually() ) {
+			if ( $component->is_priced_individually() ) {
 
 				$component_options = isset( $permutation_vectors[ $component_id ] ) && is_array( $permutation_vectors[ $component_id ] ) ? $permutation_vectors[ $component_id ] : array();
 
@@ -377,7 +375,6 @@ class DataStore extends WC_Product_Data_Store_CPT {
 		 * - calculating data in the background;
 		 * - component options have changed;
 		 * - the price of a product in the store has changed;
-		 * - scenarios have changed.
 		 */
 
 		$price_data = false === $task_runner_args ? $product->get_meta( '_bto_price_data', true ) : false;
@@ -394,7 +391,6 @@ class DataStore extends WC_Product_Data_Store_CPT {
 						$max_iterations,
 						$permutation_vectors,
 						$product->get_shop_price_calc(),
-						$product->get_scenario_data( 'edit' ),
 						WC_Cache_Helper::get_transient_version( 'wc_cp_product_prices' ),
 					)
 				)
@@ -431,58 +427,16 @@ class DataStore extends WC_Product_Data_Store_CPT {
 		$permutation_vector_data = array();
 		$component_option_prices = array();
 
-		/**
-		 * 'woocommerce_composite_price_data_permutation_calc_scenarios' filter.
-		 *
-		 * When using scenarios, it is impossible to accurately know what's the min/max price of a Composite without evaluating all possible configurations.
-		 * This flag controls whether CP will try to search through all possible configurations to find the ones with the min/max price.
-		 *
-		 * @param  boolean
-		 */
-		$permutations_calc_scenarios = apply_filters( 'woocommerce_composite_price_data_permutation_calc_scenarios', $product->scenarios()->exist() && function_exists( 'wc_cp_cartesian' ), $product );
-
-		$has_conditional_component_scenarios = sizeof( $product->scenarios()->get_ids_by_action( 'conditional_components' ) );
-
 		/*
 		 * Set up permutation vector data and amend permutation vectors as needed.
 		 */
 
 		foreach ( $permutation_vectors as $component_id => $component_options ) {
-
 			if ( ! empty( $component_options ) ) {
-
 				// Store data.
 				$permutation_vector_data[ $component_id ]['option_ids']          = $component_options;
 				$permutation_vector_data[ $component_id ]['parent_ids']          = $product->get_data_store()->get_expanded_component_options( $component_options, 'mapped' );
 				$permutation_vector_data[ $component_id ]['expanded_option_ids'] = $product->get_data_store()->get_expanded_component_options( $component_options, 'expanded' );
-
-				// Build expanded set.
-				if ( $permutations_calc_scenarios ) {
-
-					/**
-					 * 'woocommerce_composite_price_data_permutation_search_accuracy_expand' filter.
-					 *
-					 * Expand the permutation search accuracy for this component to include variations?
-					 *
-					 * @since  1.0.0
-					 *
-					 * @param  bool  $expand
-					 */
-					$expand_permutation_search_accuracy = apply_filters( 'woocommerce_expand_composite_price_data_permutation_search_accuracy', true, $product, $component_id );
-
-					if ( $expand_permutation_search_accuracy ) {
-
-						$component_options_in_scenarios = array();
-
-						foreach ( $product->scenarios()->get_scenarios() as $scenario ) {
-							$component_options_in_scenarios = array_merge( $component_options_in_scenarios, $scenario->get_ids( $component_id ) );
-						}
-
-						if ( sizeof( array_diff( $component_options_in_scenarios, $component_options, array( 0, -1 ) ) ) ) {
-							$permutation_vectors[ $component_id ] = $permutation_vector_data[ $component_id ]['expanded_option_ids'];
-						}
-					}
-				}
 			}
 		}
 
@@ -494,208 +448,44 @@ class DataStore extends WC_Product_Data_Store_CPT {
 			foreach ( $permutation_vectors as $component_id => $permutation_vector ) {
 
 				$component_option_prices[ $component_id ] = $product->get_data_store()->get_raw_component_option_prices( $permutation_vector );
-
-				if ( $permutations_calc_scenarios ) {
-					$component_option_prices[ $component_id ]['min'][0] = 0.0;
-					$component_option_prices[ $component_id ]['max'][0] = 0.0;
-				}
 			}
 
+			$has_inf_max_price       = false;
+			$resume_from_permutation = false;
+
 			/*
-			 * Find cheapest/most expensive permutations taking scenarios into account.
+			 * Use filtered prices to find the permutation with the min/max price.
 			 */
-			if ( $permutations_calc_scenarios ) {
+			foreach ( $component_option_prices as $component_id => $component_option_price_data ) {
 
-				/**
-				 * 'woocommerce_composite_permutations_search_time_limit' filter.
-				 *
-				 * Enter a min/max permutation search time limit.
-				 *
-				 * @since  1.0.0
-				 *
-				 * @param  bool  $limit
-				 */
-				$search_time_limit = apply_filters( 'woocommerce_composite_permutations_search_time_limit', false === $task_runner_args ? 2 : 10 );
+				$component = $components[ $component_id ];
 
-				/**
-				 * 'woocommerce_composite_permutations_search_time_limit' filter.
-				 *
-				 * Limits the number of permutations to test per run. No limit by default.
-				 *
-				 * @since  1.0.0
-				 *
-				 * @param  int  $limit
-				 */
-				$permutations_search_count_limit = apply_filters( 'woocommerce_composite_permutations_search_count_limit', 0 );
+				$component_option_prices_min = $component_option_price_data['min'];
+				asort( $component_option_prices_min );
 
-				$min_price                 = empty( $price_data['min'] ) ? '' : $this->get_permutation_price( $price_data['min'], $components, $component_option_prices, 'min' );
-				$max_price                 = empty( $price_data['max'] ) ? '' : $this->get_permutation_price( $price_data['max'], $components, $component_option_prices, 'max' );
-				$start_time                = time();
-				$permutations_count        = 0;
-				$permutations_search_count = 0;
-				$invalid_permutation_part  = false;
+				$component_option_prices_max = $component_option_price_data['max'];
+				asort( $component_option_prices_max );
 
-				foreach ( wc_cp_cartesian( $permutation_vectors ) as $permutation ) {
+				$min_component_price = current( $component_option_prices_min );
+				$max_component_price = end( $component_option_prices_max );
 
-					$permutations_count++;
+				$min_component_price_ids = array_keys( $component_option_prices_min );
+				$max_component_price_ids = array_keys( $component_option_prices_max );
 
-					// Resuming?
-					if ( $resume_from_permutation ) {
+				$min_component_price_id = current( $min_component_price_ids );
+				$max_component_price_id = end( $max_component_price_ids );
 
-						if ( $permutations_count < $resume_from_permutation ) {
-							continue;
-						} else {
-							$resume_from_permutation = false;
-						}
-					}
+				$quantity_min = $component->get_quantity( 'min' );
+				$quantity_max = $component->get_quantity( 'max' );
 
-					// Check the number of tested perms.
-					if ( $permutations_search_count_limit && $permutations_search_count > $permutations_search_count_limit ) {
-							$resume_from_permutation = $permutations_count;
-							break;
-					}
+				$price_data['min'][ $component_id ] = $component->is_optional() || 0 === $quantity_min ? 0 : $min_component_price_id;
 
-					$permutations_search_count++;
-
-					// Check the elapsed time every 10000 tests.
-					if ( $permutations_count % 10000 === 0 ) {
-						if ( time() - $start_time > $search_time_limit ) {
-							$resume_from_permutation = $permutations_count;
-							break;
-						}
-					}
-
-					// Skip permutation if already found invalid.
-					if ( is_array( $invalid_permutation_part ) ) {
-
-						$validate_permutation = false;
-
-						foreach ( $invalid_permutation_part as $invalid_permutation_part_key => $invalid_permutation_part_value ) {
-							if ( $invalid_permutation_part_value !== $permutation[ $invalid_permutation_part_key ] ) {
-								$validate_permutation = true;
-								break;
-							}
-						}
-
-						if ( ! $validate_permutation ) {
-							continue;
-						} else {
-							$invalid_permutation_part = false;
-						}
-					}
-
-					$configuration = array();
-
-					foreach ( $permutation as $component_id => $component_option_id ) {
-
-						// Is it a variation?
-						if ( isset( $permutation_vector_data[ $component_id ]['parent_ids'][ $component_option_id ] ) ) {
-							$configuration[ $component_id ] = array(
-								'product_id'   => $permutation_vector_data[ $component_id ]['parent_ids'][ $component_option_id ],
-								'variation_id' => $component_option_id,
-							);
-						} else {
-							$configuration[ $component_id ] = array(
-								'product_id' => $component_option_id,
-							);
-						}
-					}
-
-					$validation_result = $product->scenarios()->validate_configuration( $configuration );
-
-					if ( is_wp_error( $validation_result ) ) {
-
-						$error_data               = $validation_result->get_error_data( $validation_result->get_error_code() );
-						$invalid_permutation_part = array();
-
-						// Keep a copy of the invalid permutation up to the offending component.
-						foreach ( $permutation as $component_id => $component_option_id ) {
-							$invalid_permutation_part[ $component_id ] = $component_option_id;
-							if ( $component_id === $error_data['component_id'] ) {
-								break;
-							}
-						}
+				if ( ! $has_inf_max_price ) {
+					if ( INF !== $max_component_price && '' !== $quantity_max ) {
+						$price_data['max'][ $component_id ] = $max_component_price_id;
 					} else {
-
-						/*
-						 * Find the permutation with the min/max price.
-						 */
-
-						$min_permutation_price = $this->get_permutation_price( $permutation, $components, $component_option_prices, 'min' );
-						$max_permutation_price = $this->get_permutation_price( $permutation, $components, $component_option_prices, 'max' );
-
-						if ( false === $min_permutation_price || false === $max_permutation_price ) {
-							continue;
-						}
-
-						if ( $min_permutation_price < $min_price || '' === $min_price ) {
-							$price_data['min'] = $permutation;
-							$min_price         = $min_permutation_price;
-						}
-
-						if ( INF !== $max_permutation_price ) {
-							if ( $max_permutation_price > $max_price || '' === $max_price ) {
-								$price_data['max'] = $permutation;
-								$max_price         = $max_permutation_price;
-							}
-						} else {
-							$price_data['max'] = array();
-						}
-					}
-				}
-
-				if ( $resume_from_permutation ) {
-
-					if ( $iteration < $max_iterations ) {
-						$price_data['resume'] = $resume_from_permutation;
-						$price_data['status'] = 'pending';
-					} else {
-						$price_data['status'] = 'failed';
-					}
-				}
-
-				/*
-				* Find cheapest/most expensive permutation without considering scenarios.
-				*/
-			} else {
-
-				$has_inf_max_price       = false;
-				$resume_from_permutation = false;
-
-				/*
-				 * Use filtered prices to find the permutation with the min/max price.
-				 */
-				foreach ( $component_option_prices as $component_id => $component_option_price_data ) {
-
-					$component = $components[ $component_id ];
-
-					$component_option_prices_min = $component_option_price_data['min'];
-					asort( $component_option_prices_min );
-
-					$component_option_prices_max = $component_option_price_data['max'];
-					asort( $component_option_prices_max );
-
-					$min_component_price = current( $component_option_prices_min );
-					$max_component_price = end( $component_option_prices_max );
-
-					$min_component_price_ids = array_keys( $component_option_prices_min );
-					$max_component_price_ids = array_keys( $component_option_prices_max );
-
-					$min_component_price_id = current( $min_component_price_ids );
-					$max_component_price_id = end( $max_component_price_ids );
-
-					$quantity_min = $component->get_quantity( 'min' );
-					$quantity_max = $component->get_quantity( 'max' );
-
-					$price_data['min'][ $component_id ] = $component->is_optional() || 0 === $quantity_min ? 0 : $min_component_price_id;
-
-					if ( ! $has_inf_max_price ) {
-						if ( INF !== $max_component_price && '' !== $quantity_max ) {
-							$price_data['max'][ $component_id ] = $max_component_price_id;
-						} else {
-							$price_data['max'] = array();
-							$has_inf_max_price = true;
-						}
+						$price_data['max'] = array();
+						$has_inf_max_price = true;
 					}
 				}
 			}
