@@ -100,7 +100,7 @@ class ProductComposite extends WC_Product {
 	/**
 	 * Get internal type.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 *
 	 * @return string
 	 */
@@ -111,7 +111,7 @@ class ProductComposite extends WC_Product {
 	/**
 	 * Load property and runtime cache defaults to trigger a re-sync.
 	 *
-	 * @since 0.1.0
+	 * @since 1.0.0
 	 */
 	public function load_defaults() {
 		$this->permutations = array(
@@ -137,7 +137,7 @@ class ProductComposite extends WC_Product {
 	/**
 	 * Define type-specific data.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 */
 	private function load_extended_data() {
 		// Back-compat.
@@ -150,7 +150,7 @@ class ProductComposite extends WC_Product {
 	/**
 	 * Sync composite props with component objects.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 *
 	 * @param  bool  $force
 	 * @return bool
@@ -210,7 +210,7 @@ class ProductComposite extends WC_Product {
 	/**
 	 * Sync product bundle raw price meta.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 *
 	 * @return bool
 	 */
@@ -353,7 +353,7 @@ class ProductComposite extends WC_Product {
 	/**
 	 * Calculates composite prices.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 *
 	 * @param  array  $args
 	 * @return mixed
@@ -533,7 +533,7 @@ class ProductComposite extends WC_Product {
 	/**
 	 * Get min/max regular composite price including tax.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 *
 	 * @param  string   $min_or_max
 	 * @param  integer  $qty
@@ -554,7 +554,7 @@ class ProductComposite extends WC_Product {
 	/**
 	 * Get min/max regular composite price excluding tax.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 *
 	 * @param  string   $min_or_max
 	 * @param  integer  $qty
@@ -938,7 +938,7 @@ class ProductComposite extends WC_Product {
 	/**
 	 * Returns the base active price of the composite.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 *
 	 * @param  string $context
 	 * @return mixed
@@ -951,7 +951,7 @@ class ProductComposite extends WC_Product {
 	/**
 	 * Returns the base regular price of the composite.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 *
 	 * @param  string $context
 	 * @return mixed
@@ -964,7 +964,7 @@ class ProductComposite extends WC_Product {
 	/**
 	 * Returns the base sale price of the composite.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 *
 	 * @param  string  $context
 	 * @return mixed
@@ -977,7 +977,7 @@ class ProductComposite extends WC_Product {
 	/**
 	 * Catalog Price getter.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 *
 	 * @param  string  $context
 	 * @return string
@@ -988,7 +988,7 @@ class ProductComposite extends WC_Product {
 
 		// Back compat with 'hide_price_html'.
 		if ( has_filter( 'woocommerce_composite_hide_price_html' ) ) {
-			_deprecated_function( 'The "woocommerce_composite_hide_price_html" filter', '0.1.0' );
+			_deprecated_function( 'The "woocommerce_composite_hide_price_html" filter', '1.0.0' );
 			$is_hidden = apply_filters( 'woocommerce_composite_hide_price_html', 'hidden' === $value, $this );
 			$value     = $is_hidden ? 'hidden' : $value;
 		}
@@ -999,7 +999,7 @@ class ProductComposite extends WC_Product {
 	/**
 	 * Form Location getter.
 	 *
-	 * @since  3.13.0
+	 * @since  1.0.0
 	 *
 	 * @param  string  $context
 	 * @return string
@@ -1011,7 +1011,7 @@ class ProductComposite extends WC_Product {
 	/**
 	 * Layout getter.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 *
 	 * @param  string  $context
 	 * @return string
@@ -1023,7 +1023,7 @@ class ProductComposite extends WC_Product {
 	/**
 	 * Editable-in-cart getter.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 *
 	 * @param  string  $context
 	 * @return string
@@ -1036,7 +1036,7 @@ class ProductComposite extends WC_Product {
 	 * "Sold Individually" option context.
 	 * Returns 'product' or 'configuration'.
 	 *
-	 * @since  3.6.0
+	 * @since  1.0.0
 	 *
 	 * @param  string  $context
 	 * @return string
@@ -1048,7 +1048,7 @@ class ProductComposite extends WC_Product {
 	/**
 	 * Minimum raw composite price getter.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 *
 	 * @param  string  $context
 	 * @return string
@@ -1065,7 +1065,7 @@ class ProductComposite extends WC_Product {
 	 * Maximum raw composite price getter.
 	 * INF is 9999999999.0 in 'edit' (DB) context.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 *
 	 * @param  string  $context
 	 * @return string
@@ -1228,7 +1228,7 @@ class ProductComposite extends WC_Product {
 	/**
 	 * Shop price calc setter.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 *
 	 * @param  string  $value
 	 */
@@ -1240,7 +1240,7 @@ class ProductComposite extends WC_Product {
 	/**
 	 * Form Location setter.
 	 *
-	 * @since  3.13.0
+	 * @since  1.0.0
 	 *
 	 * @param  string  $value
 	 */
@@ -1252,7 +1252,7 @@ class ProductComposite extends WC_Product {
 	/**
 	 * Layout setter.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 *
 	 * @param  string  $layout
 	 */
@@ -1264,7 +1264,7 @@ class ProductComposite extends WC_Product {
 	/**
 	 * Edtiable-in-cart setter.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 *
 	 * @param  string  $editable_in_cart
 	 */
@@ -1289,7 +1289,7 @@ class ProductComposite extends WC_Product {
 	/**
 	 * Sold-individually context setter.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 *
 	 * @param  string  $context
 	 */
@@ -1301,7 +1301,7 @@ class ProductComposite extends WC_Product {
 	/**
 	 * Minimum raw composite price setter.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 *
 	 * @param  mixed  $value
 	 */
@@ -1314,7 +1314,7 @@ class ProductComposite extends WC_Product {
 	 * Maximum raw composite price setter.
 	 * Convert 9999999999.0 to INF.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 *
 	 * @param  mixed  $value
 	 */
@@ -1329,7 +1329,7 @@ class ProductComposite extends WC_Product {
 	 *
 	 * @internal
 	 *
-	 * @since 0.1.0
+	 * @since 1.0.0
 	 */
 	public function set_composite_data( $data ) {
 
@@ -1367,7 +1367,7 @@ class ProductComposite extends WC_Product {
 	 *
 	 * @internal
 	 *
-	 * @since 0.1.0
+	 * @since 1.0.0
 	 */
 	public function set_scenario_data( $data ) {
 
@@ -1396,7 +1396,7 @@ class ProductComposite extends WC_Product {
 	/**
 	 * Ensure properties are set correctly before saving.
 	 *
-	 * @since 4.0.0
+	 * @since 1.0.0
 	 */
 	public function validate_props() {
 		parent::validate_props();
@@ -1406,7 +1406,7 @@ class ProductComposite extends WC_Product {
 	/**
 	 * Ensure scenarios are consistent with components before saving.
 	 *
-	 * @since 4.0.0
+	 * @since 1.0.0
 	 */
 	protected function validate_scenarios() {
 
@@ -1517,7 +1517,7 @@ class ProductComposite extends WC_Product {
 	/**
 	 * Alias for 'set_props'.
 	 *
-	 * @since 0.1.0
+	 * @since 1.0.0
 	 */
 	public function set( $properties ) {
 		return $this->set_props( $properties );
@@ -1526,7 +1526,7 @@ class ProductComposite extends WC_Product {
 	/**
 	 * Override 'save' to invalidate component runtime cache.
 	 *
-	 * @since 0.1.0
+	 * @since 1.0.0
 	 */
 	public function save() {
 
@@ -1554,7 +1554,7 @@ class ProductComposite extends WC_Product {
 	/**
 	 * Getter of composite 'contains' properties.
 	 *
-	 * @since  3.7.0
+	 * @since  1.0.0
 	 *
 	 * @param  string  $key
 	 * @return mixed
@@ -1608,7 +1608,7 @@ class ProductComposite extends WC_Product {
 	 * Indicates whether the catalog price of this product is being calculated in the background or has maybe failed to complete.
 	 * Values: 'pending' | 'completed' | 'failed' | ''
 	 *
-	 * @since  4.0.0
+	 * @since  1.0.0
 	 *
 	 * @return string
 	 */
@@ -1793,7 +1793,7 @@ class ProductComposite extends WC_Product {
 		/**
 		 * Filter generated scenario data.
 		 *
-		 * @since  3.15.2
+		 * @since  1.0.0
 		 *
 		 * @param  array                 $scenario_data
 		 * @param  array                 $component_options_subset
@@ -2089,7 +2089,7 @@ class ProductComposite extends WC_Product {
 	/**
 	 * Get the currently selected option (product id) for a component.
 	 *
-	 * @since  3.6.0
+	 * @since  1.0.0
 	 *
 	 * @param  string $component_id
 	 * @return int
@@ -2148,7 +2148,7 @@ class ProductComposite extends WC_Product {
 	/**
 	 * Get "Form Location" options.
 	 *
-	 * @since  3.13.0
+	 * @since  1.0.0
 	 *
 	 * @return array
 	 */

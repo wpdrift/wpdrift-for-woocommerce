@@ -4,7 +4,7 @@
  *
  * @author   SomewhereWarm <info@somewherewarm.gr>
  * @package  WooCommerce Composite Products
- * @since    3.11.0
+ * @since    1.0.0
  */
 
 // Exit if accessed directly.
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * WooCommerce core Product Importer support.
  *
  * @class    Product_Import
- * @version  3.14.0
+ * @version  1.0.0
  */
 class Product_Import {
 

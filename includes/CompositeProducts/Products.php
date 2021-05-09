@@ -66,7 +66,7 @@ class Products {
 	/**
 	 * Spawn task runner.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @return void
 	 */
 	public static function initialize_price_calc_task_runner() {
@@ -76,7 +76,7 @@ class Products {
 	/**
 	 * Schedule task.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @param  $data
 	 */
 	public static function schedule_price_calc_task( $data ) {
@@ -90,7 +90,7 @@ class Products {
 	/**
 	 * Get tasks to queue.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 * @param  $data
 	 */
 	public static function get_price_calc_tasks_to_queue() {
@@ -159,7 +159,7 @@ class Products {
 	/**
 	 * Returns the incl/excl tax coefficients for calculating prices incl/excl tax on the client side.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 *
 	 * @param  WC_Product  $product
 	 * @return array
@@ -194,7 +194,7 @@ class Products {
 	/**
 	 * Calculates product prices.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 *
 	 * @param  WC_Product  $product
 	 * @param  array       $args
@@ -620,7 +620,7 @@ class Products {
 	/**
 	 * Invalidate composite product query cache.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 *
 	 * @param  int  $post_id
 	 * @return void
@@ -638,7 +638,7 @@ class Products {
 	/**
 	 * Invalidate composite product price data.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 *
 	 * @param  WC_Product  $product
 	 * @param  array       $changed_props
@@ -694,13 +694,13 @@ class Products {
 	/**
 	 * Invalidate composite product query cache + price data.
 	 *
-	 * @deprecated  0.1.0
+	 * @deprecated  1.0.0
 	 *
 	 * @param  int   $post_id
 	 * @return void
 	 */
 	public static function flush_cp_cache( $post_id = 0 ) {
-		_deprecated_function( __METHOD__ . '()', '0.1.0', 'ProductComposite_Data_Store_CPT::flush_query_cache() and WC_Cache_Helper::get_transient_version( "wc_cp_product_prices" )' );
+		_deprecated_function( __METHOD__ . '()', '1.0.0', 'ProductComposite_Data_Store_CPT::flush_query_cache() and WC_Cache_Helper::get_transient_version( "wc_cp_product_prices" )' );
 		self::flush_query_cache( $post_id );
 
 	}
@@ -752,10 +752,10 @@ class Products {
 	/**
 	 * Calculates bundled product prices incl. or excl. tax depending on the 'woocommerce_tax_display_shop' setting.
 	 *
-	 * @deprecated  0.1.0
+	 * @deprecated  1.0.0
 	 */
 	public static function get_product_display_price( $product, $price, $qty = 1 ) {
-		_deprecated_function( __METHOD__ . '()', '0.1.0', 'Products::get_product_price()' );
+		_deprecated_function( __METHOD__ . '()', '1.0.0', 'Products::get_product_price()' );
 		return self::get_product_price(
 			$product,
 			array(

@@ -25,7 +25,7 @@ class Module {
 	 * The single instance of the class.
 	 * @var Init
 	 *
-	 * @since 0.1.0
+	 * @since 1.0.0
 	 */
 	protected static $_instance = null;
 
@@ -34,7 +34,7 @@ class Module {
 	 *
 	 * Ensures only one instance of Init is loaded or can be loaded - @see 'Module::instance()'.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 *
 	 * @static
 	 * @return Init - Main instance
@@ -49,19 +49,19 @@ class Module {
 	/**
 	 * Cloning is forbidden.
 	 *
-	 * @since 0.1.0
+	 * @since 1.0.0
 	 */
 	public function __clone() {
-		_doing_it_wrong( __FUNCTION__, __( 'Foul!', 'wpdrift-woocommerce-modules' ), '0.1.0' );
+		_doing_it_wrong( __FUNCTION__, __( 'Foul!', 'wpdrift-woocommerce-modules' ), '1.0.0' );
 	}
 
 	/**
 	 * Unserializing instances of this class is forbidden.
 	 *
-	 * @since 0.1.0
+	 * @since 1.0.0
 	 */
 	public function __wakeup() {
-		_doing_it_wrong( __FUNCTION__, __( 'Foul!', 'wpdrift-woocommerce-modules' ), '0.1.0' );
+		_doing_it_wrong( __FUNCTION__, __( 'Foul!', 'wpdrift-woocommerce-modules' ), '1.0.0' );
 	}
 
 	/**
@@ -131,7 +131,7 @@ class Module {
 	/**
 	 * Plugin base path name getter.
 	 *
-	 * @since  3.7.0
+	 * @since  1.0.0
 	 *
 	 * @return string
 	 */
@@ -142,7 +142,7 @@ class Module {
 	/**
 	 * Plugin version getter.
 	 *
-	 * @since  3.14.0
+	 * @since  1.0.0
 	 *
 	 * @param  boolean  $base
 	 * @param  string   $version

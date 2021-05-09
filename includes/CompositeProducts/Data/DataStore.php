@@ -194,7 +194,7 @@ class DataStore extends WC_Product_Data_Store_CPT {
 	/**
 	 * Get data to save to a lookup table.
 	 *
-	 * @since  4.0.0
+	 * @since  1.0.0
 	 *
 	 * @param  int     $id
 	 * @param  string  $table
@@ -298,7 +298,7 @@ class DataStore extends WC_Product_Data_Store_CPT {
 	/**
 	 * Calculate component option vectors for min/max price calculations.
 	 *
-	 * @since  4.0.0
+	 * @since  1.0.0
 	 *
 	 * @param  ProductComposite  $product
 	 * @return array
@@ -368,7 +368,7 @@ class DataStore extends WC_Product_Data_Store_CPT {
 		 *
 		 * Controls the maximum number of background task iterations for calculating the min/max catalog price of a Composite product.
 		 *
-		 * @since  4.0.0
+		 * @since  1.0.0
 		 *
 		 * @param  int  $max_iterations
 		 */
@@ -467,7 +467,7 @@ class DataStore extends WC_Product_Data_Store_CPT {
 					 *
 					 * Expand the permutation search accuracy for this component to include variations?
 					 *
-					 * @since  3.14.0
+					 * @since  1.0.0
 					 *
 					 * @param  bool  $expand
 					 */
@@ -514,7 +514,7 @@ class DataStore extends WC_Product_Data_Store_CPT {
 				 *
 				 * Enter a min/max permutation search time limit.
 				 *
-				 * @since  3.14.0
+				 * @since  1.0.0
 				 *
 				 * @param  bool  $limit
 				 */
@@ -525,7 +525,7 @@ class DataStore extends WC_Product_Data_Store_CPT {
 				 *
 				 * Limits the number of permutations to test per run. No limit by default.
 				 *
-				 * @since  3.14.0
+				 * @since  1.0.0
 				 *
 				 * @param  int  $limit
 				 */
@@ -732,7 +732,7 @@ class DataStore extends WC_Product_Data_Store_CPT {
 	/**
 	 * Calculates the price of a permutation.
 	 *
-	 * @since  4.0.0
+	 * @since  1.0.0
 	 *
 	 * @param  array  $permutation
 	 * @param  array  $components
@@ -789,7 +789,7 @@ class DataStore extends WC_Product_Data_Store_CPT {
 		/**
 		 * 'woocommerce_composite_permutation_price' filter.
 		 *
-		 * @since  4.0.0
+		 * @since  1.0.0
 		 *
 		 * @param  mixed  $price
 		 * @param  array  $permutation
@@ -869,7 +869,7 @@ class DataStore extends WC_Product_Data_Store_CPT {
 	/**
 	 * Get expanded component options to include variations straight from the DB.
 	 *
-	 * @since  3.14.0
+	 * @since  1.0.0
 	 *
 	 * @param  array  $product_ids
 	 * @return array
@@ -920,7 +920,7 @@ class DataStore extends WC_Product_Data_Store_CPT {
 	 * Use 'WP_Query' to preload product data from the 'posts' table.
 	 * Useful when we know we are going to call 'wc_get_product' against a list of IDs.
 	 *
-	 * @since  3.13.2
+	 * @since  1.0.0
 	 *
 	 * @param  array  $product_ids
 	 * @return void
@@ -951,7 +951,7 @@ class DataStore extends WC_Product_Data_Store_CPT {
 	/**
 	 * Component option query handler.
 	 *
-	 * @since  3.14.0
+	 * @since  1.0.0
 	 *
 	 * @param  array  $component_data
 	 * @param  array  $query_args

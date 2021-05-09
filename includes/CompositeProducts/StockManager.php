@@ -116,7 +116,7 @@ class StockManager {
 	/**
 	 * Product quantities already in cart.
 	 *
-	 * @since  3.14.0
+	 * @since  1.0.0
 	 *
 	 * @return array
 	 */

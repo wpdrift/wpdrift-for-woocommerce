@@ -7,7 +7,7 @@ namespace WPdrift\CompositeProducts\Admin;
  *
  * @author   SomewhereWarm <info@somewherewarm.gr>
  * @package  WooCommerce Composite Products
- * @since    3.15.2
+ * @since    1.0.0
  */
 
 // Exit if accessed directly.
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Add hooks to the edit posts view for the 'product' post type.
  *
  * @class    PostTypes
- * @version  3.15.2
+ * @version  1.0.0
  */
 class PostTypes {
 

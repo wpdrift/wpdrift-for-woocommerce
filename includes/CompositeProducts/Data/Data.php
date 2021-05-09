@@ -6,7 +6,7 @@ namespace WPdrift\CompositeProducts\Data;
  *
  * @author   SomewhereWarm <info@somewherewarm.gr>
  * @package  WooCommerce Composite Products
- * @since    3.9.0
+ * @since    1.0.0
  */
 
 // Exit if accessed directly.
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Composite Products Data filters and includes.
  *
  * @class    Data
- * @version  3.9.0
+ * @version  1.0.0
  */
 class Data {
 

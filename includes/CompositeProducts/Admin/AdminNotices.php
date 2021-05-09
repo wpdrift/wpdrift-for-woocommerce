@@ -95,7 +95,7 @@ class AdminNotices {
 	/**
 	 * Checks if a maintenance notice is visible.
 	 *
-	 * @since  3.14.0
+	 * @since  1.0.0
 	 *
 	 * @param  string  $notice_name
 	 * @return boolean
@@ -107,7 +107,7 @@ class AdminNotices {
 	/**
 	 * Checks if a dismissible notice has been dismissed in the past.
 	 *
-	 * @since  3.14.0
+	 * @since  1.0.0
 	 *
 	 * @param  string  $notice_name
 	 * @return boolean
@@ -190,7 +190,7 @@ class AdminNotices {
 	/**
 	 * Add a dimissible notice/error.
 	 *
-	 * @since  3.14.0
+	 * @since  1.0.0
 	 *
 	 * @param  string   $text
 	 * @param  mixed    $args
@@ -204,7 +204,7 @@ class AdminNotices {
 	/**
 	 * Remove a dismissible notice.
 	 *
-	 * @since  3.14.0
+	 * @since  1.0.0
 	 *
 	 * @param  string  $notice_name
 	 */
@@ -302,7 +302,7 @@ class AdminNotices {
 	/**
  	 * Add 'welcome' notice.
  	 *
- 	 * @since  3.15.0
+ 	 * @since  1.0.0
  	 */
  	public static function welcome_notice() {
 
@@ -335,7 +335,7 @@ class AdminNotices {
 	/**
 	 * Returns a "trigger update" notice component.
 	 *
-	 * @since  3.12.0
+	 * @since  1.0.0
 	 *
 	 * @return string
 	 */
@@ -348,7 +348,7 @@ class AdminNotices {
 	/**
 	 * Returns a "force update" notice component.
 	 *
-	 * @since  3.12.0
+	 * @since  1.0.0
 	 *
 	 * @return string
 	 */
@@ -371,7 +371,7 @@ class AdminNotices {
 	/**
 	 * Returns a "failed update" notice component.
 	 *
-	 * @since  3.12.0
+	 * @since  1.0.0
 	 *
 	 * @return string
 	 */
@@ -387,7 +387,7 @@ class AdminNotices {
 	/**
 	 * Dismisses a notice.
 	 *
-	 * @since  3.14.0
+	 * @since  1.0.0
 	 *
 	 * @param  string  $notice
 	 */
@@ -408,7 +408,7 @@ class AdminNotices {
 	/**
 	 * Act upon clicking on a 'dismiss notice' link.
 	 *
-	 * @deprecated  3.14.0
+	 * @deprecated  1.0.0
 	 */
 	public static function dismiss_notice_handler() {
 		if ( isset( $_GET[ 'dismiss_wc_cp_notice' ] ) && isset( $_GET[ '_wc_cp_admin_nonce' ] ) ) {

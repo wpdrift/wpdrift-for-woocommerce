@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * 3rd-party Extensions Compatibility.
  *
  * @class    Compatibility
- * @version  0.1.0
+ * @version  1.0.0
  */
 class Compatibility {
 
@@ -32,7 +32,7 @@ class Compatibility {
 	 * The single instance of the class.
 	 * @var Compatibility
 	 *
-	 * @since 0.1.0
+	 * @since 1.0.0
 	 */
 	protected static $_instance = null;
 
@@ -43,7 +43,7 @@ class Compatibility {
 	 *
 	 * @static
 	 * @return Compatibility
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 */
 	public static function instance() {
 		if ( is_null( self::$_instance ) ) {
@@ -55,19 +55,19 @@ class Compatibility {
 	/**
 	 * Cloning is forbidden.
 	 *
-	 * @since 0.1.0
+	 * @since 1.0.0
 	 */
 	public function __clone() {
-		_doing_it_wrong( __FUNCTION__, __( 'Foul!', 'wpdrift-woocommerce-modules' ), '0.1.0' );
+		_doing_it_wrong( __FUNCTION__, __( 'Foul!', 'wpdrift-woocommerce-modules' ), '1.0.0' );
 	}
 
 	/**
 	 * Unserializing instances of this class is forbidden.
 	 *
-	 * @since 0.1.0
+	 * @since 1.0.0
 	 */
 	public function __wakeup() {
-		_doing_it_wrong( __FUNCTION__, __( 'Foul!', 'wpdrift-woocommerce-modules' ), '0.1.0' );
+		_doing_it_wrong( __FUNCTION__, __( 'Foul!', 'wpdrift-woocommerce-modules' ), '1.0.0' );
 	}
 
 	/**
@@ -86,7 +86,7 @@ class Compatibility {
 	/**
 	 * Initialize.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 *
 	 * @return void
 	 */
@@ -106,7 +106,7 @@ class Compatibility {
 		 *
 		 * Use this to filter the required compatibility modules.
 		 *
-		 * @since  0.1.0
+		 * @since  1.0.0
 		 * @param  array $module_paths
 		 */
 		$module_paths = apply_filters( 'woocommerce_composites_compatibility_modules', $module_paths );
@@ -119,7 +119,7 @@ class Compatibility {
 	/**
 	 * Rendering a PIP document?
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 *
 	 * @param  string  $type
 	 * @return boolean
@@ -131,7 +131,7 @@ class Compatibility {
 	/**
 	 * Checks if a product has (required) addons.
 	 *
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 *
 	 * @param  mixed    $product
 	 * @param  boolean  $required

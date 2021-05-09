@@ -4,7 +4,7 @@
  *
  * @author   SomewhereWarm <info@somewherewarm.gr>
  * @package  WooCommerce Composite Products
- * @since    3.11.0
+ * @since    1.0.0
  */
 
 // Exit if accessed directly.
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * WooCommerce core Product Exporter support.
  *
  * @class    Product_Export
- * @version  3.14.0
+ * @version  1.0.0
  */
 class Product_Export {
 
@@ -282,7 +282,7 @@ class Product_Export {
 	/**
 	 * "Composite Form Location" column content.
 	 *
-	 * @since  3.14.0
+	 * @since  1.0.0
 	 *
 	 * @param  mixed       $value
 	 * @param  WC_Product  $product

@@ -163,7 +163,7 @@ class Product {
 	/**
 	 * Get component.
 	 *
-	 * @since  3.7.0
+	 * @since  1.0.0
 	 *
 	 * @return array|false
 	 */
@@ -525,7 +525,7 @@ class Product {
 	/**
 	 * Min/max bundled item (regular) price incl/excl tax.
 	 *
-	 * @since  3.12.0
+	 * @since  1.0.0
 	 *
 	 * @param  array  $args
 	 * @return mixed
@@ -646,7 +646,7 @@ class Product {
 	/**
 	 * Min composited product price incl tax.
 	 *
-	 * @since  3.12.0
+	 * @since  1.0.0
 	 *
 	 * @param  string  $min_or_max
 	 * @param  int     $qty
@@ -668,7 +668,7 @@ class Product {
 	/**
 	 * Min composited product price excl tax.
 	 *
-	 * @since  3.12.0
+	 * @since  1.0.0
 	 *
 	 * @param  string  $min_or_max
 	 * @param  int     $qty
@@ -708,7 +708,7 @@ class Product {
 	/**
 	 * Selection html.
 	 *
-	 * @since  4.0.0
+	 * @since  1.0.0
 	 * @return array
 	 */
 	private function get_product_html() {
@@ -718,7 +718,7 @@ class Product {
 		/**
 		 * Action 'woocommerce_composited_product_single'.
 		 *
-		 * @since  4.0.0
+		 * @since  1.0.0
 		 * @param  Product  $component_option
 		 */
 		do_action( 'woocommerce_composited_product_single', $this );
@@ -729,7 +729,7 @@ class Product {
 	/**
 	 * Get variations data.
 	 *
-	 * @since  4.0.0
+	 * @since  1.0.0
 	 * @return array|false
 	 */
 	public function get_variations_data() {
@@ -744,7 +744,7 @@ class Product {
 	/**
 	 * Product data.
 	 *
-	 * @since  4.0.0
+	 * @since  1.0.0
 	 * @return array
 	 */
 	public function get_product_data() {
@@ -777,7 +777,7 @@ class Product {
 		/**
 		 * Filter 'woocommerce_composited_product_data'.
 		 *
-		 * @since  4.0.0
+		 * @since  1.0.0
 		 * @param  array          $component_option
 		 * @param  Product  $this
 		 */
@@ -1044,7 +1044,7 @@ class Product {
 	/**
 	 * Get composited product stock html.
 	 *
-	 * @since  3.9.0
+	 * @since  1.0.0
 	 *
 	 * @param  WC_Product|false  $product
 	 * @return string
@@ -1092,7 +1092,7 @@ class Product {
 	/**
 	 * Composited product availability that takes min_quantity > 1 into account.
 	 *
-	 * @since  3.7.0
+	 * @since  1.0.0
 	 *
 	 * @return array
 	 */
@@ -1125,7 +1125,7 @@ class Product {
 	/**
 	 * Get availability text based on stock status.
 	 *
-	 * @since  3.7.0
+	 * @since  1.0.0
 	 *
 	 * @return string
 	 */
@@ -1228,7 +1228,7 @@ class Product {
 	/**
 	 * Get availability classname based on stock status.
 	 *
-	 * @since  3.7.0
+	 * @since  1.0.0
 	 *
 	 * @return string
 	 */
@@ -1300,7 +1300,7 @@ class Product {
 	/**
 	 * Image size to use in Thumbnail grid and Summary template.
 	 *
-	 * @since  3.13.3
+	 * @since  1.0.0
 	 * @return string
 	 */
 	public function get_image_size() {
@@ -1310,7 +1310,7 @@ class Product {
 	/**
 	 * Image size to use in selection template.
 	 *
-	 * @since  3.13.3
+	 * @since  1.0.0
 	 * @return string
 	 */
 	public function get_selection_thumbnail_size() {
@@ -1320,7 +1320,7 @@ class Product {
 	/**
 	 * Tax ratios.
 	 *
-	 * @since  4.0.0
+	 * @since  1.0.0
 	 * @return array
 	 */
 	public function get_tax_ratios() {
@@ -1336,7 +1336,7 @@ class Product {
 	/**
 	 * Placeholder product data array.
 	 *
-	 * @since  4.0.0
+	 * @since  1.0.0
 	 * @param  string  $context
 	 * @return array
 	 */

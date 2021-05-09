@@ -31,7 +31,7 @@ class Order {
 	 * The single instance of the class.
 	 * @var Order
 	 *
-	 * @since 3.7.0
+	 * @since 1.0.0
 	 */
 	protected static $_instance = null;
 
@@ -42,7 +42,7 @@ class Order {
 	 *
 	 * @static
 	 * @return Order
-	 * @since  3.7.0
+	 * @since  1.0.0
 	 */
 	public static function instance() {
 		if ( is_null( self::$_instance ) ) {
@@ -54,19 +54,19 @@ class Order {
 	/**
 	 * Cloning is forbidden.
 	 *
-	 * @since 3.7.0
+	 * @since 1.0.0
 	 */
 	public function __clone() {
-		_doing_it_wrong( __FUNCTION__, __( 'Foul!', 'wpdrift-woocommerce-modules' ), '3.7.0' );
+		_doing_it_wrong( __FUNCTION__, __( 'Foul!', 'wpdrift-woocommerce-modules' ), '1.0.0' );
 	}
 
 	/**
 	 * Unserializing instances of this class is forbidden.
 	 *
-	 * @since 3.7.0
+	 * @since 1.0.0
 	 */
 	public function __wakeup() {
-		_doing_it_wrong( __FUNCTION__, __( 'Foul!', 'wpdrift-woocommerce-modules' ), '3.7.0' );
+		_doing_it_wrong( __FUNCTION__, __( 'Foul!', 'wpdrift-woocommerce-modules' ), '1.0.0' );
 	}
 
 	/**
@@ -103,7 +103,7 @@ class Order {
 	/**
 	 * Reads the configuration array stored on a container order item and modifies it based on the actual state of the composite.
 	 *
-	 * @since  3.14.0
+	 * @since  1.0.0
 	 *
 	 * @param  WC_Order_Item  $order_item
 	 * @param  WC_Order       $order
@@ -253,7 +253,7 @@ class Order {
 						/**
 						 * Custom callback for adding child items.
 						 *
-						 * @since  3.14.0
+						 * @since  1.0.0
 						 *
 						 * @param  array|false|null      $callback
 						 * @param  Component       $component
@@ -718,7 +718,7 @@ class Order {
 				/**
 				 * Allows you to construct a dynamic SKU for the product kit depending on its contents.
 				 *
-				 * @since  3.14.0
+				 * @since  1.0.0
 				 *
 				 * @param  string                $sku
 				 * @param  ProductComposite  $composite
@@ -758,7 +758,7 @@ class Order {
 	/**
 	 * Returns a list of products/quantities physically assembled in a parent order item.
 	 *
-	 * @since  3.14.0
+	 * @since  1.0.0
 	 *
 	 * @param  WC_Order_Item_Product  $item
 	 * @param  WC_Order               $order
@@ -1019,7 +1019,7 @@ class Order {
 	/**
 	 * Given a virtual composite container cart item, find if any of its children need processing.
 	 *
-	 * @since  3.7.0
+	 * @since  1.0.0
 	 *
 	 * @param  array  $item_values
 	 * @return mixed

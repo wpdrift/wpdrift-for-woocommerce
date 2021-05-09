@@ -514,7 +514,7 @@ class Updater {
 	/**
 	 * Returns if the SSL of the store should be verified.
 	 *
-	 * @since  1.6.13
+	 * @since  1.0.0
 	 * @return bool
 	 */
 	private function verify_ssl() {

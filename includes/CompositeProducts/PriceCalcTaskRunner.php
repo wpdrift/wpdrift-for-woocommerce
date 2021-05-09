@@ -38,7 +38,7 @@ class PriceCalcTaskRunner extends WP_Background_Process {
 	/**
 	 * Returns the cron action identifier.
 	 *
-	 * @since  4.0.0
+	 * @since  1.0.0
 	 *
 	 * @return string
 	 */

@@ -268,7 +268,7 @@ class Helpers {
 	/**
 	 * Version of 'in_array' operating on the values of an input array.
 	 *
-	 * @since  3.9.0
+	 * @since  1.0.0
 	 *
 	 * @param  array   $array
 	 * @param  mixed   $key
@@ -286,7 +286,7 @@ class Helpers {
 	/**
 	 * Recursive version of 'urlencode' for multidimensional assosciative arrays.
 	 *
-	 * @since  3.14.0
+	 * @since  1.0.0
 	 *
 	 * @param  function  $array
 	 * @param  array     $escaped_array

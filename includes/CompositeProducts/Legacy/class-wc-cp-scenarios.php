@@ -4,7 +4,7 @@
  *
  * @author   SomewhereWarm <info@somewherewarm.gr>
  * @package  WooCommerce Composite Products
- * @since    3.5.0
+ * @since    1.0.0
  */
 
 // Exit if accessed directly.

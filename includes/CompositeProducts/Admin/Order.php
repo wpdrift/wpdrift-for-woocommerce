@@ -7,7 +7,7 @@ namespace WPdrift\CompositeProducts\Admin;
  *
  * @author   SomewhereWarm <info@somewherewarm.gr>
  * @package  WooCommerce Composite Products
- * @since    3.14.0
+ * @since    1.0.0
  */
 
 // Exit if accessed directly.

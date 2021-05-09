@@ -102,7 +102,7 @@ class RestAPI {
 		/**
 		 * 'woocommerce_rest_api_extended_composite_fields' filter.
 		 *
-		 * @since  3.15.2
+		 * @since  1.0.0
 		 *
 		 * @param  array  $product_fields
 		 */
@@ -125,7 +125,7 @@ class RestAPI {
 			 * Extended composite product field args filter.
 			 * Use it to handle additional extended composite product fields.
 			 *
-			 * @since  3.15.2
+			 * @since  1.0.0
 			 *
 			 * @param  array  $args
 			 */
@@ -725,7 +725,7 @@ class RestAPI {
 	/**
 	 * Gets composite-specific product data.
 	 *
-	 * @since  3.7.0
+	 * @since  1.0.0
 	 *
 	 * @param  string      $key
 	 * @param  WC_Product  $product
@@ -1259,7 +1259,7 @@ class RestAPI {
 	/**
 	 * Converts a posted composite configuration to a format understood by 'Cart::validate_bundle_configuration'.
 	 *
-	 * @since  3.14.0
+	 * @since  1.0.0
 	 *
 	 * @param  array                  $posted_configuration
 	 * @param  ProductComposite   $composite
@@ -1360,7 +1360,7 @@ class RestAPI {
 		/**
 		 * 'woocommerce_parsed_rest_composite_order_item_configuration' filter.
 		 *
-		 * @since  3.14.0
+		 * @since  1.0.0
 		 *
 		 * @param  array                  $configuration
 		 * @param  ProductComposite   $composite
@@ -1423,7 +1423,7 @@ class RestAPI {
 	/**
 	 * Filters WC REST API order responses to add references between composite container/children items. Also modifies expanded product data based on the pricing and shipping settings.
 	 *
-	 * @since  3.7.0
+	 * @since  1.0.0
 	 *
 	 * @param  WP_REST_Response   $response
 	 * @param  WP_Post | WC_Data  $object

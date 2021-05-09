@@ -329,7 +329,7 @@ class Scenario {
 	/**
 	 * Get raw component option IDs definition.
 	 *
-	 * @since  3.13.0
+	 * @since  1.0.0
 	 *
 	 * @param  string  $component_id
 	 * @return array

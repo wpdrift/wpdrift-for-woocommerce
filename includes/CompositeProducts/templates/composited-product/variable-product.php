@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	/**
 	 * 'woocommerce_composited_product_details' hook.
 	 *
-	 * @since 3.2.0
+	 * @since 1.0.0
 	 *
 	 * @hooked wc_cp_composited_product_excerpt - 10
 	 */
@@ -67,7 +67,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		 *
 		 * Used to output the cart button and placeholder for variation data.
 		 *
-		 * @since 3.4.0
+		 * @since 1.0.0
 		 *
 		 * @hooked wc_cp_composited_single_variation          - 10
 		 * @hooked wc_cp_composited_single_variation_template - 20

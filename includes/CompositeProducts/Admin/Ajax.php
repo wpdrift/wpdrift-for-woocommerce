@@ -76,7 +76,7 @@ class Ajax {
 	/**
 	 * Dismisses notices.
 	 *
-	 * @since  3.14.0
+	 * @since  1.0.0
 	 *
 	 * @return void
 	 */
@@ -120,7 +120,7 @@ class Ajax {
 	/**
 	 * Fetches the categories of a product.
 	 *
-	 * @since  3.14.0
+	 * @since  1.0.0
 	 * @return void
 	 */
 	public static function get_product_categories() {
@@ -231,7 +231,7 @@ class Ajax {
 	/**
 	 * Search for products and variations in component.
 	 *
-	 * @since  3.14.0
+	 * @since  1.0.0
 	 *
 	 * @return void
 	 */
@@ -365,7 +365,7 @@ class Ajax {
 	/**
 	 * Modify variable product titles when searching in scenarios.
 	 *
-	 * @since  3.14.3
+	 * @since  1.0.0
 	 *
 	 * @param  array  $search_results
 	 * @return array
@@ -396,7 +396,7 @@ class Ajax {
 	/**
 	 * True when displaying content in an edit-composite order item modal.
 	 *
-	 * @since  3.14.0
+	 * @since  1.0.0
 	 *
 	 * @return void
 	 */
@@ -407,7 +407,7 @@ class Ajax {
 	/**
 	 * Form content used to populate "Configure/Edit" composite order item modals.
 	 *
-	 * @since  3.14.0
+	 * @since  1.0.0
 	 *
 	 * @return void
 	 */
@@ -476,7 +476,7 @@ class Ajax {
 	/**
 	 * Validates edited/configured composites and returns updated order items.
 	 *
-	 * @since  3.14.0
+	 * @since  1.0.0
 	 *
 	 * @return void
 	 */
@@ -566,7 +566,7 @@ class Ajax {
 					/**
 					 * 'woocommerce_editing_composite_in_order' action.
 					 *
-					 * @since  3.15.1
+					 * @since  1.0.0
 					 *
 					 * @param  WC_Order_Item_Product  $new_item
 					 * @param  WC_Order_Item_Product  $old_item
@@ -614,7 +614,7 @@ class Ajax {
 	/**
 	 * Fetches selection data.
 	 *
-	 * @since  3.14.0
+	 * @since  1.0.0
 	 *
 	 * @return void
 	 */
@@ -629,7 +629,7 @@ class Ajax {
 	/**
 	 * Filter component data in edit-order context.
 	 *
-	 * @since  3.14.0
+	 * @since  1.0.0
 	 *
 	 * @param  array  $component_data
 	 * @return array
@@ -666,7 +666,7 @@ class Ajax {
 	/**
 	 * Add variations to component product search results.
 	 *
-	 * @deprecated  3.14.0
+	 * @deprecated  1.0.0
 	 *
 	 * @param  array  $search_results
 	 * @return array

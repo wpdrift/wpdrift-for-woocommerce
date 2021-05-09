@@ -29,7 +29,7 @@ class Display {
 	 * The single instance of the class.
 	 * @var Display
 	 *
-	 * @since 0.1.0
+	 * @since 1.0.0
 	 */
 	protected static $_instance = null;
 
@@ -40,7 +40,7 @@ class Display {
 	 *
 	 * @static
 	 * @return Display
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 */
 	public static function instance() {
 		if ( is_null( self::$_instance ) ) {
@@ -52,19 +52,19 @@ class Display {
 	/**
 	 * Cloning is forbidden.
 	 *
-	 * @since 0.1.0
+	 * @since 1.0.0
 	 */
 	public function __clone() {
-		_doing_it_wrong( __FUNCTION__, __( 'Foul!', 'wpdrift-woocommerce-modules' ), '0.1.0' );
+		_doing_it_wrong( __FUNCTION__, __( 'Foul!', 'wpdrift-woocommerce-modules' ), '1.0.0' );
 	}
 
 	/**
 	 * Unserializing instances of this class is forbidden.
 	 *
-	 * @since 0.1.0
+	 * @since 1.0.0
 	 */
 	public function __wakeup() {
-		_doing_it_wrong( __FUNCTION__, __( 'Foul!', 'wpdrift-woocommerce-modules' ), '0.1.0' );
+		_doing_it_wrong( __FUNCTION__, __( 'Foul!', 'wpdrift-woocommerce-modules' ), '1.0.0' );
 	}
 
 	/**
@@ -387,7 +387,7 @@ class Display {
 		 * Use this filter to get rid of this ugly hack:
 		 * Return 'false' and add your own CSS to indent '.component_table_item' elements.
 		 *
-		 * @since  0.1.0
+		 * @since  1.0.0
 		 *
 		 * @param  boolean  $is_enqueued
 		 */
@@ -599,7 +599,7 @@ class Display {
 	 *
 	 * Modifies child cart item prices.
 	 *
-	 * @since  3.14.0
+	 * @since  1.0.0
 	 *
 	 * @param  string  $price
 	 * @param  array   $cart_item
@@ -699,7 +699,7 @@ class Display {
 	 *
 	 * Modifies child cart item subtotals.
 	 *
-	 * @since  3.14.0
+	 * @since  1.0.0
 	 *
 	 * @param  string  $subtotal
 	 * @param  array   $cart_item
@@ -892,7 +892,7 @@ class Display {
 				/**
 				 * 'woocommerce_display_composite_container_cart_item_data' filter.
 				 *
-				 * @since  3.14.0
+				 * @since  1.0.0
 				 *
 				 * @param  array   $cart_item
 				 * @param  string  $cart_item_key
@@ -990,7 +990,7 @@ class Display {
 	/**
 	 * Rendering cart widget?
 	 *
-	 * @since  3.14.0
+	 * @since  1.0.0
 	 * @return boolean
 	 */
 	protected function is_cart_widget() {
@@ -1099,7 +1099,7 @@ class Display {
 	/**
 	 * Gets bundled content data.
 	 *
-	 * @since  3.14.0
+	 * @since  1.0.0
 	 *
 	 * @param  array  $cart_item
 	 * @return array
@@ -1127,7 +1127,7 @@ class Display {
 					/**
 					 * 'woocommerce_composite_container_cart_item_data_value' filter.
 					 *
-					 * @since  3.14.0
+					 * @since  1.0.0
 					 *
 					 * @param  string  $child_item_description
 					 * @param  array   $child_cart_item

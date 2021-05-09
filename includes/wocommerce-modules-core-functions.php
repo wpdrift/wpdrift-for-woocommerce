@@ -5,7 +5,7 @@
  * General core functions available on both the front-end and admin.
  *
  * @package Wocommerce_Modules\Functions
- * @version 0.1.0
+ * @version 1.0.0
  */
 
 namespace WPdrift;
@@ -36,7 +36,7 @@ function has_woocommerce_shortcode( $content = null, $tag = null ) {
 		/**
 		 * Filters a list of all shortcodes associated with WooCommerce.
 		 *
-		 * @since 0.1.0
+		 * @since 1.0.0
 		 *
 		 * @param string[] $woocommerce_shortcodes
 		 */
@@ -60,7 +60,7 @@ function has_woocommerce_shortcode( $content = null, $tag = null ) {
 	/**
 	 * Filter the result of has_woocommerce_shortcode()
 	 *
-	 * @since 0.1.0
+	 * @since 1.0.0
 	 *
 	 * @param bool $has_woocommerce_shortcode
 	 */

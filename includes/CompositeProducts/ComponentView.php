@@ -68,7 +68,7 @@ class ComponentView {
 	/**
 	 * Initializes the query object required by this view.
 	 *
-	 * @since  3.12.0
+	 * @since  1.0.0
 	 *
 	 * @return void
 	 */
@@ -214,7 +214,7 @@ class ComponentView {
 				/**
 				 * Filter 'woocommerce_composite_component_option_title'.
 				 *
-				 * @since  3.12.0
+				 * @since  1.0.0
 				 *
 				 * @param  boolean        $preload_details
 				 * @param  Product  $component_option
@@ -230,7 +230,7 @@ class ComponentView {
 				/**
 				 * Filter 'woocommerce_composite_component_option_details_preload'.
 				 *
-				 * @since  3.12.0
+				 * @since  1.0.0
 				 *
 				 * @param  boolean        $preload_details
 				 * @param  Product  $component_option

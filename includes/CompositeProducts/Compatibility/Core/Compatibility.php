@@ -33,7 +33,7 @@ class Compatibility {
 	/**
 	 * Helper method to get the version of the currently installed WooCommerce.
 	 *
-	 * @since  3.2.0
+	 * @since  1.0.0
 	 *
 	 * @return string
 	 */
@@ -44,7 +44,7 @@ class Compatibility {
 	/**
 	 * Returns true if the installed version of WooCommerce is 3.1 or greater.
 	 *
-	 * @since  3.11.0
+	 * @since  1.0.0
 	 *
 	 * @return boolean
 	 */
@@ -56,7 +56,7 @@ class Compatibility {
 	/**
 	 * Returns true if the installed version of WooCommerce is 2.7 or greater.
 	 *
-	 * @since  3.7.0
+	 * @since  1.0.0
 	 *
 	 * @return boolean
 	 */
@@ -67,7 +67,7 @@ class Compatibility {
 	/**
 	 * Returns true if the installed version of WooCommerce is 2.6 or greater.
 	 *
-	 * @since  3.6.5
+	 * @since  1.0.0
 	 *
 	 * @return boolean
 	 */
@@ -78,7 +78,7 @@ class Compatibility {
 	/**
 	 * Returns true if the installed version of WooCommerce is 2.5 or greater.
 	 *
-	 * @since  3.5.0
+	 * @since  1.0.0
 	 *
 	 * @return boolean
 	 */
@@ -89,7 +89,7 @@ class Compatibility {
 	/**
 	 * Returns true if the installed version of WooCommerce is 2.4 or greater.
 	 *
-	 * @since  3.2.0
+	 * @since  1.0.0
 	 *
 	 * @return boolean
 	 */
@@ -100,7 +100,7 @@ class Compatibility {
 	/**
 	 * Returns true if the installed version of WooCommerce is 2.3 or greater.
 	 *
-	 * @since  3.0.0
+	 * @since  1.0.0
 	 *
 	 * @return boolean
 	 */
@@ -111,7 +111,7 @@ class Compatibility {
 	/**
 	 * Returns true if the installed version of WooCommerce is 2.2 or greater.
 	 *
-	 * @since  3.0.0
+	 * @since  1.0.0
 	 *
 	 * @return boolean
 	 */
@@ -122,7 +122,7 @@ class Compatibility {
 	/**
 	 * Returns true if the installed version of WooCommerce is greater than or equal to $version.
 	 *
-	 * @since  3.9.0
+	 * @since  1.0.0
 	 *
 	 * @param  string  $version
 	 * @return boolean
@@ -137,7 +137,7 @@ class Compatibility {
 	/**
 	 * Returns true if the installed version of WooCommerce is greater than $version.
 	 *
-	 * @since  3.0.0
+	 * @since  1.0.0
 	 *
 	 * @param  string  $version
 	 * @return boolean
@@ -160,7 +160,7 @@ class Compatibility {
 	 *
 	 * get_product() is soft-deprecated in WC 2.2.
 	 *
-	 * @since  3.0.0
+	 * @since  1.0.0
 	 *
 	 * @param  bool|int|string|WP_Post $the_product
 	 * @param  array                   $args
@@ -173,7 +173,7 @@ class Compatibility {
 	/**
 	 * Returns true if the installed version of WooCommerce is 2.5 or greater.
 	 *
-	 * @since  3.2.0
+	 * @since  1.0.0
 	 *
 	 * @return boolean
 	 */
@@ -184,7 +184,7 @@ class Compatibility {
 	/**
 	 * Wrapper for wp_get_post_terms which supports ordering by parent.
 	 *
-	 * @since  3.5.2
+	 * @since  1.0.0
 	 * @param  int $product_id
 	 * @param  string $taxonomy
 	 * @param  array  $args
@@ -197,7 +197,7 @@ class Compatibility {
 	/**
 	 * WC_Product_Variable::get_variation_default_attribute() back-compat wrapper.
 	 *
-	 * @since  3.5.2
+	 * @since  1.0.0
 	 * @return string
 	 */
 	public static function wc_get_variation_default_attribute( $product, $attribute_name ) {
@@ -207,7 +207,7 @@ class Compatibility {
 	/**
 	 * Output a list of variation attributes for use in the cart forms.
 	 *
-	 * @since 3.5.2
+	 * @since 1.0.0
 	 * @param array $args
 	 */
 	public static function wc_dropdown_variation_attribute_options( $args = array() ) {
@@ -217,7 +217,7 @@ class Compatibility {
 	/**
 	 * Get all product cats for a product by ID, including hierarchy.
 	 *
-	 * @since  3.5.2
+	 * @since  1.0.0
 	 * @param  int $product_id
 	 * @return array
 	 */
@@ -228,7 +228,7 @@ class Compatibility {
 	/**
 	 * Display a WooCommerce help tip.
 	 *
-	 * @since  3.6.0
+	 * @since  1.0.0
 	 *
 	 * @param  string $tip        Help tip text
 	 * @return string
@@ -240,7 +240,7 @@ class Compatibility {
 	/**
 	 * Get rounding precision.
 	 *
-	 * @since  3.6.9
+	 * @since  1.0.0
 	 *
 	 * @return int
 	 */
@@ -254,7 +254,7 @@ class Compatibility {
 	/**
 	 * Back-compat wrapper for 'get_parent_id'.
 	 *
-	 * @since  3.8.0
+	 * @since  1.0.0
 	 *
 	 * @param  WC_Product  $product
 	 * @return mixed
@@ -266,7 +266,7 @@ class Compatibility {
 	/**
 	 * Back-compat wrapper for 'get_id'.
 	 *
-	 * @since  3.8.0
+	 * @since  1.0.0
 	 *
 	 * @param  WC_Product  $product
 	 * @return mixed
@@ -278,7 +278,7 @@ class Compatibility {
 	/**
 	 * Back-compat wrapper for getting CRUD object props directly.
 	 *
-	 * @since  3.8.0
+	 * @since  1.0.0
 	 *
 	 * @param  object  $obj
 	 * @param  string  $name
@@ -293,7 +293,7 @@ class Compatibility {
 	/**
 	 * Back-compat wrapper for setting CRUD object props directly.
 	 *
-	 * @since  3.8.0
+	 * @since  1.0.0
 	 *
 	 * @param  WC_Product  $product
 	 * @param  string      $name
@@ -312,7 +312,7 @@ class Compatibility {
 	/**
 	 * Back-compat wrapper for 'wc_variation_attribute_name'.
 	 *
-	 * @since  3.8.0
+	 * @since  1.0.0
 	 *
 	 * @param  string  $attribute_name
 	 * @return string
@@ -324,7 +324,7 @@ class Compatibility {
 	/**
 	 * Back-compat wrapper for 'wc_get_formatted_variation'.
 	 *
-	 * @since  3.8.0
+	 * @since  1.0.0
 	 *
 	 * @param  WC_Product_Variation  $variation
 	 * @param  boolean               $flat
@@ -337,7 +337,7 @@ class Compatibility {
 	/**
 	 * Back-compat wrapper for 'WC_Product_Factory::get_product_type'.
 	 *
-	 * @since  3.9.0
+	 * @since  1.0.0
 	 *
 	 * @param  mixed  $product_id
 	 * @return mixed
@@ -354,7 +354,7 @@ class Compatibility {
 	/**
 	 * Back-compat wrapper for 'wc_get_price_including_tax'.
 	 *
-	 * @since  3.9.0
+	 * @since  1.0.0
 	 *
 	 * @param  WC_Product  $product
 	 * @param  array       $args
@@ -367,7 +367,7 @@ class Compatibility {
 	/**
 	 * Back-compat wrapper for 'wc_get_price_excluding_tax'.
 	 *
-	 * @since  3.9.0
+	 * @since  1.0.0
 	 *
 	 * @param  WC_Product  $product
 	 * @param  array       $args
@@ -380,7 +380,7 @@ class Compatibility {
 	/**
 	 * Back-compat wrapper for 'wc_get_price_to_display'.
 	 *
-	 * @since  3.9.0
+	 * @since  1.0.0
 	 *
 	 * @param  WC_Product  $product
 	 * @param  array       $args
@@ -393,7 +393,7 @@ class Compatibility {
 	/**
 	 * Back-compat wrapper for 'get_default_attributes'.
 	 *
-	 * @since  3.9.0
+	 * @since  1.0.0
 	 *
 	 * @param  WC_Product  $product
 	 * @return mixed
@@ -405,7 +405,7 @@ class Compatibility {
 	/**
 	 * Back-compat wrapper for 'wc_get_stock_html'.
 	 *
-	 * @since  3.9.0
+	 * @since  1.0.0
 	 *
 	 * @param  WC_Product  $product
 	 * @return mixed
@@ -417,7 +417,7 @@ class Compatibility {
 	/**
 	 * Backwards compatible logging using 'WC_Logger' class.
 	 *
-	 * @since  3.9.0
+	 * @since  1.0.0
 	 *
 	 * @param  string  $message
 	 * @param  string  $level
@@ -431,7 +431,7 @@ class Compatibility {
 	/**
 	 * Back-compat wrapper for 'get_parent_id' with fallback to 'get_id'.
 	 *
-	 * @since  3.9.3
+	 * @since  1.0.0
 	 *
 	 * @param  WC_Product  $product
 	 * @return mixed
@@ -444,7 +444,7 @@ class Compatibility {
 	/**
 	 * Back-compat wrapper for checking if a CRUD object props exists.
 	 *
-	 * @since  3.10.0
+	 * @since  1.0.0
 	 *
 	 * @param  object  $obj
 	 * @param  string  $name

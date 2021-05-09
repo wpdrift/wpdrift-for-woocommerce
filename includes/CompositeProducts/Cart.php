@@ -30,7 +30,7 @@ class Cart {
 	 * The single instance of the class.
 	 * @var Cart
 	 *
-	 * @since 3.7.0
+	 * @since 1.0.0
 	 */
 	protected static $_instance = null;
 
@@ -41,7 +41,7 @@ class Cart {
 	 *
 	 * @static
 	 * @return Cart
-	 * @since  3.7.0
+	 * @since  1.0.0
 	 */
 	public static function instance() {
 		if ( is_null( self::$_instance ) ) {
@@ -53,19 +53,19 @@ class Cart {
 	/**
 	 * Cloning is forbidden.
 	 *
-	 * @since 3.7.0
+	 * @since 1.0.0
 	 */
 	public function __clone() {
-		_doing_it_wrong( __FUNCTION__, __( 'Foul!', 'wpdrift-woocommerce-modules' ), '3.7.0' );
+		_doing_it_wrong( __FUNCTION__, __( 'Foul!', 'wpdrift-woocommerce-modules' ), '1.0.0' );
 	}
 
 	/**
 	 * Unserializing instances of this class is forbidden.
 	 *
-	 * @since 3.7.0
+	 * @since 1.0.0
 	 */
 	public function __wakeup() {
-		_doing_it_wrong( __FUNCTION__, __( 'Foul!', 'wpdrift-woocommerce-modules' ), '3.7.0' );
+		_doing_it_wrong( __FUNCTION__, __( 'Foul!', 'wpdrift-woocommerce-modules' ), '1.0.0' );
 	}
 
 	/*
@@ -128,7 +128,7 @@ class Cart {
 	/**
 	 * Session data loaded?
 	 *
-	 * @since  3.14.6
+	 * @since  1.0.0
 	 *
 	 * @param  string  $context
 	 * @return string
@@ -140,7 +140,7 @@ class Cart {
 	/**
 	 * Gets the current validation context.
 	 *
-	 * @since  3.13.5
+	 * @since  1.0.0
 	 *
 	 * @return string|null
 	 */
@@ -372,7 +372,7 @@ class Cart {
 			/**
 			 * 'woocommerce_posted_composite_configuration' filter.
 			 *
-			 * @since  3.14.0
+			 * @since  1.0.0
 			 *
 			 * @param  array                 $configuration
 			 * @param  ProductComposite  $composite
@@ -386,7 +386,7 @@ class Cart {
 	/**
 	 * Rebuilds posted form data associated with a composite configuration.
 	 *
-	 * @since  3.14.0
+	 * @since  1.0.0
 	 *
 	 * @param  ProductComposite  $composite
 	 * @param  array                 $configuration
@@ -422,7 +422,7 @@ class Cart {
 		/**
 		 * 'woocommerce_rebuild_posted_composite_form_data' filter.
 		 *
-		 * @since  3.14.0
+		 * @since  1.0.0
 		 *
 		 * @param  array  $form_data
 		 * @param  array  $configuration
@@ -456,7 +456,7 @@ class Cart {
 					/**
 					 * 'woocommerce_composite_validation_context' filter.
 					 *
-					 * @since  3.13.5
+					 * @since  1.0.0
 					 *
 					 * @param  string                $context
 					 * @param  ProductComposite  $product
@@ -835,7 +835,7 @@ class Cart {
 
 				if ( has_filter( $validation_filter_name ) ) {
 
-					_deprecated_function( 'The "' . $validation_filter_name . '" filter', '3.14.0' );
+					_deprecated_function( 'The "' . $validation_filter_name . '" filter', '1.0.0' );
 
 					/**
 					 * Filter composite configuration validation result.
@@ -869,7 +869,7 @@ class Cart {
 	/**
 	 * Analyzes child items to characterize a composite.
 	 *
-	 * @since  3.14.0
+	 * @since  1.0.0
 	 *
 	 * @param  array   $cart_item
 	 * @param  string  $key
@@ -1772,7 +1772,7 @@ class Cart {
 	/**
 	 * "Sold Individually" context support under WC 3.5+.
 	 *
-	 * @since  3.14.6
+	 * @since  1.0.0
 	 *
 	 * @param  bool    $found
 	 * @param  int     $product_id

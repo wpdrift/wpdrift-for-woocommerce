@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Add-to-cart template for composite products. Form location: After summary.
  *
- * @since  3.13.0
+ * @since  1.0.0
  */
 function wc_cp_add_to_cart_after_summary() {
 
@@ -190,7 +190,7 @@ function wc_cp_add_to_cart_button() {
 /**
  * Summary widget content.
  *
- * @since  3.6.0
+ * @since  1.0.0
  *
  * @param  array                 $components
  * @param  ProductComposite  $composite
@@ -220,7 +220,7 @@ function wc_cp_summary_widget_content( $components, $composite, $widget_options 
 /**
  * Summary widget wrapper start.
  *
- * @since  3.12.0
+ * @since  1.0.0
  *
  * @param  array                 $components
  * @param  ProductComposite  $composite
@@ -240,7 +240,7 @@ function wc_cp_summary_widget_details_wrapper_start( $components, $composite, $w
 /**
  * Summary widget wrapper end.
  *
- * @since  3.12.0
+ * @since  1.0.0
  *
  * @param  array                 $components
  * @param  ProductComposite  $composite
@@ -260,7 +260,7 @@ function wc_cp_summary_widget_details_wrapper_end( $components, $composite, $wid
 /**
  * Summary widget UI wrapper start.
  *
- * @since  3.12.0
+ * @since  1.0.0
  *
  * @param  array                 $components
  * @param  ProductComposite  $composite
@@ -278,7 +278,7 @@ function wc_cp_summary_widget_ui_wrapper_start( $components, $composite, $widget
 /**
  * Summary widget UI wrapper end.
  *
- * @since  3.12.0
+ * @since  1.0.0
  *
  * @param  array                 $components
  * @param  ProductComposite  $composite
@@ -296,7 +296,7 @@ function wc_cp_summary_widget_ui_wrapper_end( $components, $composite, $widget_o
 /**
  * Summary widget price. Empty element to be populated by the script.
  *
- * @since  3.6.0
+ * @since  1.0.0
  *
  * @param  array                 $components
  * @param  ProductComposite  $composite
@@ -313,7 +313,7 @@ function wc_cp_summary_widget_price( $components, $composite ) {
 /**
  * Summary widget validation message. Empty element to be populated by the script.
  *
- * @since  3.6.0
+ * @since  1.0.0
  *
  * @param  array                 $components
  * @param  ProductComposite  $composite
@@ -330,7 +330,7 @@ function wc_cp_summary_widget_message( $components, $composite ) {
 /**
  * Summary widget product availability.
  *
- * @since  3.6.0
+ * @since  1.0.0
  *
  * @param  array                 $components
  * @param  ProductComposite  $composite
@@ -351,7 +351,7 @@ function wc_cp_summary_widget_availability( $components, $product ) {
 /**
  * Summary widget add-to-cart button.
  *
- * @since  3.6.0
+ * @since  1.0.0
  *
  * @param  array                 $components
  * @param  ProductComposite  $composite
@@ -370,7 +370,7 @@ function wc_cp_summary_widget_button( $components, $composite ) {
 /**
  * Summary widget validation message. Empty element to be populated by the script.
  *
- * @since  4.0.0
+ * @since  1.0.0
  *
  * @param  array                 $components
  * @param  ProductComposite  $composite
@@ -386,7 +386,7 @@ function wc_cp_summary_widget_message_default( $components, $composite, $widget_
 /**
  * Summary widget validation message. Empty element to be populated by the script.
  *
- * @since  4.0.0
+ * @since  1.0.0
  *
  * @param  array                 $components
  * @param  ProductComposite  $composite
@@ -408,7 +408,7 @@ function wc_cp_summary_widget_message_fixed( $components, $composite, $widget_op
 /**
  * Show current selection scroll target in paged modes.
  *
- * @since  4.0.0
+ * @since  1.0.0
  *
  * @param  string                $component_id
  * @param  ProductComposite  $product
@@ -427,7 +427,7 @@ function wc_cp_component_selection_scroll_target_paged_top( $component_id, $prod
 /**
  * Component selection notices container displayed in the 'component_selections' container (paged layout, thumbnails).
  *
- * @since  4.0.0
+ * @since  1.0.0
  *
  * @param  string                $component_id
  * @param  ProductComposite  $product
@@ -445,7 +445,7 @@ function wc_cp_component_selection_message_paged_top( $component_id, $product ) 
 /**
  * Show current selection details in paged modes -- added before component options when viewed as thumbnails.
  *
- * @since  4.0.0
+ * @since  1.0.0
  *
  * @param  string                $component_id
  * @param  ProductComposite  $product
@@ -462,7 +462,7 @@ function wc_cp_component_selection_paged_top( $component_id, $product ) {
 /**
  * In progressive mode, wrap component options & sorting/filtering controls in a blockable div.
  *
- * @since  4.0.0
+ * @since  1.0.0
  *
  * @param  string                $component_id
  * @param  ProductComposite  $product
@@ -478,7 +478,7 @@ function wc_cp_component_options_progressive_start( $component_id, $product ) {
 /**
  * Add sorting input.
  *
- * @since  4.0.0
+ * @since  1.0.0
  *
  * @param  string                $component_id
  * @param  ProductComposite  $product
@@ -507,7 +507,7 @@ function wc_cp_component_options_sorting( $component_id, $product ) {
 /**
  * Add attribute filters.
  *
- * @since  4.0.0
+ * @since  1.0.0
  *
  * @param  string                $component_id
  * @param  ProductComposite  $product
@@ -535,7 +535,7 @@ function wc_cp_component_options_filtering( $component_id, $product ) {
 /**
  * Show component options title.
  *
- * @since  4.0.0
+ * @since  1.0.0
  *
  * @param  string                $component_id
  * @param  ProductComposite  $product
@@ -548,7 +548,7 @@ function wc_cp_component_options_title( $component_id, $product ) {
 /**
  * Show component options top pagination.
  *
- * @since  4.0.0
+ * @since  1.0.0
  *
  * @param  string                $component_id
  * @param  ProductComposite  $product
@@ -567,7 +567,7 @@ function wc_cp_component_options_pagination_top( $component_id, $product ) {
 /**
  * Show component options.
  *
- * @since  4.0.0
+ * @since  1.0.0
  *
  * @param  string                $component_id
  * @param  ProductComposite  $product
@@ -594,7 +594,7 @@ function wc_cp_component_options( $component_id, $product ) {
 /**
  * Show component options bottom pagination.
  *
- * @since  4.0.0
+ * @since  1.0.0
  *
  * @param  string                $component_id
  * @param  ProductComposite  $product
@@ -606,7 +606,7 @@ function wc_cp_component_options_pagination_bottom( $component_id, $product ) {
 /**
  * In progressive mode, wrap component options & sorting/filtering controls in a blockable div.
  *
- * @since  4.0.0
+ * @since  1.0.0
  *
  * @param  string                $component_id
  * @param  ProductComposite  $product
@@ -621,7 +621,7 @@ function wc_cp_component_options_progressive_end( $component_id, $product ) {
 /**
  * Show current selection details in non-paged modes.
  *
- * @since  4.0.0
+ * @since  1.0.0
  *
  * @param  string                $component_id
  * @param  ProductComposite  $product
@@ -640,7 +640,7 @@ function wc_cp_component_selection( $component_id, $product ) {
 			/**
 			 * Action 'woocommerce_composite_component_before_summary_content_{$navigation_style}'.
 			 *
-			 * @since  3.4.0
+			 * @since  1.0.0
 			 *
 			 * @param  string                $component_id
 			 * @param  ProductComposite  $product
@@ -658,7 +658,7 @@ function wc_cp_component_selection( $component_id, $product ) {
 /**
  * Show current selection details in paged modes -- added after component options when viewed as drop-downs/radios.
  *
- * @since  4.0.0
+ * @since  1.0.0
  *
  * @param  string                $component_id
  * @param  ProductComposite  $product
@@ -873,7 +873,7 @@ function wc_cp_before_components( $components, $product ) {
 	/**
 	 * Action 'woocommerce_composite_before_components_paged':
 	 *
-	 * @since  3.4.0
+	 * @since  1.0.0
 	 *
 	 * @param  array                 $components
 	 * @param  ProductComposite  $product
@@ -898,7 +898,7 @@ function wc_cp_after_components( $components, $product ) {
 	/**
 	 * Action 'woocommerce_composite_after_components_{$layout}':
 	 *
-	 * @since  3.4.0
+	 * @since  1.0.0
 	 *
 	 * @param  array                 $components
 	 * @param  ProductComposite  $product
@@ -1171,7 +1171,7 @@ function wc_cp_composited_product_title( $component_option ) {
 /**
  * Composited product wrapper open.
  *
- * @since  4.0.0
+ * @since  1.0.0
  *
  * @param  Product  $component_option
  */
@@ -1217,7 +1217,7 @@ function wc_cp_composited_product_thumbnail( $component_option ) {
 /**
  * Composited product template.
  *
- * @since  4.0.0
+ * @since  1.0.0
  *
  * @param  Product  $component_option
  */
@@ -1227,7 +1227,7 @@ function wc_cp_composited_product_single( $component_option ) {
 	 * Action 'woocommerce_composited_product_{$product_type}'.
 	 * Composited product template (type-specific).
 	 *
-	 * @since  4.0.0
+	 * @since  1.0.0
 	 *
 	 * @param  Product  $component_option
 	 *
@@ -1240,7 +1240,7 @@ function wc_cp_composited_product_single( $component_option ) {
 /**
  * Composited product details wrapper close.
  *
- * @since  4.0.0
+ * @since  1.0.0
  *
  * @param  Product  $component_option
  */
@@ -1251,7 +1251,7 @@ function wc_cp_composited_product_wrapper_close( $component_option ) {
 /**
  * Composited simple product template.
  *
- * @since  4.0.0
+ * @since  1.0.0
  *
  * @param  Product  $component_option
  */
@@ -1275,7 +1275,7 @@ function wc_cp_composited_product_simple( $component_option ) {
 /**
  * Composited variable product template.
  *
- * @since  4.0.0
+ * @since  1.0.0
  *
  * @param  Product  $component_option
  */
@@ -1376,7 +1376,7 @@ function wc_cp_composited_product_price( $product, $component_id, $composite ) {
 /**
  * Composited single variation details.
  *
- * @since  3.12.5
+ * @since  1.0.0
  *
  * @param  WC_Product_Variable   $product
  * @param  string                $component_id
@@ -1391,7 +1391,7 @@ function wc_cp_composited_single_variation( $product, $component_id, $composite 
 /**
  * Composited single variation template.
  *
- * @since  3.12.5
+ * @since  1.0.0
  *
  * @param  WC_Product_Variable   $product
  * @param  string                $component_id
@@ -1422,7 +1422,7 @@ function wc_cp_composited_single_variation_template( $product, $component_id, $c
 /**
  * Variation attribute options for composited products.
  *
- * @since  3.14.3
+ * @since  1.0.0
  *
  * @param  array  $args
  */

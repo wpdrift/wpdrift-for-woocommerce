@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		/**
 		 * Action 'woocommerce_composite_component_options_{$options_style}'.
 		 *
-		 * @since  3.6.0
+		 * @since  1.0.0
 		 *
 		 * @param  string                $component_id
 		 * @param  ProductComposite  $product

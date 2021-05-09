@@ -7,7 +7,7 @@ namespace WPdrift\CompositeProducts\Admin\MetaBoxes;
  *
  * @author   SomewhereWarm <info@somewherewarm.gr>
  * @package  WooCommerce Composite Products
- * @since    3.7.0
+ * @since    1.0.0
  */
 
 // Exit if accessed directly.
@@ -188,7 +188,7 @@ class ProductData {
 	/**
 	 * Composite general options.
 	 *
-	 * @since  3.14.0
+	 * @since  1.0.0
 	 *
 	 * @param  ProductComposite  $composite_product_object
 	 * @return void
@@ -250,7 +250,7 @@ class ProductData {
 	/**
 	 * Displays the "Form location" option.
 	 *
-	 * @since  3.14.0
+	 * @since  1.0.0
 	 *
 	 * @param  ProductComposite  $composite_product_object
 	 * @return void
@@ -1572,7 +1572,7 @@ class ProductData {
 	/**
 	 * Add component "Option Prices" option.
 	 *
-	 * @since  3.12.0
+	 * @since  1.0.0
 	 *
 	 * @param  int    $id
 	 * @param  array  $data
@@ -1684,7 +1684,7 @@ class ProductData {
 	/**
 	 * Add component "Pagination Style" option.
 	 *
-	 * @since  3.12.0
+	 * @since  1.0.0
 	 *
 	 * @param  int    $id
 	 * @param  array  $data
@@ -1837,7 +1837,7 @@ class ProductData {
 				/**
 				 * Action 'woocommerce_composite_admin_options_html'.
 				 *
-				 * @since  3.14.0
+				 * @since  1.0.0
 				 *
 				 * @param  ProductComposite  $composite_product_object
 				 *
@@ -2024,7 +2024,7 @@ class ProductData {
 	/**
 	 * Add a notice if calculating min/max catalog price in the background.
 	 *
-	 * @since  4.0.0
+	 * @since  1.0.0
 	 *
 	 * @return void
 	 */
@@ -2944,7 +2944,7 @@ class ProductData {
 	/**
 	 * Get (cached) product by ID.
 	 *
-	 * @since  3.14.0
+	 * @since  1.0.0
 	 *
 	 * @param  int   $product_id
 	 * @param  bool  $expanded
@@ -2970,7 +2970,7 @@ class ProductData {
 	/**
 	 * Back-compat wrapper for getting the options style value from raw component data.
 	 *
-	 * @since  3.14.0
+	 * @since  1.0.0
 	 *
 	 * @param  array  $data
 	 * @return string
@@ -2995,7 +2995,7 @@ class ProductData {
 	/**
 	 * Adds an error tip.
 	 *
-	 * @since  3.14.0
+	 * @since  1.0.0
 	 *
 	 * @param  string  $error
 	 * @param  bool    $allow_html
@@ -3019,7 +3019,7 @@ class ProductData {
 	*/
 
 	public static function form_location_option( $composite_product_object ) {
-		_deprecated_function( __METHOD__ . '()', '3.14.0', __CLASS__ . '::composite_form_location()' );
+		_deprecated_function( __METHOD__ . '()', '1.0.0', __CLASS__ . '::composite_form_location()' );
 		global $composite_product_object;
 		return self::composite_form_location( $composite_product_object );
 	}

@@ -117,7 +117,7 @@ class Install {
 	/**
 	 * Installation possible?
 	 *
-	 * @since  3.12.0
+	 * @since  1.0.0
 	 *
 	 * @param  boolean  $check_installing
 	 * @return boolean
@@ -134,7 +134,7 @@ class Install {
 	/**
 	 * Check version and run the installer if necessary.
 	 *
-	 * @since  3.12.0
+	 * @since  1.0.0
 	 */
 	public static function maybe_install() {
 		if ( self::can_install() && self::must_install() ) {
@@ -145,7 +145,7 @@ class Install {
 	/**
 	 * DB update needed?
 	 *
-	 * @since  3.12.0
+	 * @since  1.0.0
 	 *
 	 * @return boolean
 	 */
@@ -158,7 +158,7 @@ class Install {
 	/**
 	 * DB update possible?
 	 *
-	 * @since  3.12.0
+	 * @since  1.0.0
 	 *
 	 * @param  boolean  $check_installing
 	 * @return boolean
@@ -170,7 +170,7 @@ class Install {
 	/**
 	 * Run the updater if triggered.
 	 *
-	 * @since  3.12.0
+	 * @since  1.0.0
 	 */
 	public static function maybe_update() {
 		if ( ! empty( $_GET['force_wc_cp_db_update'] ) && wp_verify_nonce( $_GET['_wc_cp_admin_nonce'], 'wc_cp_force_db_update_nonce' ) ) {
@@ -292,7 +292,7 @@ class Install {
 	/**
 	 * Is auto-updating enabled?
 	 *
-	 * @since  3.12.0
+	 * @since  1.0.0
 	 *
 	 * @return boolean
 	 */
@@ -303,7 +303,7 @@ class Install {
 	/**
 	 * Trigger DB update.
 	 *
-	 * @since  3.12.0
+	 * @since  1.0.0
 	 */
 	public static function trigger_update() {
 		self::update();
@@ -348,7 +348,7 @@ class Install {
 	/**
 	 * True if a DB update was started but not completed.
 	 *
-	 * @since  3.12.0
+	 * @since  1.0.0
 	 *
 	 * @return boolean
 	 */
@@ -359,7 +359,7 @@ class Install {
 	/**
 	 * True if an update is in progress.
 	 *
-	 * @since  3.12.0
+	 * @since  1.0.0
 	 *
 	 * @return boolean
 	 */
@@ -396,7 +396,7 @@ class Install {
 	/**
 	 * Get list of DB update callbacks.
 	 *
-	 * @since  3.12.0
+	 * @since  1.0.0
 	 *
 	 * @return array
 	 */

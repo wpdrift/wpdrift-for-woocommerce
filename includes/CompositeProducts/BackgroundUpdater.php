@@ -35,7 +35,7 @@ class BackgroundUpdater extends WP_Background_Process {
 	/**
 	 * Returns the cron action identifier.
 	 *
-	 * @since  3.13.1
+	 * @since  1.0.0
 	 *
 	 * @return string
 	 */

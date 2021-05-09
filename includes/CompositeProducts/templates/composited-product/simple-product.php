@@ -24,7 +24,7 @@ use WPdrift\CompositeProducts\Module;
 	/**
 	 * 'woocommerce_composited_product_details' hook.
 	 *
-	 * @since 3.2.0
+	 * @since 1.0.0
 	 *
 	 * @hooked wc_cp_composited_product_excerpt - 10
 	 */

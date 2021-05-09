@@ -161,7 +161,7 @@ class Component implements ArrayAccess {
 	/**
 	 * Get the component slug.
 	 *
-	 * @since  4.0.0
+	 * @since  1.0.0
 	 *
 	 * @return string
 	 */
@@ -379,7 +379,7 @@ class Component implements ArrayAccess {
 	/**
 	 * Indicates whether component sorting options are enabled.
 	 *
-	 * @since  3.14.0
+	 * @since  1.0.0
 	 *
 	 * @return array
 	 */
@@ -445,7 +445,7 @@ class Component implements ArrayAccess {
 	/**
 	 * Indicates whether component filtering options are enabled.
 	 *
-	 * @since  3.14.0
+	 * @since  1.0.0
 	 *
 	 * @return array
 	 */
@@ -457,7 +457,7 @@ class Component implements ArrayAccess {
 	/**
 	 * Returns all taxonomy IDs used to populate attribute filters.
 	 *
-	 * @since  3.14.0
+	 * @since  1.0.0
 	 *
 	 * @return array
 	 */
@@ -586,7 +586,7 @@ class Component implements ArrayAccess {
 	/**
 	 * Select action.
 	 *
-	 * @since  4.0.0
+	 * @since  1.0.0
 	 *
 	 * @return string
 	 */
@@ -679,7 +679,7 @@ class Component implements ArrayAccess {
 	/**
 	 * Options pagination style.
 	 *
-	 * @since  3.12.0
+	 * @since  1.0.0
 	 *
 	 * @return string
 	 */
@@ -732,7 +732,7 @@ class Component implements ArrayAccess {
 		 * - 'forced':   The element containing the current selection details is always relocated.
 		 * - 'off':      The element containing the current selection details is never relocated.
 		 *
-		 * @since  3.12.0
+		 * @since  1.0.0
 		 *
 		 * @param  string           $mode
 		 * @param  Component  $component
@@ -823,7 +823,7 @@ class Component implements ArrayAccess {
 	/**
 	 * Image size to use in Thumbnail grid and Summary template.
 	 *
-	 * @since  3.13.7
+	 * @since  1.0.0
 	 * @return string
 	 */
 	public function get_image_size() {
@@ -1009,7 +1009,7 @@ class Component implements ArrayAccess {
 	/**
 	 * Price display format.
 	 *
-	 * @since  3.12.0
+	 * @since  1.0.0
 	 *
 	 * @return string
 	 */
@@ -1137,7 +1137,7 @@ class Component implements ArrayAccess {
 	/**
 	 * Set/upload component thumbnail.
 	 *
-	 * @since  3.11.0
+	 * @since  1.0.0
 	 *
 	 * @param  int                   $thumbnail_id
 	 * @param  string                $thumbnail_src
@@ -1177,7 +1177,7 @@ class Component implements ArrayAccess {
 	 * - Relative
 	 * - Hidden
 	 *
-	 * @since  3.12.0
+	 * @since  1.0.0
 	 *
 	 * @return array
 	 */
@@ -1208,7 +1208,7 @@ class Component implements ArrayAccess {
 	 * - Relative
 	 * - Hidden
 	 *
-	 * @since  3.12.0
+	 * @since  1.0.0
 	 *
 	 * @return array
 	 */
@@ -1233,7 +1233,7 @@ class Component implements ArrayAccess {
 	 * - View Selection Details
 	 * - View Next Component
 	 *
-	 * @since  4.0.0
+	 * @since  1.0.0
 	 *
 	 * @return array
 	 */

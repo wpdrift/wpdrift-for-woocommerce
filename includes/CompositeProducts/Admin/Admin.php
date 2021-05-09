@@ -7,7 +7,7 @@ namespace WPdrift\CompositeProducts\Admin;
  *
  * @author   SomewhereWarm <info@somewherewarm.gr>
  * @package  WooCommerce Composite Products
- * @since    2.2.2
+ * @since    1.0.0
  */
 
 // Exit if accessed directly.
@@ -84,7 +84,7 @@ class Admin {
 	/**
 	 * Message to add in the WP Privacy Policy Guide page.
 	 *
-	 * @since  3.13.10
+	 * @since  1.0.0
 	 *
 	 * @return string
 	 */
@@ -103,7 +103,7 @@ class Admin {
 	/**
 	 * Add a message in the WP Privacy Policy Guide page.
 	 *
-	 * @since  3.13.10
+	 * @since  1.0.0
 	 */
 	public static function add_privacy_policy_guide_content() {
 		if ( function_exists( 'wp_add_privacy_policy_content' ) ) {
@@ -220,7 +220,7 @@ class Admin {
 	/**
 	 * Add CP debug data in the system status.
 	 *
-	 * @since  3.13.9
+	 * @since  1.0.0
 	 */
 	public static function render_system_status_items() {
 
@@ -235,7 +235,7 @@ class Admin {
 	/**
 	 * Determine which of our files have been overridden by the theme.
 	 *
-	 * @since  3.13.9
+	 * @since  1.0.0
 	 *
 	 * @return array
 	 */

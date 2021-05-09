@@ -22,7 +22,7 @@ final class Wocommerce_Modules {
 	 * The single instance of the class.
 	 *
 	 * @var Wocommerce_Modules
-	 * @since 0.1.0
+	 * @since 1.0.0
 	 */
 	protected static $_instance = null;
 
@@ -31,7 +31,7 @@ final class Wocommerce_Modules {
 	 *
 	 * Ensures only one instance of Wocommerce_Modules is loaded or can be loaded.
 	 *
-	 * @since 0.1.0
+	 * @since 1.0.0
 	 * @static
 	 * @see woocommerce_modules()
 	 * @return Wocommerce_Modules - Main instance.
