@@ -277,7 +277,7 @@ class Display {
 					'currency_format_decimal_sep'        => stripslashes( get_option( 'woocommerce_price_decimal_sep' ) ),
 					'currency_format_thousand_sep'       => stripslashes( get_option( 'woocommerce_price_thousand_sep' ) ),
 					'currency_format_trim_zeros'         => false === apply_filters( 'woocommerce_price_trim_zeros', false ) ? 'no' : 'yes',
-					'script_debug_level'                 => array(), /* 'debug', 'debug:views', 'debug:events', 'debug:models', 'debug:scenarios' */
+					'script_debug_level'                 => array(), /* 'debug', 'debug:views', 'debug:events', 'debug:models' */
 					'show_quantity_buttons'              => 'no',
 					'is_pao_installed'                   => class_exists( 'WC_Product_Addons' ) && defined( 'WC_PRODUCT_ADDONS_VERSION' ) ? 'yes' : 'no',
 					'relocated_content_reset_on_return'  => 'yes',
@@ -438,7 +438,7 @@ class Display {
 			if ( 'pending' === $shop_price_calc_status ) {
 				$shop_price_calc_notice = sprintf( __( 'The catalog price of &quot;%s&quot; is currently being calculated in the background. During this time, its price will be hidden. <strong>Note</strong>: This message is visible to store managers only.', 'wpdrift-woocommerce-modules' ), $product->get_title() );
 			} elseif ( 'failed' === $shop_price_calc_status ) {
-				$shop_price_calc_notice = sprintf( __( 'The catalog price of &quot;%s&quot; could not be calculated within the default time limit. This may happen when adding Scenarios to Composite Products that contain many Components and a large number of product/variation options. For assistance, please check out the <a href="https://docs.woocommerce.com/document/composite-products/composite-products-configuration/#catalog-price" target="_blank">documentation</a>, or <a href="https://woocommerce.com/my-account/marketplace-ticket-form/" target="_blank">get in touch with support</a>. <strong>Note</strong>: This message is visible to store managers only.', 'wpdrift-woocommerce-modules' ), $product->get_title() );
+				$shop_price_calc_notice = sprintf( __( 'The catalog price of &quot;%s&quot; could not be calculated within the default time limit. For assistance, please check out the <a href="https://docs.woocommerce.com/document/composite-products/composite-products-configuration/#catalog-price" target="_blank">documentation</a>, or <a href="https://woocommerce.com/my-account/marketplace-ticket-form/" target="_blank">get in touch with support</a>. <strong>Note</strong>: This message is visible to store managers only.', 'wpdrift-woocommerce-modules' ), $product->get_title() );
 			}
 
 			if ( $shop_price_calc_notice ) {
