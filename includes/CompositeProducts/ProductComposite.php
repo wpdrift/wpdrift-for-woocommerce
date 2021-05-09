@@ -44,13 +44,6 @@ class ProductComposite extends WC_Product {
 	private $composite_meta_save_pending = false;
 
 	/**
-	 * Raw meta where all scenario data is saved.
-	 * A shamefully simple way to store/manage data that just works, but can't be used for any complex operations on the DB side.
-	 * @var array
-	 */
-	private $scenario_meta = array();
-
-	/**
 	 * Configurations with lowest/highest composite prices.
 	 * Used in 'get_composite_price', 'get_composite_regular_price', 'get_composite_price_including_tax' and 'get_composite_price_excluding_tax methods'.
 	 * @var array
@@ -910,23 +903,6 @@ class ProductComposite extends WC_Product {
 		return apply_filters( 'woocommerce_composite_add_to_cart_form_settings', $settings, $this );
 	}
 
-	/**
-	 * Container of scenarios-related functionality - @see ScenariosManager.
-	 *
-	 * @param  string  $context
-	 * @return ScenariosManager
-	 */
-	public function scenarios( $context = 'view' ) {
-
-		$prop = 'scenarios_manager_' . $context;
-
-		if ( ! isset( $this->$prop ) ) {
-			$this->$prop = new ScenariosManager( $this, $context );
-		}
-
-		return $this->$prop;
-	}
-
 	/*
 	|--------------------------------------------------------------------------
 	| CRUD Getters
@@ -1150,71 +1126,6 @@ class ProductComposite extends WC_Product {
 		return $composite_data;
 	}
 
-	/**
-	 * Get raw scenario data, indexed by scenario ID.
-	 *
-	 * @return array
-	 */
-	public function get_scenario_data( $context = 'view' ) {
-
-		$scenario_meta = $this->scenario_meta;
-
-		if ( empty( $scenario_meta ) ) {
-			$scenario_meta = array();
-		}
-
-		if ( 'rest' === $context ) {
-
-			$rest_api_scenario_meta = array();
-
-			if ( ! empty( $scenario_meta ) ) {
-				foreach ( $scenario_meta as $id => $data ) {
-
-					$configuration = array();
-					$actions       = array();
-
-					if ( ! empty( $data['component_data'] ) && is_array( $data['component_data'] ) ) {
-						foreach ( $data['component_data'] as $component_id => $component_data ) {
-							$configuration[] = array(
-								'component_id'      => strval( $component_id ),
-								'component_options' => $component_data,
-								'options_modifier'  => isset( $data['modifier'][ $component_id ] ) ? $data['modifier'][ $component_id ] : 'in',
-							);
-						}
-					}
-
-					if ( ! empty( $data['scenario_actions'] ) && is_array( $data['scenario_actions'] ) ) {
-						foreach ( $data['scenario_actions'] as $action_id => $action_data ) {
-							$actions[] = array(
-								'action_id'   => strval( $action_id ),
-								'is_active'   => isset( $action_data['is_active'] ) && 'yes' === $action_data['is_active'],
-								'action_data' => array_diff_key( $action_data, array( 'is_active' => 1 ) ),
-							);
-						}
-					}
-
-					$rest_api_scenario_meta[ $id ] = array(
-						'id'            => (string) $id,
-						'name'          => esc_html( $data['title'] ),
-						'description'   => esc_html( $data['description'] ),
-						'configuration' => $configuration,
-						'actions'       => $actions,
-					);
-				}
-			}
-
-			$scenario_meta = $rest_api_scenario_meta;
-		}
-
-		/**
-		 * Filter raw scenario metadata.
-		 *
-		 * @param  array                 $scenario_meta
-		 * @param  ProductComposite  $product
-		 */
-		return 'view' === $context ? apply_filters( 'woocommerce_composite_scenario_meta', $scenario_meta, $this ) : $scenario_meta;
-	}
-
 	/*
 	|--------------------------------------------------------------------------
 	| CRUD Setters
@@ -1362,31 +1273,6 @@ class ProductComposite extends WC_Product {
 		$this->load_defaults();
 	}
 
-	/**
-	 * Set raw scenario data using internal schema.
-	 *
-	 * @internal
-	 *
-	 * @since 1.0.0
-	 */
-	public function set_scenario_data( $data ) {
-
-		$validated_data = array();
-
-		if ( is_array( $data ) ) {
-			foreach ( $data as $key => $values ) {
-
-				if ( empty( $values['title'] ) ) {
-					continue;
-				}
-
-				$validated_data[ $key ] = $values;
-			}
-		}
-
-		$this->scenario_meta = $validated_data;
-	}
-
 	/*
 	|--------------------------------------------------------------------------
 	| Other CRUD Methods
@@ -1400,118 +1286,6 @@ class ProductComposite extends WC_Product {
 	 */
 	public function validate_props() {
 		parent::validate_props();
-		$this->validate_scenarios();
-	}
-
-	/**
-	 * Ensure scenarios are consistent with components before saving.
-	 *
-	 * @since 1.0.0
-	 */
-	protected function validate_scenarios() {
-
-		$data = $this->get_scenario_data( 'edit' );
-
-		$components             = $this->get_components();
-		$component_options      = array();
-		$component_options_data = array();
-
-		if ( ! empty( $data ) ) {
-
-			foreach ( $components as $component_id => $component ) {
-				$component_options[ $component_id ]      = $component->get_options();
-				$component_options_data[ $component_id ] = $this->get_data_store()->get_expanded_component_options( $component_options[ $component_id ], 'all' );
-			}
-
-			foreach ( $data as $scenario_id => $scenario_data ) {
-
-				if ( empty( $scenario_data['component_data'] ) ) {
-					$data[ $scenario_id ]['component_data'] = array();
-				}
-
-				if ( empty( $scenario_data['scenario_actions'] ) ) {
-					$data[ $scenario_id ]['scenario_actions'] = array();
-				}
-
-				if ( empty( $data[ $scenario_id ]['scenario_actions']['compat_group'] ) ) {
-					$data[ $scenario_id ]['scenario_actions']['compat_group'] = array();
-				}
-
-				if ( empty( $data[ $scenario_id ]['scenario_actions']['compat_group']['is_active'] ) || 'yes' !== $data[ $scenario_id ]['scenario_actions']['compat_group']['is_active'] ) {
-					$data[ $scenario_id ]['scenario_actions']['compat_group']['is_active'] = 'no';
-				}
-
-				if ( empty( $data[ $scenario_id ]['scenario_actions']['conditional_components'] ) ) {
-					$data[ $scenario_id ]['scenario_actions']['conditional_components'] = array();
-				}
-
-				if ( empty( $data[ $scenario_id ]['scenario_actions']['conditional_components']['is_active'] ) || 'yes' !== $data[ $scenario_id ]['scenario_actions']['conditional_components']['is_active'] ) {
-					$data[ $scenario_id ]['scenario_actions']['conditional_components']['is_active'] = 'no';
-				}
-
-				/*
-				 * Validate scenario configuration.
-				 */
-
-				$all_masked = true;
-
-				foreach ( $components as $component_id => $component ) {
-
-					if ( empty( $scenario_data['modifier'][ $component_id ] ) ) {
-						$data[ $scenario_id ]['modifier'][ $component_id ] = 'in';
-					}
-
-					if ( 'masked' !== $data[ $scenario_id ]['modifier'][ $component_id ] ) {
-						$all_masked = false;
-					}
-
-					if ( 'exclude' === $data[ $scenario_id ]['modifier'][ $component_id ] ) {
-						$data[ $scenario_id ]['modifier'][ $component_id ] = 'not-in';
-					}
-
-					if ( 'not-in' === $data[ $scenario_id ]['modifier'][ $component_id ] ) {
-						if ( empty( $data[ $scenario_id ]['component_data'][ $component_id ] ) || Helpers::in_array_key( $data[ $scenario_id ]['component_data'], $component_id, 0 ) ) {
-							$data[ $scenario_id ]['modifier'][ $component_id ] = 'in';
-						}
-					}
-
-					if ( empty( $data[ $scenario_id ]['component_data'][ $component_id ] ) || Helpers::in_array_key( $data[ $scenario_id ]['component_data'], $component_id, 0 ) ) {
-						$data[ $scenario_id ]['component_data'][ $component_id ] = array( 0 );
-						continue;
-					}
-
-					$validated_configuration = array();
-
-					if ( Helpers::in_array_key( $scenario_data['component_data'], $component_id, -1 ) ) {
-						$validated_configuration[] = -1;
-					}
-
-					foreach ( $scenario_data['component_data'][ $component_id ] as $id_in_scenario ) {
-
-						if ( (int) $id_in_scenario === -1 || (int) $id_in_scenario === 0 ) {
-							continue;
-						}
-
-						$parent_id = isset( $component_options_data[ $component_id ]['mapped'][ $id_in_scenario ] ) ? $component_options_data[ $component_id ]['mapped'][ $id_in_scenario ] : false;
-
-						if ( $parent_id ) {
-
-							if ( ! in_array( $parent_id, $scenario_data['component_data'][ $component_id ] ) ) {
-								$validated_configuration[] = $id_in_scenario;
-							}
-						} elseif ( in_array( $id_in_scenario, $component_options[ $component_id ] ) ) {
-							$validated_configuration[] = $id_in_scenario;
-						}
-					}
-				}
-
-				if ( $all_masked ) {
-					unset( $data[ $scenario_id ] );
-				}
-			}
-		}
-
-		$this->set_scenario_data( $data );
 	}
 
 	/**
@@ -1753,53 +1527,6 @@ class ProductComposite extends WC_Product {
 		}
 
 		return $this->base_layout_variation;
-	}
-
-	/*
-	|--------------------------------------------------------------------------
-	| Scenarios.
-	|--------------------------------------------------------------------------
-	*/
-
-	/**
-	 * Build scenario data arrays for specific components, adapted to the data present in the current component options queries.
-	 * Make sure this is always called after component options queries have run, otherwise component options queries will be populated with results for the initial composite state.
-	 *
-	 * @param  array    $component_ids
-	 * @param  boolean  $use_current_query
-	 * @return array
-	 */
-	public function get_current_scenario_data( $component_ids = array() ) {
-
-		$component_options_subset = array();
-
-		foreach ( $this->get_components() as $component_id => $component ) {
-
-			if ( empty( $component_ids ) || in_array( $component_id, $component_ids ) ) {
-
-				$current_component_options = $this->get_current_component_options( $component_id );
-				$default_option            = $this->get_current_component_selection( $component_id );
-
-				if ( $default_option && ! in_array( $default_option, $current_component_options ) ) {
-					$current_component_options[] = $default_option;
-				}
-
-				$component_options_subset[ $component_id ] = $current_component_options;
-			}
-		}
-
-		$scenario_data = $this->scenarios()->get_data( $component_options_subset );
-
-		/**
-		 * Filter generated scenario data.
-		 *
-		 * @since  1.0.0
-		 *
-		 * @param  array                 $scenario_data
-		 * @param  array                 $component_options_subset
-		 * @param  ProductComposite  $product
-		 */
-		return apply_filters( 'woocommerce_composite_current_scenario_data', $scenario_data, $component_options_subset, $this );
 	}
 
 	/*
