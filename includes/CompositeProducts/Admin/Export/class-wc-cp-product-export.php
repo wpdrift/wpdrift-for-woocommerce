@@ -31,7 +31,6 @@ class Product_Export {
 
 		// Custom column content.
 		add_filter( 'woocommerce_product_export_product_column_wc_cp_components', array( __CLASS__, 'export_components' ), 10, 2 );
-		add_filter( 'woocommerce_product_export_product_column_wc_cp_scenarios', array( __CLASS__, 'export_scenarios' ), 10, 2 );
 		add_filter( 'woocommerce_product_export_product_column_wc_cp_layout', array( __CLASS__, 'export_layout' ), 10, 2 );
 		add_filter( 'woocommerce_product_export_product_column_wc_cp_editable_in_cart', array( __CLASS__, 'export_editable_in_cart' ), 10, 2 );
 		add_filter( 'woocommerce_product_export_product_column_wc_cp_sold_individually_context', array( __CLASS__, 'export_sold_individually_context' ), 10, 2 );
@@ -147,68 +146,6 @@ class Product_Export {
 				}
 
 				$value = json_encode( $components_export_data );
-			}
-		}
-
-		return $value;
-	}
-
-	/**
-	 * Scenarios column content.
-	 *
-	 * @param  mixed       $value
-	 * @param  WC_Product  $product
-	 * @return string      $value
-	 */
-	public static function export_scenarios( $value, $product ) {
-
-		if ( $product->is_type( 'composite' ) ) {
-
-			$scenarios_rest_data = $product->get_scenario_data( 'rest' );
-
-			if ( ! empty( $scenarios_rest_data ) ) {
-
-				$scenarios_export_data = array();
-
-				foreach ( $scenarios_rest_data as $scenario_rest_data ) {
-
-					$scenario_export_data = $scenario_rest_data;
-
-					if ( ! empty( $scenario_rest_data[ 'configuration' ] ) ) {
-						foreach ( $scenario_rest_data[ 'configuration' ] as $component_index => $component_configuration ) {
-							if ( ! empty( $component_configuration[ 'component_options' ] ) && is_array( $component_configuration[ 'component_options' ] ) ) {
-
-								$option_ids = array();
-
-								foreach ( $component_configuration[ 'component_options' ] as $option_id ) {
-
-									// Any flag.
-									if ( 0 === intval( $option_id ) ) {
-										$option_ids[] = 'selection:any';
-									// None flag.
-									} elseif ( -1 === intval( $option_id ) ) {
-										$option_ids[] = 'selection:none';
-									// Product IDs.
-									} else {
-
-										$option = wc_get_product( $option_id );
-
-										if ( $option ) {
-											$option_sku   = $option->get_sku( 'edit' );
-											$option_ids[] = $option_sku ? $option_sku : 'id:' . $option_id;
-										}
-									}
-								}
-
-								$scenario_export_data[ 'configuration' ][ $component_index ][ 'component_options' ] = implode( ',', $option_ids );
-							}
-						}
-					}
-
-					$scenarios_export_data[] = $scenario_export_data;
-				}
-
-				$value = json_encode( $scenarios_export_data );
 			}
 		}
 
