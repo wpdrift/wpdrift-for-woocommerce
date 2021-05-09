@@ -690,59 +690,6 @@ class Cart {
 					}
 				}
 
-				// Validate selections.
-				// $matching_scenarios = $composite->scenarios()->find_matching( $composite_configuration );
-				//
-				// if ( is_wp_error( $matching_scenarios ) ) {
-				//
-				// 	$error_code = $matching_scenarios->get_error_code();
-				//
-				// 	if ( in_array( $error_code, array( 'woocommerce_composite_configuration_selection_required', 'woocommerce_composite_configuration_selection_invalid' ) ) ) {
-				//
-				// 		$error_data = $matching_scenarios->get_error_data( $error_code );
-				//
-				// 		if ( ! empty( $error_data['component_id'] ) ) {
-				//
-				// 			if ( 'woocommerce_composite_configuration_selection_required' === $error_code ) {
-				//
-				// 				if ( 'add-to-cart' === $context ) {
-				// 					$reason = sprintf( __( 'Please choose a &quot;%s&quot; option.', 'woocommerce-composite-products' ), $validation_data[ $error_data['component_id'] ]['title'] );
-				// 				} else {
-				// 					$reason = sprintf( __( 'A &quot;%s&quot; selection is required.', 'woocommerce-composite-products' ), $validation_data[ $error_data['component_id'] ]['title'] );
-				// 				}
-				// 			} elseif ( 'woocommerce_composite_configuration_selection_invalid' === $error_code ) {
-				//
-				// 				if ( 'add-to-cart' === $context ) {
-				// 					$reason = sprintf( __( 'Please choose a different &quot;%s&quot; option.', 'woocommerce-composite-products' ), $validation_data[ $error_data['component_id'] ]['title'] );
-				// 				} else {
-				// 					$reason = sprintf( __( 'The chosen &quot;%s&quot; option is unavailable.', 'woocommerce-composite-products' ), $validation_data[ $error_data['component_id'] ]['title'] );
-				// 				}
-				// 			}
-				//
-				// 			if ( 'add-to-cart' === $context ) {
-				// 				$notice = sprintf( __( '&quot;%1$s&quot; cannot be added to your cart. %2$s', 'woocommerce-composite-products' ), $composite_title, $reason );
-				// 			} elseif ( 'cart' === $context ) {
-				// 				$notice = sprintf( __( '&quot;%1$s&quot; cannot be purchased. %2$s', 'woocommerce-composite-products' ), $composite_title, $reason );
-				// 			} else {
-				// 				$notice = $reason;
-				// 			}
-				//
-				// 			throw new Exception( $notice );
-				// 		}
-				// 	} elseif ( 'woocommerce_composite_configuration_invalid' === $error_code ) {
-				//
-				// 		if ( 'cart' === $context ) {
-				// 			$notice = sprintf( __( 'The selected &quot;%1$s&quot; options cannot be purchased together.', 'woocommerce-composite-products' ), $composite_title );
-				// 		} else {
-				// 			$notice = __( 'The selected options cannot be purchased together. Please select a different configuration and try again.', 'woocommerce-composite-products' );
-				// 		}
-				//
-				// 		throw new Exception( $notice );
-				// 	}
-				// }
-
-				$matching_scenarios = [];
-
 				// Validate Quantities.
 				foreach ( $validation_data as $component_id => $component_validation_data_array ) {
 					foreach ( $component_validation_data_array as $component_validation_data ) {
@@ -751,34 +698,9 @@ class Cart {
 							continue;
 						}
 
-						$qty = $component_validation_data['quantity'];
-
-						// Allow 3rd parties to modify the min/max qty settings of a component conditionally through scenarios.
-
-						/**
-						 * 'woocommerce_composite_component_validation_quantity_min' filter.
-						 *
-						 * @param  int     $qty_min
-						 * @param  string  $component_id
-						 * @param  array   $config_data
-						 * @param  array   $matching_scenarios
-						 * @param  array   $scenario_data
-						 * @param  string  $composite_id
-						 */
-						$qty_min = absint( apply_filters( 'woocommerce_composite_component_validation_quantity_min', $component_validation_data['quantity_min'], $component_id, $component_validation_data, $matching_scenarios, $composite ) );
-
-						/**
-						 * 'woocommerce_composite_component_validation_quantity_max' filter.
-						 *
-						 * @param  int     $qty_min
-						 * @param  string  $component_id
-						 * @param  array   $config_data
-						 * @param  array   $matching_scenarios
-						 * @param  array   $scenario_data
-						 * @param  string  $composite_id
-						 */
-						$qty_max = absint( apply_filters( 'woocommerce_composite_component_validation_quantity_max', $component_validation_data['quantity_max'], $component_id, $component_validation_data, $matching_scenarios, $composite ) );
-
+						$qty               = $component_validation_data['quantity'];
+						$qty_min           = $component_validation_data['quantity_min'];
+						$qty_max           = $component_validation_data['quantity_max'];
 						$sold_individually = $component_validation_data['sold_individually'];
 
 						if ( $qty < $qty_min && 'yes' !== $sold_individually ) {
