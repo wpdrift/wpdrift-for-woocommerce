@@ -95,12 +95,9 @@ class DataStore extends WC_Product_Data_Store_CPT {
 
 		$product->set_props( $props_to_set );
 
-		// Load component/scenario meta.
+		// Load component meta.
 		$composite_meta = get_post_meta( $id, '_bto_data', true );
-		$scenario_meta  = get_post_meta( $id, '_bto_scenario_data', true );
-
 		$product->set_composite_data( $composite_meta );
-		$product->set_scenario_data( $scenario_meta );
 	}
 
 	/**
