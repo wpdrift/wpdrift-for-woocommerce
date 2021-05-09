@@ -49,6 +49,7 @@ final class Wocommerce_Modules {
 	public function __construct() {
 		// Autoload classes.
 		require WPDRIFT_WOOCOMMERCE_MODULES_PLUGIN_DIR . '/vendor/autoload.php';
+		require WPDRIFT_WOOCOMMERCE_MODULES_PLUGIN_DIR . '/includes/class-wocommerce-modules-install.php';
 		require WPDRIFT_WOOCOMMERCE_MODULES_PLUGIN_DIR . '/includes/wocommerce-modules-core-functions.php';
 	}
 
@@ -102,6 +103,7 @@ final class Wocommerce_Modules {
 		}
 
 		// Classes.
+		Wocommerce_Modules_Install::init();
 		CompositeProducts\Module::instance();
 	}
 
