@@ -155,7 +155,6 @@ class Admin {
 			$params = array(
 				'save_composite_nonce'         => wp_create_nonce( 'wc_bto_save_composite' ),
 				'add_component_nonce'          => wp_create_nonce( 'wc_bto_add_component' ),
-				'add_scenario_nonce'           => wp_create_nonce( 'wc_bto_add_scenario' ),
 				'get_product_categories_nonce' => wp_create_nonce( 'wc_bto_get_product_categories' ),
 				'layouts'                      => array_keys( ProductComposite::get_layout_options() ),
 				'wc_placeholder_img_src'       => wc_placeholder_img_src(),
@@ -170,7 +169,6 @@ class Admin {
 				'i18n_defaults_unset'          => __( 'Please ensure that a Default Option is set in all non-optional Components before choosing \'Use Defaults\' as the preferred Catalog Price display method for this Composite.', 'wpdrift-woocommerce-modules' ),
 				'i18n_set_defaults_static'     => __( 'The Default Option field cannot be cleared &ndash; you have added a single <strong>Component Option</strong> without checking the <strong>Optional</strong> box.', 'wpdrift-woocommerce-modules' ),
 				'i18n_set_defaults'            => __( 'A Default Option must be chosen in all non-optional Components when the <strong>Catalog Price</strong> display method is set to <strong>Use Defaults</strong>.', 'wpdrift-woocommerce-modules' ),
-				'i18n_scenarios_panel_blocked' => __( 'To configure Scenarios, the changes you made under the Components tab must be saved. Save changes now?', 'wpdrift-woocommerce-modules' ),
 				// Strings duplicated from core.
 				'i18n_matches_1'               => _x( 'One result is available, press enter to select it.', 'enhanced select', 'wpdrift-woocommerce-modules' ),
 				'i18n_matches_n'               => _x( '%qty% results are available, use up and down arrow keys to navigate.', 'enhanced select', 'wpdrift-woocommerce-modules' ),
