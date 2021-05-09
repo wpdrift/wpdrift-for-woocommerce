@@ -45,14 +45,12 @@ class Product_Export {
 	 * @return array  $columns
 	 */
 	public static function add_columns( $columns ) {
-
-		$columns[ 'wc_cp_components' ]                = __( 'Composite Components (JSON-encoded)', 'wpdrift-woocommerce-modules' );
-		$columns[ 'wc_cp_scenarios' ]                 = __( 'Composite Scenarios (JSON-encoded)', 'wpdrift-woocommerce-modules' );
-		$columns[ 'wc_cp_layout' ]                    = __( 'Composite Layout', 'wpdrift-woocommerce-modules' );
-		$columns[ 'wc_cp_editable_in_cart' ]          = __( 'Composite Cart Editing', 'wpdrift-woocommerce-modules' );
-		$columns[ 'wc_cp_sold_individually_context' ] = __( 'Composite Sold Individually', 'wpdrift-woocommerce-modules' );
-		$columns[ 'wc_cp_shop_price_calc' ]           = __( 'Composite Catalog Price', 'wpdrift-woocommerce-modules' );
-		$columns[ 'wc_cp_add_to_cart_form_location' ] = __( 'Composite Form Location', 'wpdrift-woocommerce-modules' );
+		$columns['wc_cp_components']                = __( 'Composite Components (JSON-encoded)', 'wpdrift-woocommerce-modules' );
+		$columns['wc_cp_layout']                    = __( 'Composite Layout', 'wpdrift-woocommerce-modules' );
+		$columns['wc_cp_editable_in_cart']          = __( 'Composite Cart Editing', 'wpdrift-woocommerce-modules' );
+		$columns['wc_cp_sold_individually_context'] = __( 'Composite Sold Individually', 'wpdrift-woocommerce-modules' );
+		$columns['wc_cp_shop_price_calc']           = __( 'Composite Catalog Price', 'wpdrift-woocommerce-modules' );
+		$columns['wc_cp_add_to_cart_form_location'] = __( 'Composite Form Location', 'wpdrift-woocommerce-modules' );
 
 		return $columns;
 	}
@@ -80,29 +78,29 @@ class Product_Export {
 					$component_export_data = $component_rest_data;
 
 					// Replace 'thumbnail_id' with 'thumbnail_src'.
-					if ( ! empty( $component_rest_data[ 'thumbnail_src' ] ) ) {
-						unset( $component_export_data[ 'thumbnail_id' ] );
+					if ( ! empty( $component_rest_data['thumbnail_src'] ) ) {
+						unset( $component_export_data['thumbnail_id'] );
 					}
 
 					// Refer to default option by SKU, if possible.
-					if ( ! empty( $component_rest_data[ 'default_option_id' ] ) ) {
+					if ( ! empty( $component_rest_data['default_option_id'] ) ) {
 
-						$default_option = wc_get_product( $component_rest_data[ 'default_option_id' ] );
+						$default_option = wc_get_product( $component_rest_data['default_option_id'] );
 
 						if ( $default_option ) {
-							$default_option_sku  = $default_option->get_sku( 'edit' );
-							$component_export_data[ 'default_option_id' ] = $default_option_sku ? $default_option_sku : 'id:' . $component_rest_data[ 'default_option_id' ];
+							$default_option_sku                         = $default_option->get_sku( 'edit' );
+							$component_export_data['default_option_id'] = $default_option_sku ? $default_option_sku : 'id:' . $component_rest_data['default_option_id'];
 						}
 					}
 
 					// Refer to component option IDs by SKU, if possible.
-					if ( ! empty( $component_rest_data[ 'query_ids' ] ) && is_array( $component_rest_data[ 'query_ids' ] ) ) {
+					if ( ! empty( $component_rest_data['query_ids'] ) && is_array( $component_rest_data['query_ids'] ) ) {
 
-						if ( 'product_ids' === $component_rest_data[ 'query_type' ] ) {
+						if ( 'product_ids' === $component_rest_data['query_type'] ) {
 
 							$query_ids = array();
 
-							foreach ( $component_rest_data[ 'query_ids' ] as $query_id ) {
+							foreach ( $component_rest_data['query_ids'] as $query_id ) {
 
 								$option = wc_get_product( $query_id );
 
@@ -112,34 +110,34 @@ class Product_Export {
 								}
 							}
 
-							$component_export_data[ 'query_ids' ] = implode( ',', $query_ids );
+							$component_export_data['query_ids'] = implode( ',', $query_ids );
 
-						} elseif ( 'category_ids' === $component_rest_data[ 'query_type' ] ) {
+						} elseif ( 'category_ids' === $component_rest_data['query_type'] ) {
 
-							$term_ids_exporter                    = false === $term_ids_exporter ? new WC_Product_CSV_Exporter() : $term_ids_exporter;
-							$component_export_data[ 'query_ids' ] = $term_ids_exporter->format_term_ids( $component_rest_data[ 'query_ids' ], 'product_cat' );
+							$term_ids_exporter                  = false === $term_ids_exporter ? new WC_Product_CSV_Exporter() : $term_ids_exporter;
+							$component_export_data['query_ids'] = $term_ids_exporter->format_term_ids( $component_rest_data['query_ids'], 'product_cat' );
 						}
 					}
 
 					// Export attribute filters by name, not ID.
-					if ( isset( $component_rest_data[ 'attribute_filter_ids' ] ) ) {
+					if ( isset( $component_rest_data['attribute_filter_ids'] ) ) {
 
 						$atttribute_filter_labels = array();
 
-						if ( ! empty( $component_rest_data[ 'attribute_filter_ids' ] ) && is_array( $component_rest_data[ 'attribute_filter_ids' ] ) ) {
+						if ( ! empty( $component_rest_data['attribute_filter_ids'] ) && is_array( $component_rest_data['attribute_filter_ids'] ) ) {
 
 							global $wc_product_attributes;
 
 							foreach ( $wc_product_attributes as $attribute_taxonomy_name => $attribute_data ) {
 
-								if ( in_array( $attribute_data->attribute_id, $component_rest_data[ 'attribute_filter_ids' ] ) && taxonomy_exists( $attribute_taxonomy_name ) ) {
+								if ( in_array( $attribute_data->attribute_id, $component_rest_data['attribute_filter_ids'] ) && taxonomy_exists( $attribute_taxonomy_name ) ) {
 									$atttribute_filter_labels[] = $attribute_data->attribute_label;
 								}
 							}
 						}
 
-						$component_export_data[ 'attribute_filters' ] = $atttribute_filter_labels;
-						unset( $component_export_data[ 'attribute_filter_ids' ] );
+						$component_export_data['attribute_filters'] = $atttribute_filter_labels;
+						unset( $component_export_data['attribute_filter_ids'] );
 					}
 
 					$components_export_data[] = $component_export_data;
