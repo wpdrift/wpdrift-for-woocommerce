@@ -206,11 +206,6 @@ class Install {
 			wp_insert_term( 'composite', 'product_type' );
 		}
 
-		// Todo: REMOVE
-		// if ( ! class_exists( 'AdminNotices' ) ) {
-		// 	require_once( WC_CP_ABSPATH . 'includes/admin/class-wc-cp-admin-notices.php' );
-		// }
-
 		if ( is_null( self::$current_version ) ) {
 			// Add dismissible welcome notice.
 			AdminNotices::add_maintenance_notice( 'welcome' );
