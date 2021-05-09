@@ -20,7 +20,6 @@ use WC_Product_Factory;
 use WC_Product_Simple;
 use WC_Data_Store;
 use WPdrift\CompositeProducts\ProductComposite;
-use WPdrift\CompositeProducts\ScenariosManager;
 use WPdrift\CompositeProducts\Component;
 use WPdrift\CompositeProducts\Helpers;
 use WPdrift\CompositeProducts\Admin\AdminNotices;
@@ -47,10 +46,10 @@ class ProductData {
 	 */
 	public static function init() {
 
-		// Creates the admin Components and Scenarios panel tabs.
+		// Creates the admin Components panel tabs.
 		add_action( 'woocommerce_product_data_tabs', array( __CLASS__, 'composite_product_data_tabs' ) );
 
-		// Creates the admin Components and Scenarios panels.
+		// Creates the admin Components panels.
 		add_action( 'woocommerce_product_data_panels', array( __CLASS__, 'composite_data_panel' ) );
 		add_action( 'woocommerce_product_options_stock', array( __CLASS__, 'composite_stock_info' ) );
 
@@ -122,21 +121,6 @@ class ProductData {
 		// add_action( 'woocommerce_composite_component_admin_advanced_html', array( __CLASS__, 'component_sort_filter_show_filters' ), 20, 3 );
 		add_action( 'woocommerce_composite_component_admin_advanced_html', array( __CLASS__, 'component_id_marker' ), 100, 3 );
 		add_action( 'woocommerce_composite_component_admin_advanced_html', array( __CLASS__, 'component_options_group_post' ), 100, 3 );
-
-		/*-----------------------------*/
-		/*  Scenario meta boxes html.  */
-		/*-----------------------------*/
-
-		add_action( 'woocommerce_composite_scenario_admin_html', array( __CLASS__, 'scenario_admin_html' ), 10, 5 );
-
-		// Scenario options.
-		add_action( 'woocommerce_composite_scenario_admin_info_html', array( __CLASS__, 'scenario_info' ), 10, 4 );
-		add_action( 'woocommerce_composite_scenario_admin_config_html', array( __CLASS__, 'scenario_config' ), 10, 4 );
-
-		// "Dependency Group" action.
-		add_action( 'woocommerce_composite_scenario_admin_actions_html', array( __CLASS__, 'scenario_action_compat_group' ), 10, 4 );
-		// "Hide Components" action.
-		add_action( 'woocommerce_composite_scenario_admin_actions_html', array( __CLASS__, 'scenario_action_hide_components' ), 15, 4 );
 
 		/*--------------------------------*/
 		/*  "Sold Individually" Options.  */
@@ -473,380 +457,6 @@ class ProductData {
 		$tabs = self::get_component_tabs();
 
 		include( 'views/html-component.php' );
-	}
-
-	/**
-	 * Load component meta box in 'woocommerce_composite_component_admin_html'.
-	 *
-	 * @param  int    $id
-	 * @param  array  $scenario_data
-	 * @param  array  $composite_data
-	 * @param  int    $composite_id
-	 * @param  string $toggle
-	 * @return void
-	 */
-	public static function scenario_admin_html( $id, $scenario_data, $composite_data, $composite_id, $toggle = 'closed' ) {
-
-		include( 'views/html-scenario.php' );
-	}
-
-	/**
-	 * Add "Activate Configuration" scenario action.
-	 *
-	 * @param  int    $id
-	 * @param  array  $scenario_data
-	 * @param  array  $composite_data
-	 * @param  int    $product_id
-	 * @return void
-	 */
-	public static function scenario_action_compat_group( $id, $scenario_data, $composite_data, $product_id ) {
-
-		$defines_compat_group = isset( $scenario_data['scenario_actions']['compat_group']['is_active'] ) ? $scenario_data['scenario_actions']['compat_group']['is_active'] : 'yes';
-
-		?>
-		<div class="scenario_action_compat_group" >
-			<div class="form-field">
-				<label for="scenario_action_compat_group_<?php echo $id; ?>">
-					<?php echo __( 'Activate Configuration', 'wpdrift-woocommerce-modules' ); ?>
-				</label>
-				<input type="checkbox" class="checkbox"<?php echo ( $defines_compat_group === 'yes' ? ' checked="checked"' : '' ); ?> name="bto_scenario_data[<?php echo $id; ?>][scenario_actions][compat_group][is_active]" <?php echo ( $defines_compat_group === 'yes' ? ' value="1"' : '' ); ?> />
-																  <?php
-																	echo wc_help_tip( __( 'Activates the combination of selections specified in the Configuration section. Different configurations will be unavailable, unless activated by another Scenario.', 'wpdrift-woocommerce-modules' ) );
-																	?>
-			</div>
-		</div>
-		<?php
-	}
-
-	/**
-	 * Add "Hide Components" scenario action.
-	 *
-	 * @param  int    $id
-	 * @param  array  $scenario_data
-	 * @param  array  $composite_data
-	 * @param  int    $product_id
-	 * @return void
-	 */
-	public static function scenario_action_hide_components( $id, $scenario_data, $composite_data, $product_id ) {
-
-		$hide_components   = isset( $scenario_data['scenario_actions']['conditional_components']['is_active'] ) ? $scenario_data['scenario_actions']['conditional_components']['is_active'] : 'no';
-		$hidden_components = ! empty( $scenario_data['scenario_actions']['conditional_components']['hidden_components'] ) ? $scenario_data['scenario_actions']['conditional_components']['hidden_components'] : array();
-
-		?>
-		<div class="scenario_action_conditional_components_group" >
-			<div class="form-field toggle_conditional_components">
-				<label for="scenario_action_conditional_components_<?php echo $id; ?>">
-					<?php echo __( 'Hide Components', 'wpdrift-woocommerce-modules' ); ?>
-				</label>
-				<input type="checkbox" class="checkbox" <?php echo ( $hide_components === 'yes' ? ' checked="checked"' : '' ); ?> name="bto_scenario_data[<?php echo $id; ?>][scenario_actions][conditional_components][is_active]" <?php echo ( $hide_components === 'yes' ? ' value="1"' : '' ); ?> />
-																   <?php
-																	echo wc_help_tip( __( 'Enable this option to conditionally hide one or more Components based on the matching conditions specified in the Configuration section.', 'wpdrift-woocommerce-modules' ) );
-																	?>
-			</div>
-			<div class="form-field action_components" <?php echo ( $hide_components === 'no' ? ' style="display:none;"' : '' ); ?> >
-				<select id="bto_conditional_components_ids_<?php echo $id; ?>" name="bto_scenario_data[<?php echo $id; ?>][scenario_actions][conditional_components][hidden_components][]" style="width: 75%;" class="wc-enhanced-select-lazy conditional_components_ids" multiple="multiple" data-placeholder="<?php echo __( 'Select components&hellip;', 'wpdrift-woocommerce-modules' ); ?>">
-																	  <?php
-
-																		foreach ( $composite_data as $component_id => $component_data ) {
-
-																			$component_title = $component_data['title'];
-
-																			$option_selected = in_array( $component_id, $hidden_components ) ? 'selected="selected"' : '';
-																			echo '<option ' . $option_selected . 'value="' . $component_id . '">' . esc_html( $component_title ) . '</option>';
-																		}
-
-																		?>
-				</select>
-			</div>
-		</div>
-		<?php
-	}
-
-	/**
-	 * Add scenario title and description options.
-	 *
-	 * @param  int    $id
-	 * @param  array  $scenario_data
-	 * @param  array  $composite_data
-	 * @param  int    $product_id
-	 * @return void
-	 */
-	public static function scenario_info( $id, $scenario_data, $composite_data, $product_id ) {
-
-		$title       = isset( $scenario_data['title'] ) ? $scenario_data['title'] : '';
-		$description = isset( $scenario_data['description'] ) ? $scenario_data['description'] : '';
-
-		?>
-		<div class="scenario_title">
-			<div class="form-field">
-				<label>
-					<?php echo __( 'Scenario Name', 'wpdrift-woocommerce-modules' ); ?>
-				</label>
-				<input type="text" class="scenario_title component_text_input" name="bto_scenario_data[<?php echo $id; ?>][title]" value="<?php echo esc_attr( $title ); ?>"/>
-			</div>
-		</div>
-		<div class="scenario_description">
-			<div class="form-field">
-				<label>
-					<?php echo __( 'Scenario Description', 'wpdrift-woocommerce-modules' ); ?>
-				</label>
-				<textarea class="scenario_description" name="bto_scenario_data[<?php echo $id; ?>][description]" id="scenario_description_<?php echo $id; ?>" placeholder="" rows="2" cols="20"><?php echo esc_textarea( $description ); ?></textarea>
-			</div>
-		</div>
-		<?php
-	}
-
-	/**
-	 * Add scenario config options.
-	 *
-	 * @param  int    $id
-	 * @param  array  $scenario_data
-	 * @param  array  $composite_data
-	 * @param  int    $product_id
-	 * @return void
-	 */
-	public static function scenario_config( $id, $scenario_data, $composite_data, $product_id ) {
-
-		global $composite_product_object_data;
-
-		if ( empty( $composite_product_object_data ) ) {
-			$composite_product_object_data = array();
-		}
-
-		?>
-		<div class="scenario_config_group">
-		<?php
-
-		foreach ( $composite_data as $component_id => $component_data ) {
-
-			$modifier = 'masked';
-
-			if ( isset( $scenario_data['modifier'][ $component_id ] ) ) {
-
-				$modifier = $scenario_data['modifier'][ $component_id ];
-
-			} elseif ( ! doing_action( 'wp_ajax_woocommerce_add_composite_scenario' ) ) {
-
-				$exclude = isset( $scenario_data['exclude'][ $component_id ] ) ? $scenario_data['exclude'][ $component_id ] : 'no';
-
-				if ( 'no' === $exclude ) {
-					$modifier = 'in';
-				} elseif ( 'yes' === $exclude ) {
-					$modifier = 'not-in';
-				}
-			}
-
-			$component_title = esc_html( $component_data['title'] );
-
-			?>
-				<div class="bto_scenario_selector">
-					<div class="form-field">
-						<label>
-						<?php
-						echo  $component_title;
-						?>
-						</label>
-						<div class="bto_scenario_match_component_wrapper">
-							<input type="checkbox" class="bto_scenario_match_component checkbox"<?php echo ( $modifier !== 'masked' ? ' checked="checked"' : '' ); ?> name="bto_scenario_data[<?php echo $id; ?>][match_component][<?php echo $component_id; ?>]" <?php echo ( $modifier !== 'masked' ? ' value="1"' : '' ); ?> />
-																										   <?php
-																											echo wc_help_tip( sprintf( __( 'Include/exclude options from <strong>%s</strong> in this Scenario.', 'wpdrift-woocommerce-modules' ), $component_title ) );
-																											?>
-						</div>
-					</div>
-					<div class="form-field bto_scenario_matching_conditions_wrapper" <?php echo ( $modifier === 'masked' ? ' style="display:none;"' : '' ); ?> >
-						<div class="bto_scenario_modifier_wrapper">
-							<select class="bto_scenario_modifier wc-enhanced-select-lazy" style="width: 75%" name="bto_scenario_data[<?php echo $id; ?>][modifier][<?php echo $component_id; ?>]">
-								<option <?php selected( $modifier, 'in', true ); ?> value="in"><?php echo __( 'is', 'wpdrift-woocommerce-modules' ); ?></option>
-								<option <?php selected( $modifier, 'not-in', true ); ?> value="not-in"><?php echo __( 'is not', 'wpdrift-woocommerce-modules' ); ?></option>
-							</select>
-						</div>
-						<div class="bto_scenario_selector_inner">
-								<?php
-
-								$component_options_cache_key = 'component_' . $component_id . '_options';
-								$component_options           = Helpers::cache_get( $component_options_cache_key );
-
-								if ( null === $component_options ) {
-										$component_options = Component::query_component_options( $component_data );
-										Helpers::cache_set( $component_options_cache_key, $component_options );
-								}
-
-									$composite_data_store    = WC_Data_Store::load( 'product-composite' );
-									$component_options_count = count( $composite_data_store->get_expanded_component_options( $component_options, 'merged' ) );
-									$component_options_data  = array();
-
-									$ajax_threshold                 = apply_filters( 'woocommerce_composite_scenario_admin_products_ajax_threshold', 30, $component_id, $product_id );
-									$global_ajax_threshold          = isset( $composite_product_object_data['component_options_ajax_threshold'] ) ? $composite_product_object_data['component_options_ajax_threshold'] : false;
-									$global_ajax_threshold_exceeded = $global_ajax_threshold && isset( $composite_product_object_data['component_options_count'] ) && $composite_product_object_data['component_options_count'] >= $global_ajax_threshold;
-									$use_ajax                       = $global_ajax_threshold_exceeded || $component_options_count >= $ajax_threshold;
-
-								if ( false === $use_ajax ) {
-
-									foreach ( $component_options as $component_option_id ) {
-
-										$component_option = self::get_component_option( $component_option_id );
-
-										if ( false === $component_option ) {
-											continue;
-										}
-
-										$component_options_data[ $component_option_id ] = $component_option;
-									}
-								}
-
-								if ( false === $use_ajax ) {
-
-									$scenario_options    = array();
-									$scenario_selections = array();
-
-									if ( $component_data['optional'] === 'yes' ) {
-
-										if ( isset( $scenario_data['component_data'] ) && Helpers::in_array_key( $scenario_data['component_data'], $component_id, -1 ) ) {
-											$scenario_selections[] = -1;
-										}
-
-										$scenario_options[-1] = _x( 'No selection', 'optional component property controlled in scenarios', 'wpdrift-woocommerce-modules' );
-									}
-
-									if ( isset( $scenario_data['component_data'] ) && Helpers::in_array_key( $scenario_data['component_data'], $component_id, 0 ) ) {
-										$scenario_selections[] = 0;
-									}
-
-									$scenario_options[0] = __( 'Any Product or Variation', 'wpdrift-woocommerce-modules' );
-
-									foreach ( $component_options_data as $option_id => $option_data ) {
-
-										$title         = $option_data->get_title();
-										$product_type  = $option_data->get_type();
-										$product_title = 'variable' === $product_type ? Helpers::get_product_title( $option_data, '', __( 'Any Variation', 'wpdrift-woocommerce-modules' ) ) : Helpers::get_product_title( $option_data );
-
-										if ( isset( $scenario_data['component_data'] ) && Helpers::in_array_key( $scenario_data['component_data'], $component_id, $option_id ) ) {
-											$scenario_selections[] = $option_id;
-										}
-
-										$scenario_options[ $option_id ] = $product_title;
-
-										if ( $product_type === 'variable' ) {
-
-											$component_option_variations_cache_key = 'component_option_variations_' . $option_id;
-											$component_option_variations           = Helpers::cache_get( $component_option_variations_cache_key );
-
-											if ( null === $component_option_variations ) {
-												$component_option_variations = Helpers::get_product_variation_descriptions( $option_data, 'flat' );
-												Helpers::cache_set( $component_option_variations_cache_key, $component_option_variations );
-											}
-
-											if ( ! empty( $component_option_variations ) ) {
-
-												foreach ( $component_option_variations as $variation_id => $description ) {
-
-													if ( isset( $scenario_data['component_data'] ) && Helpers::in_array_key( $scenario_data['component_data'], $component_id, $variation_id ) ) {
-														$scenario_selections[] = $variation_id;
-													}
-
-													$scenario_options[ $variation_id ] = $description;
-												}
-											}
-										}
-									}
-
-									$no_selection = _x( 'No selection', 'optional component property controlled in scenarios', 'wpdrift-woocommerce-modules' );
-									$optional_tip = $component_data['optional'] === 'yes' ? sprintf( __( '<br/><br/><strong>Advanced Tip</strong> &ndash; The <strong>%1$s</strong> option refers to a state where none of the available products is selected. You can use it in combination with product references to create selection dependencies, or even to make <strong>%2$s</strong> conditionally <strong>Optional</strong>.', 'wpdrift-woocommerce-modules' ), $no_selection, $component_title ) : '';
-									$select_tip   = sprintf( __( 'Select products and variations from <strong>%1$s</strong>.<br/><br/><strong>Tip</strong> &ndash; Choose <strong>Any Product or Variation</strong> to add all <strong>%1$s</strong> products and variations in this Scenario.%2$s', 'wpdrift-woocommerce-modules' ), $component_title, $optional_tip );
-
-									?>
-								<select id="bto_scenario_ids_<?php echo $id; ?>_<?php echo $component_id; ?>" name="bto_scenario_data[<?php echo $id; ?>][component_data][<?php echo $component_id; ?>][]" style="width: 75%;" class="wc-enhanced-select-lazy bto_scenario_ids" multiple="multiple" data-placeholder="<?php echo __( 'Select products &amp; variations&hellip;', 'wpdrift-woocommerce-modules' ); ?>">
-									<?php
-
-									foreach ( $scenario_options as $scenario_option_id => $scenario_option_description ) {
-										$option_selected = in_array( $scenario_option_id, $scenario_selections ) ? 'selected="selected"' : '';
-										echo '<option ' . $option_selected . 'value="' . $scenario_option_id . '">' . $scenario_option_description . '</option>';
-									}
-
-									?>
-								</select>
-								<span class="bto_scenario_select tips" data-tip="<?php echo $select_tip; ?>"></span>
-																				<?php
-
-								} else {
-
-									$selections_in_scenario = array();
-
-									if ( ! empty( $scenario_data['component_data'] ) ) {
-
-										foreach ( $scenario_data['component_data'][ $component_id ] as $product_id_in_scenario ) {
-
-											if ( $product_id_in_scenario == -1 ) {
-												if ( $component_data['optional'] === 'yes' ) {
-													$selections_in_scenario[ $product_id_in_scenario ] = _x( 'No selection', 'optional component property controlled in scenarios', 'wpdrift-woocommerce-modules' );
-												}
-											} elseif ( $product_id_in_scenario == 0 ) {
-												$selections_in_scenario[ $product_id_in_scenario ] = __( 'Any Product or Variation', 'wpdrift-woocommerce-modules' );
-											} else {
-
-												$product_in_scenario = self::get_component_option( $product_id_in_scenario, true );
-
-												if ( false === $product_in_scenario ) {
-													continue;
-												}
-
-												if ( ! in_array( Compatibility::get_product_id( $product_in_scenario ), $component_options ) ) {
-													continue;
-												}
-
-												if ( $product_in_scenario->get_type() === 'variation' ) {
-													$selections_in_scenario[ $product_id_in_scenario ] = Helpers::get_product_variation_title( $product_in_scenario );
-												} elseif ( $product_in_scenario->get_type() === 'variable' ) {
-													$selections_in_scenario[ $product_id_in_scenario ] = Helpers::get_product_title( $product_in_scenario, '', __( 'Any Variation', 'wpdrift-woocommerce-modules' ) );
-												} else {
-													$selections_in_scenario[ $product_id_in_scenario ] = Helpers::get_product_title( $product_in_scenario );
-												}
-											}
-										}
-									}
-
-									$no_selection = _x( 'No selection', 'optional component property controlled in scenarios', 'wpdrift-woocommerce-modules' );
-									$optional_tip = $component_data['optional'] === 'yes' ? sprintf( __( '<br/><br/><strong>Advanced Tip</strong> &ndash; The <strong>%1$s</strong> option refers to a state where none of the available products is selected. You can use it in combination with product references to create selection dependencies, or even to make <strong>%2$s</strong> conditionally <strong>Optional</strong>.', 'wpdrift-woocommerce-modules' ), $no_selection, $component_title ) : '';
-									$search_tip   = sprintf( __( 'Search for products and variations from <strong>%1$s</strong>.<br/><br/><strong>Tip</strong> &ndash; Choose <strong>Any Product or Variation</strong> to add all <strong>%1$s</strong> products and variations in this Scenario.%2$s', 'wpdrift-woocommerce-modules' ), $component_title, $optional_tip );
-
-									?>
-								<select id="bto_scenario_ids_<?php echo $id; ?>_<?php echo $component_id; ?>" name="bto_scenario_data[<?php echo $id; ?>][component_data][<?php echo $component_id; ?>][]" class="wc-component-options-search-lazy" multiple="multiple" style="width: 75%;" data-include="
-																		<?php
-																		echo esc_attr(
-																			json_encode(
-																				array(
-																					'composite_id' => $product_id,
-																					'component_id' => $component_id,
-																				)
-																			)
-																		);
-																		?>
-																		" data-limit="100" data-component_optional="<?php echo $component_data['optional']; ?>" data-action="woocommerce_json_search_products_and_variations_in_component" data-placeholder="<?php echo  __( 'Search for products &amp; variations&hellip;', 'wpdrift-woocommerce-modules' ); ?>">
-									<?php
-
-									if ( ! empty( $selections_in_scenario ) ) {
-
-										foreach ( $selections_in_scenario as $selection_id_in_scenario => $selection_in_scenario ) {
-											echo '<option value="' . $selection_id_in_scenario . '" selected="selected">' . $selection_in_scenario . '</option>';
-										}
-									}
-
-									?>
-								</select>
-								<span class="bto_scenario_search tips" data-tip="<?php echo $search_tip; ?>"></span>
-															<?php
-								}
-
-								?>
-						</div>
-					</div>
-				</div>
-				<?php
-		}
-
-		?>
-		</div>
-		<?php
 	}
 
 	/**
@@ -1754,13 +1364,6 @@ class ProductData {
 			'priority' => 48,
 		);
 
-		// $tabs['cp_scenarios'] = array(
-		// 	'label'    => __( 'Scenarios', 'woocommerce-composite-products' ),
-		// 	'target'   => 'bto_scenario_data',
-		// 	'class'    => array( 'show_if_composite', 'composite_scenarios', 'bto_product_tab' ),
-		// 	'priority' => 48,
-		// );
-
 		$tabs['inventory']['class'][] = 'show_if_composite';
 
 		return $tabs;
@@ -1780,7 +1383,7 @@ class ProductData {
 	}
 
 	/**
-	 * Sets global data used in component/scenario metaboxes.
+	 * Sets global data used in component metaboxes.
 	 *
 	 * @param ProductComposite  $composite_product_object
 	 */
@@ -1816,7 +1419,7 @@ class ProductData {
 	}
 
 	/**
-	 * Components and Scenarios write panels.
+	 * Components write panels.
 	 *
 	 * @return void
 	 */
@@ -1826,7 +1429,6 @@ class ProductData {
 
 		$composite_id   = $composite_product_object->get_id();
 		$composite_data = $composite_product_object->get_composite_data( 'edit' );
-		$scenarios_data = $composite_product_object->get_scenario_data( 'edit' );
 
 		self::set_global_object_data( $composite_product_object );
 
@@ -1921,7 +1523,7 @@ class ProductData {
 			}
 
 			/*
-			 * Components and Scenarios tabs.
+			 * Components tabs.
 			 */
 
 			if ( ! defined( 'UPDATING' ) ) {
@@ -1976,7 +1578,7 @@ class ProductData {
 		if ( 'pending' === $shop_price_calc_status ) {
 			$shop_price_calc_notice = sprintf( __( 'The catalog price of "%s" is currently being calculated in the background. During this time, its price will be hidden.', 'wpdrift-woocommerce-modules' ), get_the_title( $post_id ) );
 		} elseif ( 'failed' === $shop_price_calc_status ) {
-			$shop_price_calc_notice = sprintf( __( 'The catalog price of "%s" could not be calculated within the default time limit. This may happen when adding Scenarios to Composite Products that contain many Components and a large number of product/variation options. For assistance, please check out the <a href="https://docs.woocommerce.com/document/composite-products/composite-products-configuration/#catalog-price" target="_blank">documentation</a>, or <a href="https://woocommerce.com/my-account/marketplace-ticket-form/" target="_blank">get in touch with us</a>.', 'wpdrift-woocommerce-modules' ), get_the_title( $post_id ) );
+			$shop_price_calc_notice = sprintf( __( 'The catalog price of "%s" could not be calculated within the default time limit. For assistance, please check out the <a href="https://docs.woocommerce.com/document/composite-products/composite-products-configuration/#catalog-price" target="_blank">documentation</a>, or <a href="https://woocommerce.com/my-account/marketplace-ticket-form/" target="_blank">get in touch with us</a>.', 'wpdrift-woocommerce-modules' ), get_the_title( $post_id ) );
 		}
 
 		if ( $shop_price_calc_notice ) {
@@ -1985,7 +1587,7 @@ class ProductData {
 	}
 
 	/**
-	 * Save composite configuration: Components and Scenarios tab fields.
+	 * Save composite configuration: Components tab fields.
 	 *
 	 * @param  int    $composite_id
 	 * @param  array  $posted_composite_data
@@ -2005,7 +1607,7 @@ class ProductData {
 	}
 
 	/**
-	 * Save components and scenarios.
+	 * Save components.
 	 *
 	 * @param  ProductComposite  $product
 	 * @param  array                 $posted_composite_data
@@ -2019,7 +1621,6 @@ class ProductData {
 			'shop_price_calc'  => 'defaults',
 			'editable_in_cart' => false,
 			'composite_data'   => array(),
-			'scenario_data'    => array(),
 		);
 
 		if ( empty( $posted_composite_data ) ) {
@@ -2051,12 +1652,11 @@ class ProductData {
 		}
 
 		/*
-		 * Components and Scenarios.
+		 * Components.
 		 */
 
 		$untitled_component_exists           = false;
 		$zero_product_item_exists            = false;
-		$untitled_scenario_exists            = false;
 		$undefined_matching_conditions_exist = false;
 		$individually_priced_options_count   = 0;
 		$composite_data                      = array();
@@ -2510,314 +2110,11 @@ class ProductData {
 				$ordering_loop++;
 			}
 
-			/*--------------------------*/
-			/*  Scenarios.              */
-			/*--------------------------*/
-
-			// Convert posted data coming from select2 v3/4 ajax inputs.
-			$compat_scenario_data = array();
-
-			if ( isset( $posted_composite_data['bto_scenario_data'] ) ) {
-				foreach ( $posted_composite_data['bto_scenario_data'] as $scenario_id => $scenario_post_data ) {
-
-					$compat_scenario_data[ $scenario_id ] = $scenario_post_data;
-
-					if ( isset( $scenario_post_data['component_data'] ) ) {
-						foreach ( $scenario_post_data['component_data'] as $component_id => $products_in_scenario ) {
-
-							if ( ! empty( $products_in_scenario ) ) {
-								if ( is_array( $products_in_scenario ) ) {
-									$compat_scenario_data[ $scenario_id ]['component_data'][ $component_id ] = array_unique( array_map( 'intval', $products_in_scenario ) );
-								} else {
-									$compat_scenario_data[ $scenario_id ]['component_data'][ $component_id ] = array_unique( array_map( 'intval', explode( ',', $products_in_scenario ) ) );
-								}
-							} else {
-								$compat_scenario_data[ $scenario_id ]['component_data'][ $component_id ] = array();
-							}
-						}
-					} else {
-						$compat_scenario_data[ $scenario_id ]['component_data'] = array();
-					}
-				}
-
-				$posted_composite_data['bto_scenario_data'] = $compat_scenario_data;
-			}
-			// End conversion.
-
-			// Start processing.
-			$current_scenario_data      = $product->get_scenario_data( 'edit' );
-			$ordered_scenario_data      = array();
-			$scenario_data              = array();
-			$component_options_data     = array();
-			$compat_group_actions_exist = false;
-
-			if ( isset( $posted_composite_data['bto_scenario_data'] ) ) {
-
-				$composite_data_store = WC_Data_Store::load( 'product-composite' );
-
-				foreach ( $component_options as $component_id => $options ) {
-					$component_options_data[ $component_id ] = $composite_data_store->get_expanded_component_options( $options, 'all' );
-				}
-
-				$counter           = 0;
-				$scenario_ordering = array();
-
-				foreach ( $posted_composite_data['bto_scenario_data'] as $scenario_post_data ) {
-
-					$copied_from_current = false;
-
-					// Scenario already saved in the past?
-					if ( isset( $scenario_post_data['scenario_id'] ) ) {
-
-						$scenario_id = wp_unslash( $scenario_post_data['scenario_id'] );
-
-						// No fields posted?
-						if ( ! isset( $scenario_post_data['dirty'] ) && isset( $current_scenario_data[ $scenario_id ] ) ) {
-
-							$scenario_data[ $scenario_id ] = $current_scenario_data[ $scenario_id ];
-
-							$copied_from_current = true;
-						}
-					} else {
-
-						$scenario_id = current_time( 'timestamp' ) + $counter;
-
-						$scenario_data[ $scenario_id ] = array();
-
-						$counter++;
-					}
-
-					/*
-					 * Prepare position data.
-					 */
-
-					if ( isset( $scenario_post_data['position'] ) ) {
-						$scenario_ordering[ (int) $scenario_post_data['position'] ] = $scenario_id;
-					} else {
-						$scenario_ordering[ count( $scenario_ordering ) ] = $scenario_id;
-					}
-
-					if ( $copied_from_current ) {
-						continue;
-					}
-
-					/*
-					 * Save scenario title.
-					 */
-
-					if ( isset( $scenario_post_data['title'] ) && ! empty( $scenario_post_data['title'] ) ) {
-						$scenario_data[ $scenario_id ]['title'] = strip_tags( wp_unslash( $scenario_post_data['title'] ) );
-					} else {
-
-						$untitled_scenario_exists = true;
-
-						$scenario_data[ $scenario_id ]['title'] = __( 'Untitled Scenario', 'wpdrift-woocommerce-modules' );
-					}
-
-					/*
-					 * Save scenario description.
-					 */
-
-					if ( isset( $scenario_post_data['description'] ) && ! empty( $scenario_post_data['description'] ) ) {
-						$scenario_data[ $scenario_id ]['description'] = wp_kses_post( wp_unslash( $scenario_post_data['description'] ) );
-					} else {
-						$scenario_data[ $scenario_id ]['description'] = '';
-					}
-
-					/*
-					 * Save scenario action(s).
-					 */
-
-					$scenario_data[ $scenario_id ]['scenario_actions'] = array();
-
-					// "Dependency Group" action.
-					if ( isset( $scenario_post_data['scenario_actions']['compat_group'] ) ) {
-						if ( ! empty( $scenario_post_data['scenario_actions']['compat_group']['is_active'] ) ) {
-							$scenario_data[ $scenario_id ]['scenario_actions']['compat_group']['is_active'] = 'yes';
-							$compat_group_actions_exist = true;
-						}
-					} else {
-						$scenario_data[ $scenario_id ]['scenario_actions']['compat_group']['is_active'] = 'no';
-					}
-
-					// "Hide Components" action.
-					if ( isset( $scenario_post_data['scenario_actions']['conditional_components'] ) ) {
-						if ( ! empty( $scenario_post_data['scenario_actions']['conditional_components']['is_active'] ) ) {
-							$scenario_data[ $scenario_id ]['scenario_actions']['conditional_components']['is_active']         = 'yes';
-							$scenario_data[ $scenario_id ]['scenario_actions']['conditional_components']['hidden_components'] = ! empty( $scenario_post_data['scenario_actions']['conditional_components']['hidden_components'] ) ? $scenario_post_data['scenario_actions']['conditional_components']['hidden_components'] : array();
-						}
-					} else {
-						$scenario_data[ $scenario_id ]['scenario_actions']['conditional_components']['is_active'] = 'no';
-					}
-
-					/*
-					 * Save component options in scenario.
-					 */
-
-					$scenario_data[ $scenario_id ]['component_data'] = array();
-
-					$all_masked = true;
-
-					foreach ( $ordered_composite_data as $group_id => $group_data ) {
-
-						if ( empty( $scenario_post_data['match_component'][ $group_id ] ) ) {
-
-							$scenario_data[ $scenario_id ]['modifier'][ $group_id ] = 'masked';
-
-						} else {
-
-							$all_masked = false;
-
-							$scenario_data[ $scenario_id ]['modifier'][ $group_id ] = 'in';
-
-							if ( isset( $scenario_post_data['modifier'][ $group_id ] ) && $scenario_post_data['modifier'][ $group_id ] === 'not-in' ) {
-
-								if ( ! empty( $scenario_post_data['component_data'][ $group_id ] ) && ! Helpers::in_array_key( $scenario_post_data['component_data'], $group_id, 0 ) ) {
-									$scenario_data[ $scenario_id ]['modifier'][ $group_id ] = 'not-in';
-								}
-							}
-						}
-
-						if ( ! empty( $scenario_post_data['component_data'][ $group_id ] ) ) {
-
-							$scenario_data[ $scenario_id ]['component_data'][ $group_id ] = array();
-
-							if ( isset( $scenario_post_data['component_data'] ) && Helpers::in_array_key( $scenario_post_data['component_data'], $group_id, 0 ) ) {
-								$scenario_data[ $scenario_id ]['component_data'][ $group_id ][] = 0;
-								continue;
-							}
-
-							if ( isset( $scenario_post_data['component_data'] ) && Helpers::in_array_key( $scenario_post_data['component_data'], $group_id, -1 ) ) {
-								$scenario_data[ $scenario_id ]['component_data'][ $group_id ][] = -1;
-							}
-
-							foreach ( $scenario_post_data['component_data'][ $group_id ] as $id_in_scenario ) {
-
-								if ( (int) $id_in_scenario === -1 || (int) $id_in_scenario === 0 ) {
-									continue;
-								}
-
-								$parent_id = isset( $component_options_data[ $group_id ]['mapped'][ $id_in_scenario ] ) ? $component_options_data[ $group_id ]['mapped'][ $id_in_scenario ] : false;
-
-								if ( $parent_id ) {
-
-									if ( ! in_array( $parent_id, $scenario_post_data['component_data'][ $group_id ] ) ) {
-										$scenario_data[ $scenario_id ]['component_data'][ $group_id ][] = $id_in_scenario;
-									}
-								} elseif ( in_array( $id_in_scenario, $component_options[ $group_id ] ) ) {
-									$scenario_data[ $scenario_id ]['component_data'][ $group_id ][] = $id_in_scenario;
-								}
-							}
-						} else {
-							$scenario_data[ $scenario_id ]['component_data'][ $group_id ] = array( 0 );
-						}
-					}
-
-					if ( $all_masked ) {
-
-						unset( $scenario_data[ $scenario_id ] );
-
-						$undefined_matching_conditions_exist = true;
-
-						continue;
-					}
-
-					/**
-					 * Filter the scenario data before saving. Add custom errors via 'add_notice()'.
-					 *
-					 * @param  array   $scenario_data
-					 * @param  array   $post_data
-					 * @param  string  $scenario_id
-					 * @param  array   $composite_data
-					 * @param  string  $composite_id
-					 */
-					$scenario_data[ $scenario_id ] = apply_filters( 'woocommerce_composite_process_scenario_data', $scenario_data[ $scenario_id ], $scenario_post_data, $scenario_id, $ordered_composite_data, $composite_id );
-				}
-
-				/*
-				 * Re-order and save position data.
-				 */
-
-				ksort( $scenario_ordering );
-
-				$ordering_loop = 0;
-
-				foreach ( $scenario_ordering as $scenario_id ) {
-
-					if ( ! isset( $scenario_data[ $scenario_id ] ) ) {
-						continue;
-					}
-
-					$ordered_scenario_data[ $scenario_id ]             = $scenario_data[ $scenario_id ];
-					$ordered_scenario_data[ $scenario_id ]['position'] = $ordering_loop;
-					$ordering_loop++;
-				}
-			}
-
-			/*
-			 * Verify defaults.
-			 */
-
-			if ( ! empty( $ordered_scenario_data ) ) {
-
-				// Stacked layout notice.
-				if ( 'single' === $props['layout'] && $compat_group_actions_exist ) {
-					$info = __( 'For a more streamlined user experience in applications that involve Scenarios and dependent Component Options, it is recommended to choose the <strong>Progressive</strong>, <strong>Stepped</strong> or <strong>Componentized</strong> layout.', 'wpdrift-woocommerce-modules' );
-					self::add_notice( $info, 'info' );
-				}
-
-				$default_configuration = array();
-				$optional_components   = array();
-
-				foreach ( $ordered_composite_data as $component_id => $component_data ) {
-
-					if ( '' !== $component_data['default_id'] ) {
-						$default_configuration[ $component_id ] = array(
-							'product_id'   => $component_data['default_id'],
-							'variation_id' => 'any',
-						);
-					}
-
-					if ( 'yes' === $component_data['optional'] ) {
-						$optional_components[] = $component_id;
-					}
-				}
-
-				$scenarios_manager = new ScenariosManager(
-					array(
-						'scenario_data'       => $ordered_scenario_data,
-						'optional_components' => $optional_components,
-					)
-				);
-
-				// Validate defaults.
-				$validation_result = $scenarios_manager->validate_configuration( $default_configuration, array( 'validating_defaults' => true ) );
-
-				if ( is_wp_error( $validation_result ) ) {
-
-					$error_code = $validation_result->get_error_code();
-
-					if ( in_array( $error_code, array( 'woocommerce_composite_configuration_selection_required', 'woocommerce_composite_configuration_selection_invalid' ) ) ) {
-
-						$error_data = $validation_result->get_error_data( $error_code );
-
-						if ( ! empty( $error_data['component_id'] ) ) {
-							$error = sprintf( __( 'The <strong>Default Option</strong> chosen for &quot;%s&quot; was not found in any Scenario. Please double-check your preferences before saving, and always save any changes made to Component Options before choosing new defaults.', 'wpdrift-woocommerce-modules' ), strip_tags( $ordered_composite_data[ $error_data['component_id'] ]['title'] ) );
-							self::add_notice( $error, 'error' );
-						}
-					} elseif ( 'woocommerce_composite_configuration_invalid' === $error_code ) {
-						$error = __( 'The chosen combination of <strong>Default Options</strong> does not match with any Scenario. Please double-check your preferences before saving, and always save any changes made to Component Options before choosing new defaults.', 'wpdrift-woocommerce-modules' );
-						self::add_notice( $error, 'error' );
-					}
-				}
-			}
-
 			/*
 			 * Save config.
 			 */
 
 			$props['composite_data'] = $ordered_composite_data;
-			$props['scenario_data']  = $ordered_scenario_data;
 		}
 
 		if ( ! isset( $posted_composite_data['bto_data'] ) || count( $composite_data ) == 0 ) {
@@ -2835,14 +2132,6 @@ class ProductData {
 
 		if ( $zero_product_item_exists ) {
 			self::add_notice( __( 'Add at least one valid <strong>Component Option</strong> to each Component. Component Options can be added by selecting products individually, or by choosing product categories.', 'wpdrift-woocommerce-modules' ), 'error' );
-		}
-
-		if ( $untitled_scenario_exists ) {
-			self::add_notice( __( 'Please give a valid <strong>Name</strong> to all Scenarios before saving.', 'wpdrift-woocommerce-modules' ), 'error' );
-		}
-
-		if ( $undefined_matching_conditions_exist ) {
-			self::add_notice( __( 'Some Scenarios could not be saved. Please define matching conditions for at least one Component in the <strong>Configuration</strong> section of each Scenario before saving.', 'wpdrift-woocommerce-modules' ), 'error' );
 		}
 
 		return $props;
