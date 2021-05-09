@@ -42,9 +42,6 @@ class Product_Import {
 		// Parse components.
 		add_filter( 'woocommerce_product_importer_parsed_data', array( __CLASS__, 'parse_components' ), 10, 2 );
 
-		// Parse scenarios.
-		add_filter( 'woocommerce_product_importer_parsed_data', array( __CLASS__, 'parse_scenarios' ), 10, 2 );
-
 		// Set composite-type props.
 		add_filter( 'woocommerce_product_import_pre_insert_product_object', array( __CLASS__, 'set_composite_props' ), 10, 2 );
 	}
@@ -174,67 +171,6 @@ class Product_Import {
 
 					// Sanitize.
 					$parsed_data[ 'wc_cp_components' ][] = REST_API::sanitize_rest_api_component_data( $parsed_component_data );
-				}
-			}
-		}
-
-		return $parsed_data;
-	}
-
-	/**
-	 * Decode scenario data and parse relative IDs.
-	 *
-	 * @param  array                    $parsed_data
-	 * @param  WC_Product_CSV_Importer  $importer
-	 * @return array
-	 */
-	public static function parse_scenarios( $parsed_data, $importer ) {
-
-		if ( ! empty( $parsed_data[ 'wc_cp_scenarios' ] ) ) {
-
-			$scenarios_rest_data = json_decode( $parsed_data[ 'wc_cp_scenarios' ], true );
-
-			unset( $parsed_data[ 'wc_cp_scenarios' ] );
-
-			if ( is_array( $scenarios_rest_data ) ) {
-
-				$parsed_data[ 'wc_cp_scenarios' ] = array();
-
-				foreach ( $scenarios_rest_data as $scenario_rest_data ) {
-
-					$parsed_scenario_data = $scenario_rest_data;
-
-					if ( ! empty( $scenario_rest_data[ 'configuration' ] ) ) {
-						foreach ( $scenario_rest_data[ 'configuration' ] as $component_index => $component_configuration ) {
-							if ( ! empty( $component_configuration[ 'component_options' ] ) ) {
-
-								$option_ids = explode( ',', $component_configuration[ 'component_options' ] );
-
-								$has_any  = in_array( 'selection:any', $option_ids ) || in_array( '0', $option_ids );
-								$has_none = in_array( 'selection:none', $option_ids ) || in_array( '-1', $option_ids );
-
-								$option_ids = array_diff( $option_ids, array( 'selection:any', 'selection:none', '0', '-1' ) );
-
-								if ( ! empty( $option_ids ) ) {
-									$option_ids = implode( ',', $option_ids );
-									$parsed_scenario_data[ 'configuration' ][ $component_index ][ 'component_options' ] = $importer->parse_relative_comma_field( $option_ids );
-								} else {
-									$parsed_scenario_data[ 'configuration' ][ $component_index ][ 'component_options' ] = array();
-								}
-
-								if ( $has_any ) {
-									$parsed_scenario_data[ 'configuration' ][ $component_index ][ 'component_options' ][] = '0';
-								}
-
-								if ( $has_none ) {
-									$parsed_scenario_data[ 'configuration' ][ $component_index ][ 'component_options' ][] = '-1';
-								}
-							}
-						}
-					}
-
-					// Sanitize.
-					$parsed_data[ 'wc_cp_scenarios' ][] = REST_API::sanitize_rest_api_scenario_data( $parsed_scenario_data );
 				}
 			}
 		}
