@@ -115,11 +115,6 @@ class ComponentView {
 			$data                 = $this->component->get_data();
 			$data['assigned_ids'] = $this->component->get_options();
 
-			// At this point, we can also filter the IDs when requesting options that match specific scenarios.
-			if ( ! empty( $args['options_in_scenarios'] ) ) {
-				$data['assigned_ids'] = $this->get_options_in_scenarios( $data['assigned_ids'], $args['options_in_scenarios'] );
-			}
-
 			/**
 			 * Filter args passed to Query.
 			 *
@@ -137,34 +132,6 @@ class ComponentView {
 		}
 
 		return $options;
-	}
-
-	/**
-	 * Filter option IDs matching specific scenario IDs.
-	 *
-	 * @param  array  $options
-	 * @param  array  $scenarios
-	 * @return array
-	 */
-	private function get_options_in_scenarios( $options, $scenarios ) {
-
-		if ( in_array( '0', $scenarios ) ) {
-			return $options;
-		}
-
-		$component_id         = $this->component->get_id();
-		$options_map          = $this->component->get_composite()->scenarios()->get_map( array( $component_id => $options ), $scenarios );
-		$options_in_scenarios = array();
-
-		if ( ! empty( $options_map[ $component_id ] ) ) {
-			foreach ( $options_map[ $component_id ] as $product_id => $product_in_scenarios ) {
-				if ( sizeof( array_intersect( $product_in_scenarios, $scenarios ) ) > 0 && in_array( $product_id, $options ) ) {
-					$options_in_scenarios[] = $product_id;
-				}
-			}
-		}
-
-		return $options_in_scenarios;
 	}
 
 	/**
