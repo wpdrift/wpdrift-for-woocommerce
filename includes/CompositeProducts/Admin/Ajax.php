@@ -39,9 +39,6 @@ class Ajax {
 		// Add component.
 		add_action( 'wp_ajax_woocommerce_add_composite_component', array( __CLASS__, 'ajax_add_component' ) );
 
-		// Add scenario.
-		add_action( 'wp_ajax_woocommerce_add_composite_scenario', array( __CLASS__, 'ajax_add_scenario' ) );
-
 		// Search products and variations.
 		add_action( 'wp_ajax_woocommerce_json_search_component_options', array( __CLASS__, 'search_component_options' ) );
 		add_action( 'wp_ajax_woocommerce_json_search_products_in_categories', array( __CLASS__, 'search_products_in_categories' ) );
@@ -190,40 +187,6 @@ class Ajax {
 		 * @hooked {@see component_admin_html} - 10
 		 */
 		do_action( 'woocommerce_composite_component_admin_html', $id, $component_data, $post_id, 'open' );
-
-		die();
-	}
-
-	/**
-	 * Handles adding scenarios via ajax.
-	 *
-	 * @return void
-	 */
-	public static function ajax_add_scenario() {
-
-		check_ajax_referer( 'wc_bto_add_scenario', 'security' );
-
-		$id      = intval( $_POST['id'] );
-		$post_id = intval( $_POST['post_id'] );
-
-		$composite      = new ProductComposite( $post_id );
-		$composite_data = $composite->get_composite_data( 'edit' );
-		$scenario_data  = array();
-
-		ProductData::set_global_object_data( $composite );
-
-		/**
-		 * Action 'woocommerce_composite_scenario_admin_html'.
-		 *
-		 * @param  int     $id
-		 * @param  array   $scenario_data
-		 * @param  array   $composite_data
-		 * @param  int     $post_id
-		 * @param  string  $state
-		 *
-		 * @hooked {@see scenario_admin_html} - 10
-		 */
-		do_action( 'woocommerce_composite_scenario_admin_html', $id, $scenario_data, $composite_data, $post_id, 'open' );
 
 		die();
 	}
