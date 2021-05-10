@@ -12,7 +12,6 @@ import {withDispatch, withSelect} from "@wordpress/data";
 import {compose} from "@wordpress/compose";
 import {__} from "@wordpress/i18n";
 import {Button, Placeholder, Spinner} from "@wordpress/components";
-import {RichText} from "@wordpress/block-editor";
 
 /**
  * Internal dependencies

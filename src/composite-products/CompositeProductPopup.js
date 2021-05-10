@@ -12,8 +12,7 @@ import {Component} from "@wordpress/element";
 import {withDispatch, withSelect} from "@wordpress/data";
 import {compose} from "@wordpress/compose";
 import {__} from "@wordpress/i18n";
-import {TextControl, Placeholder, Spinner} from "@wordpress/components";
-import {RichText} from "@wordpress/block-editor";
+import {Button, TextControl, Placeholder, Spinner} from "@wordpress/components";
 
 /**
  * Internal dependencies
@@ -266,25 +265,25 @@ class CompositeModal extends Component {
 		const modalBottom = (
 			<div className="components-modal__bottom">
 				{displayPopup && (
-					<RichText.Content
-						tagName="a"
+					<Button
 						className={classnames("button")}
-						value={__("Close")}
 						onClick={() => {
 							closePopup();
 							removeAddedToCart(productId);
 						}}
-					/>
+					>
+						{__("Close")}
+					</Button>
 				)}
 
-				<RichText.Content
-					tagName="a"
+				<Button
 					className={classnames("button", "button--add", {
 						loading: addingToCart
 					})}
-					value={__("Add to cart")}
 					onClick={this.addToCart}
-				/>
+				>
+					{__("Add to cart")}
+				</Button>
 			</div>
 		);
 
