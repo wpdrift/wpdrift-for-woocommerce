@@ -12,6 +12,7 @@ import {withDispatch, withSelect} from "@wordpress/data";
 import {compose} from "@wordpress/compose";
 import {__} from "@wordpress/i18n";
 import {Button, Placeholder, Spinner} from "@wordpress/components";
+import {Icon, check} from "@wordpress/icons";
 
 /**
  * Internal dependencies
@@ -61,6 +62,12 @@ class Composite extends Component {
 					addingToCart: false,
 					addedToCart: true
 				});
+
+				setTimeout(function() {
+					self.setState({
+						addedToCart: false
+					});
+				}, 1000);
 
 				updateAddedToCart(productId);
 			}
@@ -265,7 +272,11 @@ class Composite extends Component {
 					})}
 					onClick={this.addToCart}
 				>
-					{__("Add to cart")}
+					{addedToCart ? (
+						<Icon icon={check} size={16} />
+					) : (
+						__("Add to cart")
+					)}
 				</Button>
 			</div>
 		);

@@ -22,6 +22,7 @@
 	"dependencies": {
 		"@brainhubeu/react-carousel": "^1.10.34",
 		"@wordpress/api-fetch": "^3.8.0",
+		"@wordpress/icons": "^2.10.3",
 		"bootstrap": "^4.4.1",
 		"classnames": "^2.2.6",
 		"numeral": "^2.0.6",
