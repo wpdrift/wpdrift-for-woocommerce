@@ -15,7 +15,6 @@ use WC_Cart;
 use WPdrift\CompositeProducts\Cart;
 
 class CompositeCartController extends WP_REST_Controller {
-
 	/**
 	 * Register the routes for the objects of the controller.
 	 */
@@ -69,57 +68,9 @@ class CompositeCartController extends WP_REST_Controller {
 			WC()->cart->get_cart();
 		}
 
-		// $cc = array(
-		// 	'1580014903' => [
-		// 		[
-		// 			'product_id'   => '40',
-		// 			'quantity'     => 1,
-		// 			'quantity_min' => 1,
-		// 			'quantity_max' => 1,
-		// 			'discount'     => 10,
-		// 			'optional'     => 'no',
-		// 			'static'       => 'no',
-		// 			'title'        => 'CPU',
-		// 			'composite_id' => 1848,
-		// 			'type'         => 'composite',
-		// 		],
-		// 		[
-		// 			'product_id'   => '41',
-		// 			'quantity'     => 1,
-		// 			'quantity_min' => 1,
-		// 			'quantity_max' => 1,
-		// 			'discount'     => 10,
-		// 			'optional'     => 'no',
-		// 			'static'       => 'no',
-		// 			'title'        => 'CPU',
-		// 			'composite_id' => 1848,
-		// 			'type'         => 'composite',
-		// 		],
-		// 	],
-		// 	'1580876486' => [
-		// 		[
-		// 			'product_id'   => '40',
-		// 			'quantity'     => 1,
-		// 			'quantity_min' => 1,
-		// 			'quantity_max' => 1,
-		// 			'discount'     => '',
-		// 			'optional'     => 'yes',
-		// 			'static'       => 'no',
-		// 			'title'        => 'Radio',
-		// 			'composite_id' => 1848,
-		// 			'type'         => 'composite',
-		// 		],
-		// 	],
-		// );
-
-		$cart = Cart::instance();
-
-		// $product_id = 1848;
-		// $composite = wc_get_product( $product_id );
-		// $validated = $cart->validate_composite_configuration( $product_id, 1, $cc );
-		// wp_send_json( $validated );
-
+		$cart          = Cart::instance();
 		$added_to_cart = $cart->add_composite_to_cart( $request['product_id'], $request['quantity'], $request['config'] );
+
 		wp_send_json( $added_to_cart );
 	}
 
