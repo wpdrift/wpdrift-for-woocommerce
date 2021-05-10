@@ -113,6 +113,12 @@ class Cart {
 		// Additionally, composited item weights may have to be added in the container.
 		add_filter( 'woocommerce_cart_shipping_packages', array( $this, 'cart_shipping_packages' ), 6 );
 
+		// Conditionally hide cart items.
+		add_filter( 'woocommerce_cart_item_visible', array( $this, 'cart_item_visible' ), 10, 3 );
+
+		// Add content after cart item name.
+		add_action( 'woocommerce_after_cart_item_name', array( $this, 'after_cart_item_name' ), 10, 2 );
+
 		// "Sold Individually" context support under WC 3.5+.
 		if ( Compatibility::is_wc_version_gte( '3.5' ) ) {
 			add_filter( 'woocommerce_add_to_cart_sold_individually_found_in_cart', array( $this, 'sold_individually_found_in_cart' ), 10, 4 );
@@ -1736,5 +1742,19 @@ class Cart {
 		}
 
 		return $found;
+	}
+
+	/**
+	 * [cart_item_visible description]
+	 * @param  [type] $visible       [description]
+	 * @param  [type] $cart_item     [description]
+	 * @param  [type] $cart_item_key [description]
+	 * @return [type]                [description]
+	 */
+	public function cart_item_visible( $visible, $cart_item, $cart_item_key ) {
+		if ( isset( $cart_item['composite_parent'] ) ) {
+			return false;
+		}
+		return  $visible;
 	}
 }
