@@ -119,17 +119,12 @@
 		justify-content: flex-end;
 		border-top: 1px solid $gray-200;
 
-		a.button {
+		.button {
 			margin-left: 0.75rem;
-			cursor: pointer;
 
-			div {
-				display: inline-block;
+			&--add {
+				min-width: 8rem;
 			}
-		}
-
-		.button--add {
-			min-width: 8rem;
 		}
 	}
 

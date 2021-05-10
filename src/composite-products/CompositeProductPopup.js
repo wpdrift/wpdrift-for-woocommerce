@@ -13,6 +13,7 @@ import {withDispatch, withSelect} from "@wordpress/data";
 import {compose} from "@wordpress/compose";
 import {__} from "@wordpress/i18n";
 import {Button, TextControl, Placeholder, Spinner} from "@wordpress/components";
+import {Icon, check} from "@wordpress/icons";
 
 /**
  * Internal dependencies
@@ -28,7 +29,8 @@ class CompositeModal extends Component {
 		super(props);
 		this.state = {
 			components: [],
-			addingToCart: false
+			addingToCart: false,
+			addedToCart: false
 		};
 
 		this.addToCart = this.addToCart.bind(this);
@@ -60,20 +62,31 @@ class CompositeModal extends Component {
 					location.reload();
 				} else {
 					updateAddedToCart(productId);
+
 					$(document.body).trigger("added_to_cart", [
 						"",
 						"",
 						$(button)
 					]);
+
 					closePopup();
 				}
 			},
 			complete: function() {
 				$(".widget_shopping_cart_content").empty();
+				
 				$(document.body).trigger("wc_fragment_refresh");
+
 				self.setState({
-					addingToCart: false
+					addingToCart: false,
+					addedToCart: true
 				});
+
+				setTimeout(function() {
+					self.setState({
+						addedToCart: false
+					});
+				}, 1000);
 			}
 		});
 	}
@@ -243,7 +256,7 @@ class CompositeModal extends Component {
 			updateProductQuantity,
 			removeAddedToCart
 		} = this.props;
-		const {addingToCart} = this.state;
+		const {addingToCart, addedToCart} = this.state;
 		const hasComponents = Array.isArray(components) && components.length;
 
 		const modalBody = (
@@ -282,7 +295,11 @@ class CompositeModal extends Component {
 					})}
 					onClick={this.addToCart}
 				>
-					{__("Add to cart")}
+					{addedToCart ? (
+						<Icon icon={check} size={16} />
+					) : (
+						__("Add to cart")
+					)}
 				</Button>
 			</div>
 		);
