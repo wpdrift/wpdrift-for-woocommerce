@@ -1757,4 +1757,14 @@ class Cart {
 		}
 		return  $visible;
 	}
+
+	/**
+	 * [after_cart_item_name description]
+	 * @param  [type] $cart_item     [description]
+	 * @param  [type] $cart_item_key [description]
+	 * @return [type]                [description]
+	 */
+	public function after_cart_item_name( $cart_item, $cart_item_key ) {
+		print_r($cart_item);
+	}
 }
