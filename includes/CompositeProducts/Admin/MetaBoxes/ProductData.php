@@ -379,7 +379,7 @@ class ProductData {
 						<div class="bto_boarding__components">
 							<div class="bto_boarding__components__message">
 								<h3><?php _e( 'Components', 'wpdrift-woocommerce-modules' ); ?></h3>
-								<p><?php _e( 'Components are the <a href="https://docs.woocommerce.com/document/composite-products/composite-products-configuration/" target="_blank">building blocks</a> of every Composite Product.', 'wpdrift-woocommerce-modules' ); ?>
+								<p><?php _e( 'Components are the <a href="https://wpdrift.com/wpdrift-for-woocommerce/" target="_blank">building blocks</a> of every Composite Product.', 'wpdrift-woocommerce-modules' ); ?>
 								<br/><?php _e( 'Ready to start building?', 'wpdrift-woocommerce-modules' ); ?>
 								</p>
 							</div>
@@ -1578,7 +1578,7 @@ class ProductData {
 		if ( 'pending' === $shop_price_calc_status ) {
 			$shop_price_calc_notice = sprintf( __( 'The catalog price of "%s" is currently being calculated in the background. During this time, its price will be hidden.', 'wpdrift-woocommerce-modules' ), get_the_title( $post_id ) );
 		} elseif ( 'failed' === $shop_price_calc_status ) {
-			$shop_price_calc_notice = sprintf( __( 'The catalog price of "%s" could not be calculated within the default time limit. For assistance, please check out the <a href="https://docs.woocommerce.com/document/composite-products/composite-products-configuration/#catalog-price" target="_blank">documentation</a>, or <a href="https://woocommerce.com/my-account/marketplace-ticket-form/" target="_blank">get in touch with us</a>.', 'wpdrift-woocommerce-modules' ), get_the_title( $post_id ) );
+			$shop_price_calc_notice = sprintf( __( 'The catalog price of "%s" could not be calculated within the default time limit. For assistance, please check out the <a href="https://wpdrift.com/wpdrift-for-woocommerce/" target="_blank">documentation</a>, or <a href="https://wpdrift.freshdesk.com/support/home" target="_blank">get in touch with us</a>.', 'wpdrift-woocommerce-modules' ), get_the_title( $post_id ) );
 		}
 
 		if ( $shop_price_calc_notice ) {

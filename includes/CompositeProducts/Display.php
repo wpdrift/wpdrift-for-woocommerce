@@ -438,7 +438,7 @@ class Display {
 			if ( 'pending' === $shop_price_calc_status ) {
 				$shop_price_calc_notice = sprintf( __( 'The catalog price of &quot;%s&quot; is currently being calculated in the background. During this time, its price will be hidden. <strong>Note</strong>: This message is visible to store managers only.', 'wpdrift-woocommerce-modules' ), $product->get_title() );
 			} elseif ( 'failed' === $shop_price_calc_status ) {
-				$shop_price_calc_notice = sprintf( __( 'The catalog price of &quot;%s&quot; could not be calculated within the default time limit. For assistance, please check out the <a href="https://docs.woocommerce.com/document/composite-products/composite-products-configuration/#catalog-price" target="_blank">documentation</a>, or <a href="https://woocommerce.com/my-account/marketplace-ticket-form/" target="_blank">get in touch with support</a>. <strong>Note</strong>: This message is visible to store managers only.', 'wpdrift-woocommerce-modules' ), $product->get_title() );
+				$shop_price_calc_notice = sprintf( __( 'The catalog price of &quot;%s&quot; could not be calculated within the default time limit. For assistance, please check out the <a href="https://wpdrift.com/wpdrift-for-woocommerce/" target="_blank">documentation</a>, or <a href="https://wpdrift.freshdesk.com/support/home" target="_blank">get in touch with support</a>. <strong>Note</strong>: This message is visible to store managers only.', 'wpdrift-woocommerce-modules' ), $product->get_title() );
 			}
 
 			if ( $shop_price_calc_notice ) {
