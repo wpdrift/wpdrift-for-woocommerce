@@ -287,4 +287,13 @@ final class Wocommerce_Modules {
 	public function plugin_url() {
 		return untrailingslashit( plugins_url( '/', WPDRIFT_WOOCOMMERCE_MODULES_PLUGIN_FILE ) );
 	}
+
+	/**
+	 * Get the plugin path.
+	 *
+	 * @return string
+	 */
+	public function plugin_path() {
+		return untrailingslashit( plugin_dir_path( WPDRIFT_WOOCOMMERCE_MODULES_PLUGIN_FILE ) );
+	}
 }
