@@ -115,8 +115,8 @@ class Admin {
 	 * Include scripts.
 	 */
 	public static function composite_admin_scripts() {
-		$meta_boxes_product_asset_file = \WPdrift\woocommerce_modules()->plugin_path() . '/build/meta-boxes-product.asset.php';
-		$meta_boxes_order_asset_file   = \WPdrift\woocommerce_modules()->plugin_path() . '/build/meta-boxes-order.asset.php';
+		$meta_boxes_product_asset_file = include \WPdrift\woocommerce_modules()->plugin_path() . '/build/meta-boxes-product.asset.php';
+		$meta_boxes_order_asset_file   = include \WPdrift\woocommerce_modules()->plugin_path() . '/build/meta-boxes-order.asset.php';
 
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
