@@ -5,7 +5,9 @@ module.exports = {
 	...defaultConfig,
 	entry: {
 		...defaultConfig.entry,
-		popup: "./src/popup.js"
+		popup: "./src/popup.js",
+		"meta-boxes-product": "./src/meta-boxes-product.js",
+		"meta-boxes-order": "./src/meta-boxes-order.js"
 	},
 	plugins: [
 		...defaultConfig.plugins,
