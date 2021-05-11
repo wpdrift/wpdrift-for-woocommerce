@@ -115,11 +115,23 @@ class Admin {
 	 * Include scripts.
 	 */
 	public static function composite_admin_scripts() {
+		$meta_boxes_product_asset_file = \WPdrift\woocommerce_modules()->plugin_path() . '/build/meta-boxes-product.asset.php';
+		$meta_boxes_order_asset_file   = \WPdrift\woocommerce_modules()->plugin_path() . '/build/meta-boxes-order.asset.php';
 
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
-		wp_register_script( 'wc-composite-admin-product-panel', \WPdrift\woocommerce_modules()->plugin_url() . '/build/meta-boxes-product.js', array( 'jquery', 'jquery-ui-datepicker', 'wp-util', 'wc-admin-product-meta-boxes' ), Module::instance()->version );
-		wp_register_script( 'wc-composite-admin-order-panel', \WPdrift\woocommerce_modules()->plugin_url() . '/build/meta-boxes-order.js', array( 'wc-admin-order-meta-boxes' ), Module::instance()->version );
+		wp_register_script(
+			'wc-composite-admin-product-panel',
+			\WPdrift\woocommerce_modules()->plugin_url() . '/build/meta-boxes-product.js',
+			array( 'jquery', 'jquery-ui-datepicker', 'wp-util', 'wc-admin-product-meta-boxes' ),
+			$meta_boxes_product_asset_file['version']
+		);
+		wp_register_script(
+			'wc-composite-admin-order-panel',
+			\WPdrift\woocommerce_modules()->plugin_url() . '/build/meta-boxes-order.js',
+			array( 'wc-admin-order-meta-boxes' ),
+			$meta_boxes_order_asset_file['version']
+		);
 
 		wp_register_style( 'wc-composite-admin-css', Module::instance()->plugin_url() . '/assets/css/admin/admin.css', array(), Module::instance()->version );
 		wp_style_add_data( 'wc-composite-admin-css', 'rtl', 'replace' );
