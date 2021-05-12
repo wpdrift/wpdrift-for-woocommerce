@@ -304,6 +304,13 @@
 		}
 	}
 }
+
+.woocommerce-cart-form {
+	.product-short-description {
+		font-size: 14px;
+	}
+}
+
 @include media-breakpoint-down(sm) {
 	.ReactModal__Content {
 		max-width: 100%;

@@ -32,7 +32,7 @@ function has_woocommerce_shortcode( $content = null, $tag = null ) {
 	}
 
 	if ( ! empty( $content ) ) {
-		$woocommerce_shortcodes = [ 'products', 'featured_products', 'sale_products', 'best_selling_products', 'recent_products', 'top_rated_products' ];
+		$woocommerce_shortcodes = [ 'products', 'featured_products', 'sale_products', 'best_selling_products', 'recent_products', 'top_rated_products', 'woocommerce_cart' ];
 		/**
 		 * Filters a list of all shortcodes associated with WooCommerce.
 		 *
