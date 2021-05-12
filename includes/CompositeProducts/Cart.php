@@ -115,6 +115,7 @@ class Cart {
 
 		// Conditionally hide cart items.
 		add_filter( 'woocommerce_cart_item_visible', array( $this, 'cart_item_visible' ), 10, 3 );
+		add_filter( 'woocommerce_checkout_cart_item_visible', array( $this, 'cart_item_visible' ), 10, 3 );
 
 		// Add content after cart item name.
 		add_action( 'woocommerce_after_cart_item_name', array( $this, 'after_cart_item_name' ), 10, 2 );
