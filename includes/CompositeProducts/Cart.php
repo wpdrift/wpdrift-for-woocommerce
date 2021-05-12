@@ -1780,8 +1780,6 @@ class Cart {
 				$component_id = $child_cart_item['composite_item'];
 				$component    = $cart_item['data']->get_component( $component_id );
 				if ( $component ) {
-
-					$child_item_title       = $component->get_title();
 					$child_item_description = Product::get_title_string( $child_cart_item['data']->get_name(), $child_cart_item['quantity'] );
 
 					/**
@@ -1797,11 +1795,13 @@ class Cart {
 				}
 
 				if ( $child_item_description ) {
-					$item_data[] = esc_html( $child_item_title ) . ': ' . wp_kses_post( $child_item_description );
+					$item_data[] = wp_kses_post( $child_item_description );
 				}
 			}
 
-			echo '<div>' . implode( ', ', $item_data ) . '</div>';
+			if ( ! empty( $item_data ) ) {
+				echo '<div class="product-short-description">' . implode( ', ', $item_data ) . '</div>';
+			}
 		}
 	}
 }
