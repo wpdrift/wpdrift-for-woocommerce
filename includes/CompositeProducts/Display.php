@@ -159,6 +159,8 @@ class Display {
 		 */
 
 		add_filter( 'woocommerce_get_item_data', array( $this, 'cart_widget_container_item_data' ), 10, 2 );
+		// Add content after cart item name.
+		add_action( 'woocommerce_after_cart_item_name', array( $this, 'after_cart_item_name' ), 10, 2 );
 	}
 
 	/**
@@ -1095,7 +1097,7 @@ class Display {
 	 */
 	public function cart_widget_container_item_data( $data, $cart_item ) {
 
-		if ( wc_cp_is_composite_container_cart_item( $cart_item ) ) {
+		if ( wc_cp_is_composite_container_cart_item( $cart_item ) && ! is_cart() ) {
 			$data = array_merge( $data, $this->get_composite_container_cart_item_data( $cart_item ) );
 		}
 
@@ -1683,5 +1685,30 @@ class Display {
 			}
 		}
 		return $data['product_html'];
+	}
+
+	/**
+	 * [after_cart_item_name description]
+	 * @param  [type] $cart_item     [description]
+	 * @param  [type] $cart_item_key [description]
+	 * @return [type]                [description]
+	 */
+	public function after_cart_item_name( $cart_item, $cart_item_key ) {
+		if ( wc_cp_is_composite_container_cart_item( $cart_item ) ) {
+			$item_data = $this->get_composite_container_cart_item_data( $cart_item );
+			if ( empty( $item_data ) ) {
+				return;
+			}
+
+			$description_data = array();
+
+			foreach ( $item_data as $item ) {
+				$description_data[] = esc_html( $item['key'] ) . ': ' . wp_kses_post( $item['value'] );
+			}
+
+			if ( ! empty( $item_data ) ) {
+				echo '<div class="product-short-description">' . implode( ', ', $description_data ) . '</div>';
+			}
+		}
 	}
 }

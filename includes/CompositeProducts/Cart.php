@@ -117,9 +117,6 @@ class Cart {
 		add_filter( 'woocommerce_cart_item_visible', array( $this, 'cart_item_visible' ), 10, 3 );
 		add_filter( 'woocommerce_checkout_cart_item_visible', array( $this, 'cart_item_visible' ), 10, 3 );
 
-		// Add content after cart item name.
-		add_action( 'woocommerce_after_cart_item_name', array( $this, 'after_cart_item_name' ), 10, 2 );
-
 		// "Sold Individually" context support under WC 3.5+.
 		if ( Compatibility::is_wc_version_gte( '3.5' ) ) {
 			add_filter( 'woocommerce_add_to_cart_sold_individually_found_in_cart', array( $this, 'sold_individually_found_in_cart' ), 10, 4 );
@@ -1757,52 +1754,5 @@ class Cart {
 			return false;
 		}
 		return  $visible;
-	}
-
-	/**
-	 * [after_cart_item_name description]
-	 * @param  [type] $cart_item     [description]
-	 * @param  [type] $cart_item_key [description]
-	 * @return [type]                [description]
-	 */
-	public function after_cart_item_name( $cart_item, $cart_item_key ) {
-		if ( wc_cp_is_composite_container_cart_item( $cart_item ) ) {
-			$item_data = array();
-
-			$child_cart_items = wc_cp_get_composited_cart_items( $cart_item );
-
-			if ( empty( $child_cart_items ) ) {
-				return;
-			}
-
-			foreach ( $child_cart_items as $child_cart_item_key => $child_cart_item ) {
-				$child_item_description = '';
-
-				$component_id = $child_cart_item['composite_item'];
-				$component    = $cart_item['data']->get_component( $component_id );
-				if ( $component ) {
-					$child_item_description = Product::get_title_string( $child_cart_item['data']->get_name(), $child_cart_item['quantity'] );
-
-					/**
-					 * 'woocommerce_composite_container_cart_item_data_value' filter.
-					 *
-					 * @since  1.0.0
-					 *
-					 * @param  string  $child_item_description
-					 * @param  array   $child_cart_item
-					 * @param  string  $child_cart_item_key
-					 */
-					$child_item_description = apply_filters( 'woocommerce_composite_container_cart_item_data_value', $child_item_description, $child_cart_item, $child_cart_item_key );
-				}
-
-				if ( $child_item_description ) {
-					$item_data[] = wp_kses_post( $child_item_description );
-				}
-			}
-
-			if ( ! empty( $item_data ) ) {
-				echo '<div class="product-short-description">' . implode( ', ', $item_data ) . '</div>';
-			}
-		}
 	}
 }
