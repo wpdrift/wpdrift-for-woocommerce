@@ -153,6 +153,12 @@ class Display {
 
 		// Filter grid item html.
 		add_filter( 'woocommerce_blocks_product_grid_item_html', array( $this, 'blocks_product_grid_item_html' ), 10, 3 );
+
+		/*
+		 * Checkout.
+		 */
+
+		add_filter( 'woocommerce_get_item_data', array( $this, 'cart_widget_container_item_data' ), 10, 2 );
 	}
 
 	/**
