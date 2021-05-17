@@ -127,6 +127,9 @@ class Display {
 		add_action( 'woocommerce_before_mini_cart', array( $this, 'add_cart_widget_filters' ) );
 		add_action( 'woocommerce_after_mini_cart', array( $this, 'remove_cart_widget_filters' ) );
 
+		// Display product summary.
+		add_action( 'woocommerce_after_cart_item_name', array( $this, 'display_product_summary' ), 10, 2 );
+
 		/*
 		 * Orders.
 		 */
@@ -153,14 +156,6 @@ class Display {
 
 		// Filter grid item html.
 		add_filter( 'woocommerce_blocks_product_grid_item_html', array( $this, 'blocks_product_grid_item_html' ), 10, 3 );
-
-		/*
-		 * Checkout.
-		 */
-
-		// add_filter( 'woocommerce_get_item_data', array( $this, 'cart_widget_container_item_data' ), 10, 2 );
-		// Add content after cart item name.
-		add_action( 'woocommerce_after_cart_item_name', array( $this, 'after_cart_item_name' ), 10, 2 );
 	}
 
 	/**
@@ -1688,12 +1683,12 @@ class Display {
 	}
 
 	/**
-	 * [after_cart_item_name description]
+	 * [display_product_summary description]
 	 * @param  [type] $cart_item     [description]
 	 * @param  [type] $cart_item_key [description]
 	 * @return [type]                [description]
 	 */
-	public function after_cart_item_name( $cart_item, $cart_item_key ) {
+	public function display_product_summary( $cart_item, $cart_item_key ) {
 		if ( wc_cp_is_composite_container_cart_item( $cart_item ) ) {
 			$item_data = $this->get_composite_container_cart_item_data( $cart_item );
 			if ( empty( $item_data ) ) {
