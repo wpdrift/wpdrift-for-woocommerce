@@ -305,10 +305,8 @@
 	}
 }
 
-.woocommerce-cart-form {
-	.product-short-description {
-		font-size: 14px;
-	}
+.product-short-description {
+	font-size: 14px;
 }
 
 @include media-breakpoint-down(sm) {
