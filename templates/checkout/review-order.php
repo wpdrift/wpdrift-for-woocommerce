@@ -21,8 +21,8 @@ use function WPdrift\CompositeProducts\wc_cp_get_formatted_cart_item_data;
 <table class="shop_table woocommerce-checkout-review-order-table">
 	<thead>
 		<tr>
-			<th class="product-name"><?php esc_html_e( 'Product', 'woocommerce' ); ?></th>
-			<th class="product-total"><?php esc_html_e( 'Subtotal', 'woocommerce' ); ?></th>
+			<th class="product-name"><?php esc_html_e( 'Product', 'wpdrift-woocommerce-modules' ); ?></th>
+			<th class="product-total"><?php esc_html_e( 'Subtotal', 'wpdrift-woocommerce-modules' ); ?></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -55,7 +55,7 @@ use function WPdrift\CompositeProducts\wc_cp_get_formatted_cart_item_data;
 	<tfoot>
 
 		<tr class="cart-subtotal">
-			<th><?php esc_html_e( 'Subtotal', 'woocommerce' ); ?></th>
+			<th><?php esc_html_e( 'Subtotal', 'wpdrift-woocommerce-modules' ); ?></th>
 			<td><?php wc_cart_totals_subtotal_html(); ?></td>
 		</tr>
 
@@ -102,7 +102,7 @@ use function WPdrift\CompositeProducts\wc_cp_get_formatted_cart_item_data;
 		<?php do_action( 'woocommerce_review_order_before_order_total' ); ?>
 
 		<tr class="order-total">
-			<th><?php esc_html_e( 'Total', 'woocommerce' ); ?></th>
+			<th><?php esc_html_e( 'Total', 'wpdrift-woocommerce-modules' ); ?></th>
 			<td><?php wc_cart_totals_order_total_html(); ?></td>
 		</tr>
 
