@@ -1,6 +1,6 @@
 # WPdrift for WooCommerce #
 **Contributors:** WPdrift, upnrunn, kishores, bhoot  
-**Tags:** wpdrift, woocommerce, composite-products  
+**Tags:** wpdrift, woocommerce, composite-products, product-bundles, composite-popup  
 **Requires at least:** 5.2  
 **Tested up to:** 5.7.1  
 **Requires PHP:** 5.6  
@@ -69,5 +69,5 @@ The manual installation method involves downloading the plugin and uploading it 
 
 ## Changelog ##
 
-### 1.0.0 - 2021-05-05 ###
+### 1.0.0 - 2021-06-12 ###
 * Initial release.
