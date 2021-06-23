@@ -213,8 +213,8 @@ class ProductData {
 
 						?>
 						<label class="bto_layout_label <?php echo $selected_layout == $layout_id ? 'selected' : ''; ?>">
-							<img class="layout_img" src="<?php echo $layout_data['image_src']; ?>" />
-							<input <?php echo $selected_layout == $layout_id ? 'checked="checked"' : ''; ?> name="bto_style" type="radio" value="<?php echo $layout_id; ?>" />
+							<img class="layout_img" src="<?php echo esc_url( $layout_data['image_src'] ); ?>" />
+							<input <?php echo $selected_layout == $layout_id ? 'checked="checked"' : ''; ?> name="bto_style" type="radio" value="<?php echo esc_attr( $layout_id ); ?>" />
 							<?php echo wc_help_tip( '<strong>' . $layout_data['title'] . '</strong> &ndash; ' . $layout_data['description'] ); ?>
 						</label>
 						<?php
@@ -340,7 +340,7 @@ class ProductData {
 
 		?>
 		<div class="hr-section hr-section-components"><?php echo __( 'Components', 'wpdrift-woocommerce-modules' ); ?></div>
-		<div class="options_group config_group bto_clearfix <?php echo empty( $composite_data ) ? 'options_group--boarding' : ''; ?> <?php echo 'layout-' . $selected_layout; ?>">
+		<div class="options_group config_group bto_clearfix <?php echo empty( $composite_data ) ? 'options_group--boarding' : ''; ?> <?php echo 'layout-' . esc_attr( $selected_layout ); ?>">
 			<p class="toolbar">
 				<span class="bulk_toggle_wrapper">
 					<a href="#" class="close_all"><?php _e( 'Close all', 'wpdrift-woocommerce-modules' ); ?></a>
@@ -479,21 +479,19 @@ class ProductData {
 				<label>
 					<?php _e( 'Option Select Action', 'wpdrift-woocommerce-modules' ); ?>
 				</label>
-				<select class="wc-enhanced-select-lazy" style="width: 75%" name="bto_data[<?php echo $id; ?>][select_action]">
-																									 <?php
+				<select class="wc-enhanced-select-lazy" style="width: 75%" name="bto_data[<?php echo esc_attr( $id ); ?>][select_action]">
+					<?php
+					foreach ( $select_action_options as $option_key => $option ) {
 
-																										foreach ( $select_action_options as $option_key => $option ) {
+						echo '<option ' . selected( $select_action, $option['id'], false ) . ' value="' . esc_attr( $option['id'] ) . '">' . esc_html( $option['title'] ) . '</option>';
 
-																											echo '<option ' . selected( $select_action, $option['id'], false ) . ' value="' . $option['id'] . '">' . $option['title'] . '</option>';
+						$help_tip .= '<strong>' . $option['title'] . '</strong> &ndash; ' . $option['description'];
 
-																											$help_tip .= '<strong>' . $option['title'] . '</strong> &ndash; ' . $option['description'];
-
-																											if ( $option_key < sizeof( $select_action_options ) - 1 ) {
-																												$help_tip .= '</br></br>';
-																											}
-																										}
-
-																										?>
+						if ( $option_key < sizeof( $select_action_options ) - 1 ) {
+							$help_tip .= '</br></br>';
+						}
+					}
+					?>
 				</select>
 				<?php echo wc_help_tip( $help_tip ); ?>
 			</div>
@@ -519,26 +517,26 @@ class ProductData {
 		?>
 		<div class="component_selection_details">
 			<div class="form-field">
-				<label for="component_selection_details_<?php echo $id; ?>">
+				<label for="component_selection_details_<?php echo esc_attr( $id ); ?>">
 					<?php echo __( 'Selection Details Visibility', 'wpdrift-woocommerce-modules' ); ?>
 				</label>
 				<div class="component_selection_details_option">
-					<input type="checkbox" class="checkbox"<?php echo ( 'no' === $hide_product_title ? ' checked="checked"' : '' ); ?> name="bto_data[<?php echo $id; ?>][show_product_title]" <?php echo ( 'no' === $hide_product_title ? 'value="1"' : '' ); ?>/>
+					<input type="checkbox" class="checkbox"<?php echo ( 'no' === $hide_product_title ? ' checked="checked"' : '' ); ?> name="bto_data[<?php echo esc_attr( $id ); ?>][show_product_title]" <?php echo ( 'no' === $hide_product_title ? 'value="1"' : '' ); ?>/>
 					<span class="labelspan"><?php echo __( 'Title', 'wpdrift-woocommerce-modules' ); ?>
 					<?php echo wc_help_tip( __( 'Show/hide the title of the selected option.', 'wpdrift-woocommerce-modules' ) ); ?>
 				</div>
 				<div class="component_selection_details_option">
-					<input type="checkbox" class="checkbox"<?php echo ( 'no' === $hide_product_description ? ' checked="checked"' : '' ); ?> name="bto_data[<?php echo $id; ?>][show_product_description]" <?php echo ( 'no' === $hide_product_description ? 'value="1"' : '' ); ?>/>
+					<input type="checkbox" class="checkbox"<?php echo ( 'no' === $hide_product_description ? ' checked="checked"' : '' ); ?> name="bto_data[<?php echo esc_attr( $id ); ?>][show_product_description]" <?php echo ( 'no' === $hide_product_description ? 'value="1"' : '' ); ?>/>
 					<span class="labelspan"><?php echo __( 'Description', 'wpdrift-woocommerce-modules' ); ?>
 					<?php echo wc_help_tip( __( 'Show/hide the description of the selected option.', 'wpdrift-woocommerce-modules' ) ); ?>
 				</div>
 				<div class="component_selection_details_option">
-					<input type="checkbox" class="checkbox"<?php echo ( 'no' === $hide_product_thumbnail ? ' checked="checked"' : '' ); ?> name="bto_data[<?php echo $id; ?>][show_product_thumbnail]" <?php echo ( 'no' === $hide_product_thumbnail ? 'value="1"' : '' ); ?>/>
+					<input type="checkbox" class="checkbox"<?php echo ( 'no' === $hide_product_thumbnail ? ' checked="checked"' : '' ); ?> name="bto_data[<?php echo esc_attr( $id ); ?>][show_product_thumbnail]" <?php echo ( 'no' === $hide_product_thumbnail ? 'value="1"' : '' ); ?>/>
 					<span class="labelspan"><?php echo __( 'Thumbnail', 'wpdrift-woocommerce-modules' ); ?>
 					<?php echo wc_help_tip( __( 'Show/hide the thumbnail of the selected option.', 'wpdrift-woocommerce-modules' ) ); ?>
 				</div>
 				<div class="component_selection_details_option">
-					<input type="checkbox" class="checkbox"<?php echo ( 'no' === $hide_product_price ? ' checked="checked"' : '' ); ?> name="bto_data[<?php echo $id; ?>][show_product_price]" <?php echo ( 'no' === $hide_product_price ? 'value="1"' : '' ); ?>/>
+					<input type="checkbox" class="checkbox"<?php echo ( 'no' === $hide_product_price ? ' checked="checked"' : '' ); ?> name="bto_data[<?php echo esc_attr( $id ); ?>][show_product_price]" <?php echo ( 'no' === $hide_product_price ? 'value="1"' : '' ); ?>/>
 					<span class="labelspan"><?php echo __( 'Price', 'wpdrift-woocommerce-modules' ); ?>
 					<?php echo wc_help_tip( __( 'Show/hide the price of the selected option.', 'wpdrift-woocommerce-modules' ) ); ?>
 				</div>
@@ -577,21 +575,21 @@ class ProductData {
 		?>
 		<div class="component_subtotal_visibility">
 			<div class="form-field">
-				<label for="component_subtotal_visibility_<?php echo $id; ?>">
+				<label for="component_subtotal_visibility_<?php echo esc_attr( $id ); ?>">
 					<?php echo __( 'Subtotal Visibility', 'wpdrift-woocommerce-modules' ); ?>
 				</label>
 				<div class="component_subtotal_visibility_option">
-					<input type="checkbox" class="checkbox"<?php echo ( 'no' === $hide_in_product ? ' checked="checked"' : '' ); ?> name="bto_data[<?php echo $id; ?>][show_subtotal_product]" <?php echo ( 'no' === $hide_in_product ? 'value="1"' : '' ); ?>/>
+					<input type="checkbox" class="checkbox"<?php echo ( 'no' === $hide_in_product ? ' checked="checked"' : '' ); ?> name="bto_data[<?php echo esc_attr( $id ); ?>][show_subtotal_product]" <?php echo ( 'no' === $hide_in_product ? 'value="1"' : '' ); ?>/>
 					<span class="labelspan"><?php echo __( 'Single-product summary', 'wpdrift-woocommerce-modules' ); ?>
 					<?php echo wc_help_tip( __( 'Controls the visibility of the Component subtotal in the single-product Summary section.', 'wpdrift-woocommerce-modules' ) ); ?>
 				</div>
 				<div class="component_subtotal_visibility_option">
-					<input type="checkbox" class="checkbox"<?php echo ( 'no' === $hide_in_cart ? ' checked="checked"' : '' ); ?> name="bto_data[<?php echo $id; ?>][show_subtotal_cart]" <?php echo ( 'no' === $hide_in_cart ? 'value="1"' : '' ); ?>/>
+					<input type="checkbox" class="checkbox"<?php echo ( 'no' === $hide_in_cart ? ' checked="checked"' : '' ); ?> name="bto_data[<?php echo esc_attr( $id ); ?>][show_subtotal_cart]" <?php echo ( 'no' === $hide_in_cart ? 'value="1"' : '' ); ?>/>
 					<span class="labelspan"><?php echo __( 'Cart/checkout', 'wpdrift-woocommerce-modules' ); ?>
 					<?php echo wc_help_tip( __( 'Controls the visibility of the Component subtotal in cart/checkout templates.', 'wpdrift-woocommerce-modules' ) ); ?>
 				</div>
 				<div class="component_subtotal_visibility_option">
-					<input type="checkbox" class="checkbox"<?php echo ( 'no' === $hide_in_orders ? ' checked="checked"' : '' ); ?> name="bto_data[<?php echo $id; ?>][show_subtotal_orders]" <?php echo ( 'no' === $hide_in_orders ? 'value="1"' : '' ); ?>/>
+					<input type="checkbox" class="checkbox"<?php echo ( 'no' === $hide_in_orders ? ' checked="checked"' : '' ); ?> name="bto_data[<?php echo esc_attr( $id ); ?>][show_subtotal_orders]" <?php echo ( 'no' === $hide_in_orders ? 'value="1"' : '' ); ?>/>
 					<span class="labelspan"><?php echo __( 'Order details', 'wpdrift-woocommerce-modules' ); ?>
 					<?php echo wc_help_tip( __( 'Controls the visibility of the Component subtotal in order details &amp; e-mail templates.', 'wpdrift-woocommerce-modules' ) ); ?>
 				</div>
@@ -615,10 +613,10 @@ class ProductData {
 		?>
 		<div class="component_show_orderby group_show_orderby" >
 			<div class="form-field">
-				<label for="group_show_orderby_<?php echo $id; ?>">
+				<label for="group_show_orderby_<?php echo esc_attr( $id ); ?>">
 					<?php echo __( 'Options Sorting', 'wpdrift-woocommerce-modules' ); ?>
 				</label>
-				<input type="checkbox" class="checkbox"<?php echo ( $show_orderby === 'yes' ? ' checked="checked"' : '' ); ?> name="bto_data[<?php echo $id; ?>][show_orderby]" <?php echo ( $show_orderby === 'yes' ? 'value="1"' : '' ); ?>/>
+				<input type="checkbox" class="checkbox"<?php echo ( $show_orderby === 'yes' ? ' checked="checked"' : '' ); ?> name="bto_data[<?php echo esc_attr( $id ); ?>][show_orderby]" <?php echo ( $show_orderby === 'yes' ? 'value="1"' : '' ); ?>/>
 				<?php echo wc_help_tip( __( 'Check this option to allow sorting the available Component Options by popularity, rating, newness or price.', 'wpdrift-woocommerce-modules' ) ); ?>
 			</div>
 		</div>
@@ -642,10 +640,10 @@ class ProductData {
 		?>
 		<div class="component_show_filters group_show_filters" >
 			<div class="form-field">
-				<label for="group_show_filters_<?php echo $id; ?>">
+				<label for="group_show_filters_<?php echo esc_attr( $id ); ?>">
 					<?php echo __( 'Options Filtering', 'wpdrift-woocommerce-modules' ); ?>
 				</label>
-				<input type="checkbox" class="checkbox"<?php echo ( $show_filters === 'yes' ? ' checked="checked"' : '' ); ?> name="bto_data[<?php echo $id; ?>][show_filters]" <?php echo ( $show_filters === 'yes' ? 'value="1"' : '' ); ?>/>
+				<input type="checkbox" class="checkbox"<?php echo ( $show_filters === 'yes' ? ' checked="checked"' : '' ); ?> name="bto_data[<?php echo esc_attr( $id ); ?>][show_filters]" <?php echo ( $show_filters === 'yes' ? 'value="1"' : '' ); ?>/>
 				<?php echo wc_help_tip( __( 'Check this option to configure and display layered attribute filters. Useful for narrowing down Component Options more easily.', 'wpdrift-woocommerce-modules' ) ); ?>
 			</div>
 		</div>
@@ -680,14 +678,12 @@ class ProductData {
 			<div class="component_filters group_filters" >
 				<div class="bto_attributes_selector bto_multiselect">
 					<div class="form-field">
-						<select id="bto_attribute_ids_<?php echo $id; ?>" name="bto_data[<?php echo $id; ?>][attribute_filters][]" style="width: 75%" class="multiselect wc-enhanced-select-lazy" multiple="multiple" data-sortable="yes" data-placeholder="<?php echo  __( 'Select product attributes&hellip;', 'wpdrift-woocommerce-modules' ); ?>">
-																 <?php
-
-																	foreach ( $sorted_options as $attribute_taxonomy_id => $attribute_taxonomy_label ) {
-																		echo '<option value="' . $attribute_taxonomy_id . '" ' . selected( in_array( $attribute_taxonomy_id, $selected_taxonomies ), true, false ) . '>' . $attribute_taxonomy_label . '</option>';
-																	}
-
-																	?>
+						<select id="bto_attribute_ids_<?php echo esc_attr( $id ); ?>" name="bto_data[<?php echo esc_attr( $id ); ?>][attribute_filters][]" style="width: 75%" class="multiselect wc-enhanced-select-lazy" multiple="multiple" data-sortable="yes" data-placeholder="<?php echo  __( 'Select product attributes&hellip;', 'wpdrift-woocommerce-modules' ); ?>">
+							<?php
+							foreach ( $sorted_options as $attribute_taxonomy_id => $attribute_taxonomy_label ) {
+								echo '<option value="' . esc_attr( $attribute_taxonomy_id ) . '" ' . selected( in_array( $attribute_taxonomy_id, $selected_taxonomies ), true, false ) . '>' . esc_html( $attribute_taxonomy_label ) . '</option>';
+							}
+							?>
 						</select>
 					</div>
 				</div>
@@ -769,7 +765,7 @@ class ProductData {
 				<label>
 					<?php echo __( 'Component Name', 'wpdrift-woocommerce-modules' ); ?>
 				</label>
-				<input type="text" class="group_title component_text_input" name="bto_data[<?php echo $id; ?>][title]" value="<?php echo esc_attr( $title ); ?>"/><?php echo wc_help_tip( __( 'Name or title of this Component.', 'wpdrift-woocommerce-modules' ) ); ?>
+				<input type="text" class="group_title component_text_input" name="bto_data[<?php echo esc_attr( $id ); ?>][title]" value="<?php echo esc_attr( $title ); ?>"/><?php echo wc_help_tip( __( 'Name or title of this Component.', 'wpdrift-woocommerce-modules' ) ); ?>
 			</div>
 		</div>
 		<?php
@@ -793,7 +789,7 @@ class ProductData {
 				<label>
 					<?php echo __( 'Component Description', 'wpdrift-woocommerce-modules' ); ?>
 				</label>
-				<textarea class="group_description" name="bto_data[<?php echo $id; ?>][description]" id="group_description_<?php echo $id; ?>" placeholder="" rows="2" cols="20"><?php echo esc_textarea( $description ); ?></textarea><?php echo wc_help_tip( __( 'Optional short description of this Component.', 'wpdrift-woocommerce-modules' ) ); ?>
+				<textarea class="group_description" name="bto_data[<?php echo esc_attr( $id ); ?>][description]" id="group_description_<?php echo esc_attr( $id ); ?>" placeholder="" rows="2" cols="20"><?php echo esc_textarea( $description ); ?></textarea><?php echo wc_help_tip( __( 'Optional short description of this Component.', 'wpdrift-woocommerce-modules' ) ); ?>
 			</div>
 		</div>
 		<?php
@@ -818,15 +814,11 @@ class ProductData {
 				<label>
 					<?php echo __( 'Component Image', 'wpdrift-woocommerce-modules' ); ?>
 				</label>
-				<a href="#" class="upload_component_image_button <?php echo $image_id ? 'has_image' : ''; ?>"><span class="prompt"><?php echo __( 'Select image', 'wpdrift-woocommerce-modules' ); ?></span><img src="
-																			<?php
-																			if ( ! empty( $image ) ) {
-																				echo esc_attr( $image );
-																			} else {
-																				echo esc_attr( wc_placeholder_img_src() );
-																			}
-																			?>
-																			" /><input type="hidden" name="bto_data[<?php echo $id; ?>][thumbnail_id]" class="image" value="<?php echo $image_id; ?>" /></a>
+				<a href="#" class="upload_component_image_button <?php echo $image_id ? 'has_image' : ''; ?>">
+					<span class="prompt"><?php echo __( 'Select image', 'wpdrift-woocommerce-modules' ); ?></span>
+					<img src="<?php echo empty( $image ) ? esc_url( wc_placeholder_img_src() ) : esc_url( $image ); ?>" />
+					<input type="hidden" name="bto_data[<?php echo esc_attr( $id ); ?>][thumbnail_id]" class="image" value="<?php echo esc_attr( $image_id ); ?>" />
+				</a>
 				<?php echo wc_help_tip( __( 'Placeholder image to use in configuration summaries. Substituted by the image of the selected Component Option.', 'wpdrift-woocommerce-modules' ) ); ?>
 				<a href="#" class="remove_component_image_button <?php echo $image_id ? 'has_image' : ''; ?>"><?php echo __( 'Remove image', 'wpdrift-woocommerce-modules' ); ?></a>
 			</div>
@@ -866,16 +858,10 @@ class ProductData {
 				<label>
 					<?php echo __( 'Component Options', 'wpdrift-woocommerce-modules' ); ?>
 				</label>
-				<select class="component_query_type wc-enhanced-select-lazy" name="bto_data[<?php echo $id; ?>][query_type]" style="width: 75%;">
-																									   <?php
-
-																										foreach ( $select_by as $key => $description ) {
-																											?>
-						<option value="<?php echo $key; ?>" <?php selected( $query_type, $key, true ); ?>><?php echo $description; ?></option>
-																											<?php
-																										}
-
-																										?>
+				<select class="component_query_type wc-enhanced-select-lazy" name="bto_data[<?php echo esc_attr( $id ); ?>][query_type]" style="width: 75%;">
+					<?php foreach ( $select_by as $key => $description ) : ?>
+						<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $query_type, $key, true ); ?>><?php echo esc_html( $description ); ?></option>
+					<?php endforeach; ?>
 				</select>
 				<?php echo wc_help_tip( __( 'Product options offered in this Component. Add products individually, or select a category to include all associated products.', 'wpdrift-woocommerce-modules' ) ); ?>
 			</div>
@@ -906,15 +892,13 @@ class ProductData {
 			}
 
 			?>
-				<select id="bto_ids_<?php echo $id; ?>" class="wc-product-search-lazy products_selector" name="bto_data[<?php echo $id; ?>][assigned_ids][]" multiple="multiple" style="width: 75%;" data-limit="100" data-action="woocommerce_json_search_component_options" data-placeholder="<?php echo  __( 'Search for a product&hellip;', 'wpdrift-woocommerce-modules' ); ?>" data-sortable="true">
+				<select id="bto_ids_<?php echo esc_attr( $id ); ?>" class="wc-product-search-lazy products_selector" name="bto_data[<?php echo esc_attr( $id ); ?>][assigned_ids][]" multiple="multiple" style="width: 75%;" data-limit="100" data-action="woocommerce_json_search_component_options" data-placeholder="<?php echo  __( 'Search for a product&hellip;', 'wpdrift-woocommerce-modules' ); ?>" data-sortable="true">
 				<?php
-
 				if ( ! empty( $product_id_options ) ) {
 					foreach ( $product_id_options as $product_id => $product_name ) {
-						echo '<option value="' . $product_id . '" selected="selected">' . $product_name . '</option>';
+						echo '<option value="' . esc_attr( $product_id ) . '" selected="selected">' . esc_html( $product_name ) . '</option>';
 					}
 				}
-
 				?>
 				</select></div>
 		</div>
@@ -922,14 +906,12 @@ class ProductData {
 		<div class="component_category_selector bto_category_selector component_query_type_selector bto_multiselect component_query_type_category_ids">
 			<div class="form-field">
 
-				<select id="bto_category_ids_<?php echo $id; ?>" class="multiselect wc-enhanced-select-lazy categories_selector" name="bto_data[<?php echo $id; ?>][assigned_category_ids][]" style="width: 75%" multiple="multiple" data-placeholder="<?php echo  __( 'Select categories&hellip;', 'wpdrift-woocommerce-modules' ); ?>">
-														<?php
-
-														foreach ( $product_categories as $product_category ) {
-															echo '<option value="' . $product_category->term_id . '" ' . selected( in_array( $product_category->term_id, $selected_categories ), true, false ) . '>' . $product_category->name . '</option>';
-														}
-
-														?>
+				<select id="bto_category_ids_<?php echo esc_attr( $id ); ?>" class="multiselect wc-enhanced-select-lazy categories_selector" name="bto_data[<?php echo esc_attr( $id ); ?>][assigned_category_ids][]" style="width: 75%" multiple="multiple" data-placeholder="<?php echo  __( 'Select categories&hellip;', 'wpdrift-woocommerce-modules' ); ?>">
+					<?php
+					foreach ( $product_categories as $product_category ) {
+						echo '<option value="' . esc_attr( $product_category->term_id ) . '" ' . selected( in_array( $product_category->term_id, $selected_categories ), true, false ) . '>' . esc_html( $product_category->name ) . '</option>';
+					}
+					?>
 				</select>
 			</div>
 		</div>
@@ -1003,26 +985,22 @@ class ProductData {
 					<?php echo __( 'Default Option', 'wpdrift-woocommerce-modules' ); ?>
 				</label>
 				<div class="component_query_type_category_ids default_selector_wrapper">
-					<select id="group_default_<?php echo $id; ?>" class="wc-product-search-lazy default_selector_categories" style="width: 75%;" name="bto_data[<?php echo $id; ?>][default_id_categories]" data-allow_clear="true" data-action="woocommerce_json_search_products_in_categories" data-limit="200" data-include="<?php echo esc_attr( implode( ',', $category_ids ) ); ?>" data-placeholder="<?php echo __( 'Search for a product&hellip;', 'wpdrift-woocommerce-modules' ); ?>">
-														 <?php
-
-															if ( $default_option_valid ) {
-																echo '<option value="' . $default_option_id . '" selected="selected">' . $default_option_title . '</option>';
-															}
-
-															?>
+					<select id="group_default_<?php echo esc_attr( $id ); ?>" class="wc-product-search-lazy default_selector_categories" style="width: 75%;" name="bto_data[<?php echo esc_attr( $id ); ?>][default_id_categories]" data-allow_clear="true" data-action="woocommerce_json_search_products_in_categories" data-limit="200" data-include="<?php echo esc_attr( implode( ',', $category_ids ) ); ?>" data-placeholder="<?php echo __( 'Search for a product&hellip;', 'wpdrift-woocommerce-modules' ); ?>">
+						<?php
+						if ( $default_option_valid ) {
+							echo '<option value="' . esc_attr( $default_option_id ) . '" selected="selected">' . esc_html( $default_option_title ) . '</option>';
+						}
+						?>
 					</select>
 					<?php echo wc_help_tip( $tip ) . self::add_error_tip(); ?>
 				</div>
 				<div class="component_query_type_product_ids default_selector_wrapper">
-					<select id="group_default_<?php echo $id; ?>" class="wc-enhanced-select-lazy default_selector_products" style="width: 75%;" name="bto_data[<?php echo $id; ?>][default_id_products]" data-allow_clear="true" data-placeholder="<?php esc_attr_e( 'Choose a product&hellip;', 'wpdrift-woocommerce-modules' ); ?>">
-														 <?php
-
-															if ( $default_option_valid ) {
-																echo '<option value="' . $default_option_id . '" selected="selected">' . $default_option_title . '</option>';
-															}
-
-															?>
+					<select id="group_default_<?php echo esc_attr( $id ); ?>" class="wc-enhanced-select-lazy default_selector_products" style="width: 75%;" name="bto_data[<?php echo esc_attr( $id ); ?>][default_id_products]" data-allow_clear="true" data-placeholder="<?php esc_attr_e( 'Choose a product&hellip;', 'wpdrift-woocommerce-modules' ); ?>">
+						<?php
+						if ( $default_option_valid ) {
+							echo '<option value="' . esc_attr( $default_option_id ) . '" selected="selected">' . esc_html( $default_option_title ) . '</option>';
+						}
+						?>
 					</select>
 					<?php echo wc_help_tip( $tip ) . self::add_error_tip(); ?>
 				</div>
@@ -1046,10 +1024,10 @@ class ProductData {
 		?>
 		<div class="group_quantity_min">
 			<div class="form-field">
-				<label for="group_quantity_min_<?php echo $id; ?>">
+				<label for="group_quantity_min_<?php echo esc_attr( $id ); ?>">
 					<?php echo __( 'Min Quantity', 'wpdrift-woocommerce-modules' ); ?>
 				</label>
-				<input type="number" class="group_quantity_min" name="bto_data[<?php echo $id; ?>][quantity_min]" id="group_quantity_min_<?php echo $id; ?>" value="<?php echo $quantity_min; ?>" placeholder="" step="1" min="0" />
+				<input type="number" class="group_quantity_min" name="bto_data[<?php echo esc_attr( $id ); ?>][quantity_min]" id="group_quantity_min_<?php echo esc_attr( $id ); ?>" value="<?php echo esc_attr( $quantity_min ); ?>" placeholder="" step="1" min="0" />
 				<?php echo wc_help_tip( __( 'Set a minimum quantity for the selected Component Option.', 'wpdrift-woocommerce-modules' ) ); ?>
 			</div>
 		</div>
@@ -1071,10 +1049,10 @@ class ProductData {
 		?>
 		<div class="group_quantity_max">
 			<div class="form-field">
-				<label for="group_quantity_max_<?php echo $id; ?>">
+				<label for="group_quantity_max_<?php echo esc_attr( $id ); ?>">
 					<?php echo __( 'Max Quantity', 'wpdrift-woocommerce-modules' ); ?>
 				</label>
-				<input type="number" class="group_quantity_max" name="bto_data[<?php echo $id; ?>][quantity_max]" id="group_quantity_max_<?php echo $id; ?>" value="<?php echo $quantity_max; ?>" placeholder="" step="1" min="0" />
+				<input type="number" class="group_quantity_max" name="bto_data[<?php echo esc_attr( $id ); ?>][quantity_max]" id="group_quantity_max_<?php echo esc_attr( $id ); ?>" value="<?php echo esc_attr( $quantity_max ); ?>" placeholder="" step="1" min="0" />
 				<?php echo wc_help_tip( __( 'Set a maximum quantity for the selected Component Option. Leave the field empty to allow an unlimited maximum quantity.', 'wpdrift-woocommerce-modules' ) ); ?>
 			</div>
 		</div>
@@ -1096,10 +1074,10 @@ class ProductData {
 		?>
 		<div class="group_optional" >
 			<div class="form-field">
-				<label for="group_optional_<?php echo $id; ?>">
+				<label for="group_optional_<?php echo esc_attr( $id ); ?>">
 					<?php echo __( 'Optional', 'wpdrift-woocommerce-modules' ); ?>
 				</label>
-				<input type="checkbox" class="checkbox component_optional"<?php echo ( $optional === 'yes' ? ' checked="checked"' : '' ); ?> name="bto_data[<?php echo $id; ?>][optional]" <?php echo ( $optional === 'yes' ? ' value="1"' : '' ); ?> />
+				<input type="checkbox" class="checkbox component_optional"<?php echo ( $optional === 'yes' ? ' checked="checked"' : '' ); ?> name="bto_data[<?php echo esc_attr( $id ); ?>][optional]" <?php echo ( $optional === 'yes' ? ' value="1"' : '' ); ?> />
 				<?php echo wc_help_tip( __( 'Controls whether a Component Option must be selected or not.', 'wpdrift-woocommerce-modules' ) ); ?>
 			</div>
 		</div>
@@ -1121,10 +1099,10 @@ class ProductData {
 		?>
 		<div class="group_shipped_individually">
 			<div class="form-field">
-				<label for="group_shipped_individually_<?php echo $id; ?>">
+				<label for="group_shipped_individually_<?php echo esc_attr( $id ); ?>">
 					<?php echo __( 'Shipped Individually', 'wpdrift-woocommerce-modules' ); ?>
 				</label>
-				<input type="checkbox" class="checkbox"<?php echo ( $shipped_individually === 'yes' ? ' checked="checked"' : '' ); ?> name="bto_data[<?php echo $id; ?>][shipped_individually]" <?php echo ( $shipped_individually === 'yes' ? ' value="1"' : '' ); ?> />
+				<input type="checkbox" class="checkbox"<?php echo ( $shipped_individually === 'yes' ? ' checked="checked"' : '' ); ?> name="bto_data[<?php echo esc_attr( $id ); ?>][shipped_individually]" <?php echo ( $shipped_individually === 'yes' ? ' value="1"' : '' ); ?> />
 				<?php echo wc_help_tip( __( 'Enable this option if the Component is <strong>not</strong> physically assembled or packaged within the Composite.', 'wpdrift-woocommerce-modules' ) ); ?>
 			</div>
 		</div>
@@ -1146,10 +1124,10 @@ class ProductData {
 		?>
 		<div class="group_priced_individually">
 			<div class="form-field">
-				<label for="group_priced_individually_<?php echo $id; ?>">
+				<label for="group_priced_individually_<?php echo esc_attr( $id ); ?>">
 					<?php echo __( 'Priced Individually', 'wpdrift-woocommerce-modules' ); ?>
 				</label>
-				<input type="checkbox" class="checkbox"<?php echo ( $priced_individually === 'yes' ? ' checked="checked"' : '' ); ?> name="bto_data[<?php echo $id; ?>][priced_individually]" <?php echo ( $priced_individually === 'yes' ? ' value="1"' : '' ); ?> />
+				<input type="checkbox" class="checkbox"<?php echo ( $priced_individually === 'yes' ? ' checked="checked"' : '' ); ?> name="bto_data[<?php echo esc_attr( $id ); ?>][priced_individually]" <?php echo ( $priced_individually === 'yes' ? ' value="1"' : '' ); ?> />
 				<?php echo wc_help_tip( __( 'Enable this option if the included Component Options must maintain their individual prices.', 'wpdrift-woocommerce-modules' ) ); ?>
 			</div>
 		</div>
@@ -1169,10 +1147,10 @@ class ProductData {
 		?>
 		<div class="group_multiple_options">
 			<div class="form-field">
-				<label for="group_multiple_options_<?php echo $id; ?>">
+				<label for="group_multiple_options_<?php echo esc_attr( $id ); ?>">
 					<?php echo __( 'Multiple', 'wpdrift-woocommerce-modules' ); ?>
 				</label>
-				<input type="checkbox" class="checkbox"<?php echo ( 'yes' === $multiple_options ? ' checked="checked"' : '' ); ?> name="bto_data[<?php echo $id; ?>][multiple_options]" <?php echo ( 'yes' === $multiple_options ? ' value="1"' : '' ); ?> />
+				<input type="checkbox" class="checkbox"<?php echo ( 'yes' === $multiple_options ? ' checked="checked"' : '' ); ?> name="bto_data[<?php echo esc_attr( $id ); ?>][multiple_options]" <?php echo ( 'yes' === $multiple_options ? ' value="1"' : '' ); ?> />
 				<?php echo wc_help_tip( __( 'Enable this option if the multiple items can be selected.', 'wpdrift-woocommerce-modules' ) ); ?>
 			</div>
 		</div>
@@ -1201,21 +1179,19 @@ class ProductData {
 				<label>
 					<?php _e( 'Option Prices', 'wpdrift-woocommerce-modules' ); ?>
 				</label>
-				<select class="wc-enhanced-select-lazy" style="width: 75%" name="bto_data[<?php echo $id; ?>][display_prices]">
-																									 <?php
+				<select class="wc-enhanced-select-lazy" style="width: 75%" name="bto_data[<?php echo esc_attr( $id ); ?>][display_prices]">
+					<?php
+					foreach ( $price_display_options as $option_key => $option ) {
 
-																										foreach ( $price_display_options as $option_key => $option ) {
+						echo '<option ' . selected( $prices_display, $option['id'], false ) . ' value="' . esc_attr( $option['id'] ) . '">' . esc_html( $option['title'] ) . '</option>';
 
-																											echo '<option ' . selected( $prices_display, $option['id'], false ) . ' value="' . $option['id'] . '">' . $option['title'] . '</option>';
+						$help_tip .= '<strong>' . $option['title'] . '</strong> &ndash; ' . $option['description'];
 
-																											$help_tip .= '<strong>' . $option['title'] . '</strong> &ndash; ' . $option['description'];
-
-																											if ( $option_key < sizeof( $price_display_options ) - 1 ) {
-																												$help_tip .= '</br></br>';
-																											}
-																										}
-
-																										?>
+						if ( $option_key < sizeof( $price_display_options ) - 1 ) {
+							$help_tip .= '</br></br>';
+						}
+					}
+					?>
 				</select>
 				<?php echo wc_help_tip( $help_tip ); ?>
 			</div>
@@ -1238,10 +1214,10 @@ class ProductData {
 		?>
 		<div class="group_discount">
 			<div class="form-field">
-				<label for="group_discount_<?php echo $id; ?>">
+				<label for="group_discount_<?php echo esc_attr( $id ); ?>">
 					<?php echo __( 'Discount %', 'wpdrift-woocommerce-modules' ); ?>
 				</label>
-				<input type="text" class="group_discount input-text wc_input_decimal" name="bto_data[<?php echo $id; ?>][discount]" id="group_discount_<?php echo $id; ?>" value="<?php echo $discount; ?>" placeholder="" />
+				<input type="text" class="group_discount input-text wc_input_decimal" name="bto_data[<?php echo esc_attr( $id ); ?>][discount]" id="group_discount_<?php echo esc_attr( $id ); ?>" value="<?php echo esc_attr( $discount ); ?>" placeholder="" />
 				<?php echo wc_help_tip( __( 'Discount to apply to the chosen Component Option.', 'wpdrift-woocommerce-modules' ) ); ?>
 			</div>
 		</div>
@@ -1264,18 +1240,18 @@ class ProductData {
 				<label>
 					<?php _e( 'Options Style', 'wpdrift-woocommerce-modules' ); ?>
 				</label>
-				<select class="options_style_selector wc-enhanced-select-lazy" name="bto_data[<?php echo $id; ?>][selection_mode]" style="width: 75%;">
+				<select class="options_style_selector wc-enhanced-select-lazy" name="bto_data[<?php echo esc_attr( $id ); ?>][selection_mode]" style="width: 75%;">
 					<?php
-					   $option_style  = self::get_options_style( $data );
-					   $option_styles = Component::get_options_styles();
-					   $help_tip      = '';
+					$option_style  = self::get_options_style( $data );
+					$option_styles = Component::get_options_styles();
+					$help_tip      = '';
 
 					foreach ( Component::get_options_styles() as $style_key => $style ) {
 
 						$supports             = new stdClass();
 						$supports->pagination = Component::options_style_supports( $style['id'], 'pagination' ) ? 'yes' : 'no';
 
-						echo '<option ' . selected( $option_style, $style['id'], false ) . ' value="' . $style['id'] . '" data-supports="' . esc_attr( json_encode( $supports ) ) . '">' . $style['title'] . '</option>';
+						echo '<option ' . selected( $option_style, $style['id'], false ) . ' value="' . esc_attr( $style['id'] ) . '" data-supports="' . esc_attr( json_encode( $supports ) ) . '">' . esc_html( $style['title'] ) . '</option>';
 
 						$help_tip .= '<strong>' . $style['title'] . '</strong> &ndash; ' . $style['description'];
 
@@ -1313,21 +1289,21 @@ class ProductData {
 				<label>
 					<?php _e( 'Options Pagination', 'wpdrift-woocommerce-modules' ); ?>
 				</label>
-				<select class="wc-enhanced-select-lazy" style="width: 75%" name="bto_data[<?php echo $id; ?>][pagination_style]">
-																									 <?php
+				<select class="wc-enhanced-select-lazy" style="width: 75%" name="bto_data[<?php echo esc_attr( $id ); ?>][pagination_style]">
+					<?php
 
-																										foreach ( $pagination_style_options as $option_key => $option ) {
+					foreach ( $pagination_style_options as $option_key => $option ) {
 
-																											echo '<option ' . selected( $pagination_style, $option['id'], false ) . ' value="' . $option['id'] . '">' . $option['title'] . '</option>';
+						echo '<option ' . selected( $pagination_style, $option['id'], false ) . ' value="' . esc_attr( $option['id'] ) . '">' . esc_html( $option['title'] ) . '</option>';
 
-																											$help_tip .= '<strong>' . $option['title'] . '</strong> &ndash; ' . $option['description'];
+						$help_tip .= '<strong>' . $option['title'] . '</strong> &ndash; ' . $option['description'];
 
-																											if ( $option_key < sizeof( $pagination_style_options ) - 1 ) {
-																												$help_tip .= '</br></br>';
-																											}
-																										}
+						if ( $option_key < sizeof( $pagination_style_options ) - 1 ) {
+							$help_tip .= '</br></br>';
+						}
+					}
 
-																										?>
+					?>
 				</select>
 				<?php echo wc_help_tip( $help_tip ); ?>
 			</div>
