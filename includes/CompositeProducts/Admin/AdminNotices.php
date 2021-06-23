@@ -41,7 +41,7 @@ class AdminNotices {
 	 */
 	private static $maintenance_notice_types = array(
 		'update'  => 'update_notice',
- 		'welcome' => 'welcome_notice'
+		'welcome' => 'welcome_notice',
 	);
 
 	/**
@@ -72,8 +72,8 @@ class AdminNotices {
 	public static function add_notice( $text, $args, $save_notice = false ) {
 
 		if ( is_array( $args ) ) {
-			$type          = $args[ 'type' ];
-			$dismiss_class = isset( $args[ 'dismiss_class' ] ) ? $args[ 'dismiss_class' ] : false;
+			$type          = $args['type'];
+			$dismiss_class = isset( $args['dismiss_class'] ) ? $args['dismiss_class'] : false;
 		} else {
 			$type          = $args;
 			$dismiss_class = false;
@@ -82,7 +82,7 @@ class AdminNotices {
 		$notice = array(
 			'type'          => $type,
 			'content'       => $text,
-			'dismiss_class' => $dismiss_class
+			'dismiss_class' => $dismiss_class,
 		);
 
 		if ( $save_notice ) {
@@ -136,21 +136,22 @@ class AdminNotices {
 
 			foreach ( $notices as $notice ) {
 
-				$notice_classes = array( 'wc_cp_notice', 'notice', 'notice-' . $notice[ 'type' ] );
-				$dismiss_attr   = $notice[ 'dismiss_class' ] ? 'data-dismiss_class="' . $notice[ 'dismiss_class' ] . '"' : '';
+				$notice_classes = array( 'wc_cp_notice', 'notice', 'notice-' . $notice['type'] );
+				$dismiss_attr   = $notice['dismiss_class'] ? 'data-dismiss_class="' . $notice['dismiss_class'] . '"' : '';
 
-				if ( $notice[ 'dismiss_class' ] ) {
-					$notice_classes[] = $notice[ 'dismiss_class' ];
+				if ( $notice['dismiss_class'] ) {
+					$notice_classes[] = $notice['dismiss_class'];
 					$notice_classes[] = 'is-dismissible';
 				}
 
-				echo '<div class="' . implode( ' ', $notice_classes ) . '"' . $dismiss_attr . '>';
-				echo wpautop( wp_kses_post( $notice[ 'content' ] ) );
+				echo '<div class="' . implode( ' ', $notice_classes ) . '"' . esc_attr( $dismiss_attr ) . '>';
+				echo wpautop( wp_kses_post( $notice['content'] ) );
 				echo '</div>';
 			}
 
 			if ( function_exists( 'wc_enqueue_js' ) ) {
-				wc_enqueue_js( "
+				wc_enqueue_js(
+					"
 					jQuery( function( $ ) {
 						jQuery( '.wc_cp_notice .notice-dismiss' ).on( 'click', function() {
 
@@ -163,7 +164,8 @@ class AdminNotices {
 							jQuery.post( '" . WC()->ajax_url() . "', data );
 						} );
 					} );
-				" );
+				"
+				);
 			}
 
 			// Clear.
@@ -196,7 +198,7 @@ class AdminNotices {
 	 * @param  mixed    $args
 	 */
 	public static function add_dismissible_notice( $text, $args ) {
-		if ( ! isset( $args[ 'dismiss_class' ] ) || ! self::is_dismissible_notice_dismissed( $args[ 'dismiss_class' ] ) ) {
+		if ( ! isset( $args['dismiss_class'] ) || ! self::is_dismissible_notice_dismissed( $args['dismiss_class'] ) ) {
 			self::add_notice( $text, $args );
 		}
 	}
@@ -275,7 +277,7 @@ class AdminNotices {
 					$status .= self::get_force_update_prompt();
 				}
 
-			// Show a prompt to update.
+				// Show a prompt to update.
 			} elseif ( false === Install::auto_update_enabled() && false === Install::is_update_incomplete() ) {
 
 				$status  = __( 'Your database needs to be updated to the latest version.', 'wpdrift-woocommerce-modules' );
@@ -292,45 +294,57 @@ class AdminNotices {
 				self::add_notice( $notice, 'native' );
 			}
 
-		// Show persistent notice to indicate that the update process is complete.
+			// Show persistent notice to indicate that the update process is complete.
 		} else {
 			$notice = __( 'WooCommerce Composite Products data update complete.', 'wpdrift-woocommerce-modules' );
-			self::add_notice( $notice, array( 'type' => 'native', 'dismiss_class' => 'update' ) );
+			self::add_notice(
+				$notice,
+				array(
+					'type'          => 'native',
+					'dismiss_class' => 'update',
+				)
+			);
 		}
 	}
 
 	/**
- 	 * Add 'welcome' notice.
- 	 *
- 	 * @since  1.0.0
- 	 */
- 	public static function welcome_notice() {
+	 * Add 'welcome' notice.
+	 *
+	 * @since  1.0.0
+	 */
+	public static function welcome_notice() {
 
- 		$screen          = get_current_screen();
- 		$screen_id       = $screen ? $screen->id : '';
- 		$show_on_screens = array(
- 			'dashboard',
- 			'plugins',
- 		);
+		$screen          = get_current_screen();
+		$screen_id       = $screen ? $screen->id : '';
+		$show_on_screens = array(
+			'dashboard',
+			'plugins',
+		);
 
- 		// Onboarding notices should only show on the main dashboard, and on the plugins screen.
- 		if ( ! in_array( $screen_id, $show_on_screens, true ) ) {
- 			return;
- 		}
+		// Onboarding notices should only show on the main dashboard, and on the plugins screen.
+		if ( ! in_array( $screen_id, $show_on_screens, true ) ) {
+			return;
+		}
 
- 		ob_start();
+		ob_start();
 
- 		?>
- 		<div class="sw-welcome-icon"></div>
- 		<h2 class="sw-welcome-title"><?php esc_attr_e( 'Ready to create your first product kit?', 'wpdrift-woocommerce-modules' ); ?></h2>
- 		<p class="sw-welcome-text"><?php esc_attr_e( 'Thank you for installing WooCommerce Composite Products.', 'wpdrift-woocommerce-modules' ); ?><br/><?php esc_attr_e( 'Let\'s get started by creating your first composite product!', 'wpdrift-woocommerce-modules' ); ?></p>
- 		<a href="<?php echo admin_url( 'post-new.php?post_type=product&wc_cp_first_composite=1' ); ?>" class="sw-welcome-button button-primary"><?php esc_attr_e( 'Let\'s go!', 'wpdrift-woocommerce-modules' ); ?></a>
- 		<?php
+		?>
+		<div class="sw-welcome-icon"></div>
+		<h2 class="sw-welcome-title"><?php esc_attr_e( 'Ready to create your first product kit?', 'wpdrift-woocommerce-modules' ); ?></h2>
+		<p class="sw-welcome-text"><?php esc_attr_e( 'Thank you for installing WooCommerce Composite Products.', 'wpdrift-woocommerce-modules' ); ?><br/><?php esc_attr_e( 'Let\'s get started by creating your first composite product!', 'wpdrift-woocommerce-modules' ); ?></p>
+		<a href="<?php echo admin_url( 'post-new.php?post_type=product&wc_cp_first_composite=1' ); ?>" class="sw-welcome-button button-primary"><?php esc_attr_e( 'Let\'s go!', 'wpdrift-woocommerce-modules' ); ?></a>
+		<?php
 
- 		$notice = ob_get_clean();
+		$notice = ob_get_clean();
 
- 		self::add_dismissible_notice( $notice, array( 'type' => 'native', 'dismiss_class' => 'welcome' ) );
- 	}
+		self::add_dismissible_notice(
+			$notice,
+			array(
+				'type'          => 'native',
+				'dismiss_class' => 'welcome',
+			)
+		);
+	}
 
 	/**
 	 * Returns a "trigger update" notice component.
@@ -411,8 +425,8 @@ class AdminNotices {
 	 * @deprecated  1.0.0
 	 */
 	public static function dismiss_notice_handler() {
-		if ( isset( $_GET[ 'dismiss_wc_cp_notice' ] ) && isset( $_GET[ '_wc_cp_admin_nonce' ] ) ) {
-			if ( ! wp_verify_nonce( $_GET[ '_wc_cp_admin_nonce' ], 'wc_cp_dismiss_notice_nonce' ) ) {
+		if ( isset( $_GET['dismiss_wc_cp_notice'] ) && isset( $_GET['_wc_cp_admin_nonce'] ) ) {
+			if ( ! wp_verify_nonce( $_GET['_wc_cp_admin_nonce'], 'wc_cp_dismiss_notice_nonce' ) ) {
 				wp_die( __( 'Action failed. Please refresh the page and retry.', 'wpdrift-woocommerce-modules' ) );
 			}
 
@@ -420,7 +434,7 @@ class AdminNotices {
 				wp_die( __( 'Cheatin&#8217; huh?', 'wpdrift-woocommerce-modules' ) );
 			}
 
-			$notice = sanitize_text_field( $_GET[ 'dismiss_wc_cp_notice' ] );
+			$notice = sanitize_text_field( $_GET['dismiss_wc_cp_notice'] );
 
 			self::dismiss_notice( $notice );
 		}
