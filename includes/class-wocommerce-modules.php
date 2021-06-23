@@ -59,7 +59,7 @@ final class Wocommerce_Modules {
 	 * Define Constants.
 	 */
 	private function define_constants() {
-		$this->define( 'WPDRIFT_WOOCOMMERCE_MODULES_SUPPORT_URL', 'https://github.com/wpdrift/WPdrift-IO/issues' );
+		$this->define( 'WPDRIFT_WOOCOMMERCE_MODULES_SUPPORT_URL', 'https://github.com/wpdrift/wpdrift-for-woocommerce/issues' );
 	}
 
 	/**
