@@ -1419,8 +1419,8 @@ class Display {
 					continue;
 				}
 
-				echo '<dt class="component_title_meta wishlist_component_title_meta">' . $composited_item_data['title'] . ':</dt>';
-				echo '<dd class="component_option_meta wishlist_component_option_meta">' . $composited_product->get_title() . ' <strong class="component_quantity_meta wishlist_component_quantity_meta product-quantity">&times; ' . $composited_item_data['quantity'] . '</strong></dd>';
+				echo '<dt class="component_title_meta wishlist_component_title_meta">' . esc_html( $composited_item_data['title'] ) . ':</dt>';
+				echo '<dd class="component_option_meta wishlist_component_option_meta">' . esc_html( $composited_product->get_title() ) . ' <strong class="component_quantity_meta wishlist_component_quantity_meta product-quantity">&times; ' . esc_html( $composited_item_data['quantity'] ) . '</strong></dd>';
 
 				if ( ! empty( $composited_item_data['attributes'] ) ) {
 
@@ -1456,7 +1456,7 @@ class Display {
 
 						$attributes = $attributes . $label . ': ' . $attribute_value . ', ';
 					}
-					echo '<dd class="component_attribute_meta wishlist_component_attribute_meta">' . rtrim( $attributes, ', ' ) . '</dd>';
+					echo '<dd class="component_attribute_meta wishlist_component_attribute_meta">' . esc_html( rtrim( $attributes, ', ' ) ) . '</dd>';
 				}
 			}
 			echo '</dl>';
@@ -1700,7 +1700,7 @@ class Display {
 				$item_descriptions[] = esc_html( $item['key'] ) . ': ' . wp_kses_post( $item['value'] );
 			}
 
-			echo '<div class="product-short-description">' . implode( ', ', $item_descriptions ) . '</div>';
+			echo '<div class="product-short-description">' . esc_html( implode( ', ', $item_descriptions ) ) . '</div>';
 		}
 	}
 }
