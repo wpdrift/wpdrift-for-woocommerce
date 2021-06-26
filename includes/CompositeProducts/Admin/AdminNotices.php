@@ -144,7 +144,7 @@ class AdminNotices {
 					$notice_classes[] = 'is-dismissible';
 				}
 
-				echo '<div class="' . implode( ' ', $notice_classes ) . '"' . esc_attr( $dismiss_attr ) . '>';
+				echo '<div class="' . esc_attr( implode( ' ', $notice_classes ) ) . '"' . esc_attr( $dismiss_attr ) . '>';
 				echo wpautop( wp_kses_post( $notice['content'] ) );
 				echo '</div>';
 			}
