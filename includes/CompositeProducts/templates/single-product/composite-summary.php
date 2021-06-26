@@ -43,28 +43,33 @@ if ( apply_filters( 'woocommerce_composite_summary_vertical_style', false, $prod
 	$summary_classes .= ' force_vertical';
 }
 
-?><div id="composite_summary_<?php echo $product_id; ?>" class="composite_summary <?php echo esc_attr( $summary_classes ); ?>" data-summary_columns="<?php echo esc_attr( $summary_columns ); ?>"><?php
-
-	if ( $product->get_composite_layout_style_variation() === 'componentized' ) {
-
-		?><h2 class="summary_title step_title_wrapper" tabindex="-1">
+?>
+<div id="composite_summary_<?php echo esc_attr( $product_id ); ?>" class="composite_summary <?php echo esc_attr( $summary_classes ); ?>" data-summary_columns="<?php echo esc_attr( $summary_columns ); ?>">
+	<?php if ( $product->get_composite_layout_style_variation() === 'componentized' ) : ?>
+		<h2 class="summary_title step_title_wrapper" tabindex="-1">
 			<span class="step_title_text"><?php echo __( 'Your Configuration', 'wpdrift-woocommerce-modules' ); ?></span>
-		</h2><?php
-
-	} else {
-
-		?><h2 class="summary_title step_title_wrapper"><?php
+		</h2>
+	<?php else : ?>
+		<h2 class="summary_title step_title_wrapper">
+			<?php
 			$final_step = count( $components ) + 1;
 			$title      = __( 'Review Configuration', 'wpdrift-woocommerce-modules' );
-			echo apply_filters( 'woocommerce_composite_step_title', sprintf( __( '<span class="step_index">%d</span> <span class="step_title">%s</span>', 'wpdrift-woocommerce-modules' ), $final_step, $title ), $title, $final_step );
-		?></h2><?php
-	}
+			echo apply_filters( 'woocommerce_composite_step_title', sprintf( __( '<span class="step_index">%1$d</span> <span class="step_title">%2$s</span>', 'wpdrift-woocommerce-modules' ), $final_step, $title ), $title, $final_step );
+			?>
+		</h2>
+	<?php endif; ?>
 
-	wc_get_template( 'single-product/composite-summary-content.php', array(
-		'summary_columns'  => $summary_columns,
-		'summary_elements' => $summary_elements,
-		'components'       => $components,
-		'product'          => $product,
-	), '', Module::instance()->plugin_path() . '/templates/' );
-
-?></div>
+	<?php
+	wc_get_template(
+		'single-product/composite-summary-content.php',
+		array(
+			'summary_columns'  => $summary_columns,
+			'summary_elements' => $summary_elements,
+			'components'       => $components,
+			'product'          => $product,
+		),
+		'',
+		Module::instance()->plugin_path() . '/templates/'
+	);
+	?>
+</div>

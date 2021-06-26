@@ -1700,7 +1700,7 @@ class Display {
 				$item_descriptions[] = esc_html( $item['key'] ) . ': ' . wp_kses_post( $item['value'] );
 			}
 
-			echo '<div class="product-short-description">' . esc_html( implode( ', ', $item_descriptions ) ) . '</div>';
+			echo '<div class="product-short-description">' . implode( ', ', $item_descriptions ) . '</div>';
 		}
 	}
 }

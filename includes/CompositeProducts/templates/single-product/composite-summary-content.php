@@ -16,33 +16,37 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-?><ul class="summary_elements cp_clearfix" style="list-style:none"><?php
+?>
+<ul class="summary_elements cp_clearfix" style="list-style:none">
+<?php
 
-	$summary_element_loop = 1;
+$summary_element_loop = 1;
 
-	foreach ( $components as $component_id => $component ) {
+foreach ( $components as $component_id => $component ) {
+	$summary_element_class = '';
 
-		$summary_element_class = '';
-
-		// Summary loop first/last class
-		if ( ( ( $summary_element_loop - 1 ) % $summary_columns ) == 0 || $summary_columns == 1 ) {
-			$summary_element_class = 'first';
-		}
-
-		if ( $summary_element_loop % $summary_columns == 0 ) {
-			$summary_element_class = 'last';
-		}
-
-		$title = $component->get_title();
-
-		?><li class="summary_element summary_element_<?php echo $component_id; ?> <?php echo $summary_element_class; ?>" data-item_id="<?php echo $component_id; ?>">
-			<div class="summary_element_wrapper_outer">
-				<div class="summary_element_wrapper disabled">
-					<div class="summary_element_wrapper_inner cp_clearfix"></div>
-				</div>
-			</div>
-		</li><?php
-
-		$summary_element_loop++;
+	// Summary loop first/last class
+	if ( ( ( $summary_element_loop - 1 ) % $summary_columns ) == 0 || $summary_columns == 1 ) {
+		$summary_element_class = 'first';
 	}
-?></ul>
+
+	if ( $summary_element_loop % $summary_columns == 0 ) {
+		$summary_element_class = 'last';
+	}
+
+	$title = $component->get_title();
+
+	?>
+	<li class="summary_element summary_element_<?php echo esc_attr( $component_id ); ?> <?php echo esc_attr( $summary_element_class ); ?>" data-item_id="<?php echo esc_attr( $component_id ); ?>">
+		<div class="summary_element_wrapper_outer">
+			<div class="summary_element_wrapper disabled">
+				<div class="summary_element_wrapper_inner cp_clearfix"></div>
+			</div>
+		</div>
+	</li>
+	<?php
+
+	$summary_element_loop++;
+}
+?>
+</ul>

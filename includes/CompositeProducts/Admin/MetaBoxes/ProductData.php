@@ -407,9 +407,7 @@ class ProductData {
 	 * @return void
 	 */
 	public static function component_id_marker( $id, $data, $product_id ) {
-
 		if ( ! empty( $data['component_id'] ) ) {
-
 			?>
 			<span class="group_id">
 				<?php echo '#' . esc_html( $data['component_id'] ); ?>
@@ -482,7 +480,6 @@ class ProductData {
 				<select class="wc-enhanced-select-lazy" style="width: 75%" name="bto_data[<?php echo esc_attr( $id ); ?>][select_action]">
 					<?php
 					foreach ( $select_action_options as $option_key => $option ) {
-
 						echo '<option ' . selected( $select_action, $option['id'], false ) . ' value="' . esc_attr( $option['id'] ) . '">' . esc_html( $option['title'] ) . '</option>';
 
 						$help_tip .= '<strong>' . $option['title'] . '</strong> &ndash; ' . $option['description'];
@@ -1182,7 +1179,6 @@ class ProductData {
 				<select class="wc-enhanced-select-lazy" style="width: 75%" name="bto_data[<?php echo esc_attr( $id ); ?>][display_prices]">
 					<?php
 					foreach ( $price_display_options as $option_key => $option ) {
-
 						echo '<option ' . selected( $prices_display, $option['id'], false ) . ' value="' . esc_attr( $option['id'] ) . '">' . esc_html( $option['title'] ) . '</option>';
 
 						$help_tip .= '<strong>' . $option['title'] . '</strong> &ndash; ' . $option['description'];
@@ -1293,7 +1289,6 @@ class ProductData {
 					<?php
 
 					foreach ( $pagination_style_options as $option_key => $option ) {
-
 						echo '<option ' . selected( $pagination_style, $option['id'], false ) . ' value="' . esc_attr( $option['id'] ) . '">' . esc_html( $option['title'] ) . '</option>';
 
 						$help_tip .= '<strong>' . $option['title'] . '</strong> &ndash; ' . $option['description'];
