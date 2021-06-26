@@ -600,65 +600,6 @@ function wc_cp_summary( $components, $product ) {
 }
 
 /**
- * Hook layout/style-specific content on the 'woocommerce_composite_before_components' action.
- */
-function wc_cp_before_components( $components, $product ) {
-
-	$layout = $product->get_composite_layout_style();
-
-	/**
-	 * Action 'woocommerce_composite_before_components_paged':
-	 *
-	 * @since  1.0.0
-	 *
-	 * @param  array                 $components
-	 * @param  ProductComposite  $product
-	 *
-	 * @hooked wc_cp_component_transition_scroll_target    - 10
-	 * @hooked wc_cp_pagination                            - 15
-	 * @hooked wc_cp_navigation_top                        - 20
-	 * @hooked wc_cp_navigation_movable                    - 20
-	 */
-	do_action( 'woocommerce_composite_before_components_' . $layout, $components, $product );
-}
-
-/**
- * Hook layout/style-specific content on the 'woocommerce_composite_after_components' action.
- *
- * @return void
- */
-function wc_cp_after_components( $components, $product ) {
-
-	$layout = $product->get_composite_layout_style();
-
-	/**
-	 * Action 'woocommerce_composite_after_components_{$layout}':
-	 *
-	 * @since  1.0.0
-	 *
-	 * @param  array                 $components
-	 * @param  ProductComposite  $product
-	 *
-	 * Action 'woocommerce_composite_after_components_single':
-	 *
-	 * @hooked wc_cp_add_to_cart_section - 10
-	 *
-	 *
-	 * Action 'woocommerce_composite_after_components_progressive':
-	 *
-	 * @hooked wc_cp_add_to_cart_section - 10
-	 * @hooked wc_cp_navigation_bottom   - 15
-	 *
-	 *
-	 * Action 'woocommerce_composite_after_components_paged':
-	 *
-	 * @hooked wc_cp_add_to_cart_section                  - 10
-	 * @hooked wc_cp_navigation_bottom                    - 20
-	 */
-	do_action( 'woocommerce_composite_after_components_' . $layout, $components, $product );
-}
-
-/**
  * Loading status message.
  */
 function wc_cp_status() {
@@ -667,101 +608,6 @@ function wc_cp_status() {
 		<div class="wrapper"></div>
 	</div>
 	<?php
-}
-
-/**
- * Add-to-cart section.
- *
- * @param  array                 $components
- * @param  ProductComposite  $product
- */
-function wc_cp_add_to_cart_section( $components, $product ) {
-
-	wc_get_template(
-		'single-product/composite-add-to-cart.php',
-		array(
-			'product'                    => $product,
-			'components'                 => $components,
-			'product_id'                 => $product->get_id(),
-			'availability_html'          => wc_get_stock_html( $product ),
-			'navigation_style'           => $product->get_composite_layout_style(),
-			'navigation_style_variation' => $product->get_composite_layout_style_variation(),
-		),
-		'',
-		Module::instance()->plugin_path() . '/templates/'
-	);
-
-}
-
-/**
- * Add previous/next navigation buttons in paged mode -- added on bottom of page under the component options section.
- *
- * @param  array                 $components
- * @param  ProductComposite  $product
- */
-function wc_cp_navigation_bottom( $components, $product ) {
-
-	$position                   = 'bottom';
-	$navigation_style           = $product->get_composite_layout_style();
-	$navigation_style_variation = $product->get_composite_layout_style_variation();
-
-	$classes = array( $position, $navigation_style, $navigation_style_variation );
-
-	wc_cp_navigation( $classes, $product );
-}
-
-/**
- * Add previous/next navigation buttons in paged mode -- added on top of page under the composite pagination section when component options are viewed as thumbnails.
- *
- * @param  array                 $components
- * @param  ProductComposite  $product
- */
-function wc_cp_navigation_top( $components, $product ) {
-
-	$position                   = 'top';
-	$navigation_style           = 'paged';
-	$navigation_style_variation = $product->get_composite_layout_style_variation();
-
-	$classes = array( $position, $navigation_style, $navigation_style_variation );
-	wc_cp_navigation( $classes, $product );
-}
-
-/**
- * Add previous/next navigation buttons in multi-page mode -- added on top of page under the composite pagination section.
- *
- * @param  array                 $components
- * @param  ProductComposite  $product
- */
-function wc_cp_navigation_movable( $components, $product ) {
-
-	$position                   = 'movable hidden';
-	$navigation_style           = 'paged';
-	$navigation_style_variation = $product->get_composite_layout_style_variation();
-
-	$classes = array( $position, $navigation_style, $navigation_style_variation );
-	wc_cp_navigation( $classes, $product );
-}
-
-/**
- * Add previous/next navigation buttons in multi-page mode.
- *
- * @param  array                 $classes
- * @param  ProductComposite  $product
- */
-function wc_cp_navigation( $classes, $product ) {
-
-	wc_get_template(
-		'single-product/composite-navigation.php',
-		array(
-			'product'                    => $product,
-			'product_id'                 => $product->get_id(),
-			'navigation_style'           => $product->get_composite_layout_style(),
-			'navigation_style_variation' => $product->get_composite_layout_style_variation(),
-			'classes'                    => implode( ' ', $classes ),
-		),
-		'',
-		Module::instance()->plugin_path() . '/templates/'
-	);
 }
 
 /**
@@ -813,32 +659,6 @@ function wc_cp_component_blocker( $components, $product ) {
 	?>
 	<div class="form_input_blocker"></div>
 	<?php
-}
-
-/**
- * Adds composite pagination in paged mode.
- *
- * @param  array                 $components
- * @param  ProductComposite  $product
- */
-function wc_cp_pagination( $components, $product ) {
-
-	$layout_variation = $product->get_composite_layout_style_variation();
-
-	if ( 'componentized' !== $layout_variation ) {
-
-		wc_get_template(
-			'single-product/composite-pagination.php',
-			array(
-				'product'    => $product,
-				'product_id' => $product->get_id(),
-				'components' => $components,
-			),
-			'',
-			Module::instance()->plugin_path() . '/templates/'
-		);
-
-	}
 }
 
 /**
@@ -951,29 +771,6 @@ function wc_cp_composited_product_thumbnail( $component_option ) {
 }
 
 /**
- * Composited product template.
- *
- * @since  1.0.0
- *
- * @param  Product  $component_option
- */
-function wc_cp_composited_product_single( $component_option ) {
-
-	/**
-	 * Action 'woocommerce_composited_product_{$product_type}'.
-	 * Composited product template (type-specific).
-	 *
-	 * @since  1.0.0
-	 *
-	 * @param  Product  $component_option
-	 *
-	 * @hooked wc_cp_composited_product_simple   - 10
-	 * @hooked wc_cp_composited_product_variable - 10
-	 */
-	do_action( 'woocommerce_composited_product_' . $component_option->get_product()->get_type(), $component_option );
-}
-
-/**
  * Composited product details wrapper close.
  *
  * @since  1.0.0
@@ -982,75 +779,6 @@ function wc_cp_composited_product_single( $component_option ) {
  */
 function wc_cp_composited_product_wrapper_close( $component_option ) {
 	echo '</div>';
-}
-
-/**
- * Composited simple product template.
- *
- * @since  1.0.0
- *
- * @param  Product  $component_option
- */
-function wc_cp_composited_product_simple( $component_option ) {
-	wc_get_template(
-		'composited-product/simple-product.php',
-		array(
-			'product'           => $component_option->get_product(),
-			'component_id'      => $component_option->get_component_id(),
-			'quantity_min'      => $component_option->get_quantity_min(),
-			'quantity_max'      => $component_option->get_quantity_max( true ),
-			'composite_product' => $component_option->get_composite(),
-			'component_option'  => $component_option,
-		),
-		'',
-		Module::instance()->plugin_path() . '/templates/'
-	);
-}
-
-/**
- * Composited variable product template.
- *
- * @since  1.0.0
- *
- * @param  Product  $component_option
- */
-function wc_cp_composited_product_variable( $component_option ) {
-
-	$component       = $component_option->get_component();
-	$variations_data = $component_option->get_variations_data();
-
-	if ( empty( $variations_data ) ) {
-
-		wc_get_template(
-			'composited-product/invalid-product.php',
-			array(
-				'is_static' => $component->is_static(),
-			),
-			'',
-			Module::instance()->plugin_path() . '/templates/'
-		);
-
-		return;
-	}
-
-	$attributes     = $component_option->get_product()->get_variation_attributes();
-	$attribute_keys = array_keys( $attributes );
-
-	wc_get_template(
-		'composited-product/variable-product.php',
-		array(
-			'attributes'        => $attributes,
-			'attribute_keys'    => $attribute_keys,
-			'product'           => $component_option->get_product(),
-			'component_id'      => $component_option->get_component_id(),
-			'quantity_min'      => $component_option->get_quantity_min(),
-			'quantity_max'      => $component_option->get_quantity_max(),
-			'composite_product' => $component_option->get_composite(),
-			'component_option'  => $component_option,
-		),
-		'',
-		Module::instance()->plugin_path() . '/templates/'
-	);
 }
 
 /**
@@ -1121,37 +849,6 @@ function wc_cp_composited_single_variation( $product, $component_id, $composite 
 	?>
 	<div class="woocommerce-variation single_variation"></div>
 	<?php
-}
-
-/**
- * Composited single variation template.
- *
- * @since  1.0.0
- *
- * @param  WC_Product_Variable   $product
- * @param  string                $component_id
- * @param  ProductComposite  $composite
- */
-function wc_cp_composited_single_variation_template( $product, $component_id, $composite ) {
-
-	$product_id         = $product->get_id();
-	$composited_product = $composite->get_component( $component_id )->get_option( $product_id );
-
-	$quantity_min = $composited_product->get_quantity_min();
-	$quantity_max = $composited_product->get_quantity_max();
-
-	wc_get_template(
-		'composited-product/variation.php',
-		array(
-			'quantity_min'      => $quantity_min,
-			'quantity_max'      => $quantity_max,
-			'component_id'      => $component_id,
-			'product'           => $product,
-			'composite_product' => $composite,
-		),
-		'',
-		Module::instance()->plugin_path() . '/templates/'
-	);
 }
 
 /**

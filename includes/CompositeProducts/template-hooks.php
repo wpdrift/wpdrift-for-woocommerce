@@ -21,10 +21,6 @@ add_action( 'woocommerce_after_single_product_summary', __NAMESPACE__ . '\wc_cp_
 // Single product add-to-cart button template for composite products.
 add_action( 'woocommerce_composite_add_to_cart_button', __NAMESPACE__ . '\wc_cp_add_to_cart_button' );
 
-// Before and After components: Fire layout-specific actions.
-add_action( 'woocommerce_composite_before_components', __NAMESPACE__ . '\wc_cp_before_components', 10, 2 );
-add_action( 'woocommerce_composite_after_components', __NAMESPACE__ . '\wc_cp_after_components', 10, 2 );
-
 // After components: Status Messages.
 add_action( 'woocommerce_composite_after_components', __NAMESPACE__ . '\wc_cp_status', 10, 2 );
 
@@ -70,13 +66,6 @@ add_action( 'woocommerce_composite_summary_widget_content', __NAMESPACE__ . '\wc
 /*---------------------------*/
 
 /*
- * After components:
- */
-
-// Add-to-cart section.
-add_action( 'woocommerce_composite_after_components_single', __NAMESPACE__ . '\wc_cp_add_to_cart_section', 10, 2 );
-
-/*
  * Component options:
  */
 
@@ -86,16 +75,6 @@ add_action( 'woocommerce_composite_component_selections_single', __NAMESPACE__ .
 /*-----------------------------*/
 /*  Progressive layout hooks.  */
 /*-----------------------------*/
-
-/*
- * After components:
- */
-
-// Add-to-cart section.
-add_action( 'woocommerce_composite_after_components_progressive', __NAMESPACE__ . '\wc_cp_add_to_cart_section', 10, 2 );
-
-// Previous / Next buttons.
-add_action( 'woocommerce_composite_after_components_progressive', __NAMESPACE__ . '\wc_cp_navigation_bottom', 15, 2 );
 
 /*
  * Component options:
@@ -137,33 +116,6 @@ add_action( 'woocommerce_composite_before_components_paged', __NAMESPACE__ . '\w
 // Component blocker div (blocks input during transitions).
 add_action( 'woocommerce_composite_before_components_paged', __NAMESPACE__ . '\wc_cp_component_blocker', 10, 2 );
 
-// Composite pagination (anchors to components at top of page).
-add_action( 'woocommerce_composite_before_components_paged', __NAMESPACE__ . '\wc_cp_pagination', 15, 2 );
-
-// Previous / Next buttons added on top of page when component options are viewed as thumbnails.
-add_action( 'woocommerce_composite_before_components_paged', __NAMESPACE__ . '\wc_cp_navigation_top', 20, 2 );
-
-// Previous / Next buttons relocated by JS into the current selection details when component options are viewed as thumbnails and appended.
-add_action( 'woocommerce_composite_before_components_paged', __NAMESPACE__ . '\wc_cp_navigation_movable', 20, 2 );
-
-/*
- * After components:
- */
-
-// Add-to-cart section.
-
-/*
- * Note:
- *
- * If 'wc_cp_add_to_cart_section' is moved to a later priority, the add-to-cart and summary section will no longer be part of the step-based process
- * In this case, use 'wc_cp_final_step_scroll_target' to define the auto-scroll target after clicking on the "Next" button of the final component, like so:
- * add_action( 'woocommerce_composite_after_components_paged', __NAMESPACE__ . '\wc_cp_final_step_scroll_target', 9, 2 );
- */
-add_action( 'woocommerce_composite_after_components_paged', __NAMESPACE__ . '\wc_cp_add_to_cart_section', 10, 2 );
-
-// Previous / Next buttons at bottom of page.
-add_action( 'woocommerce_composite_after_components_paged', __NAMESPACE__ . '\wc_cp_navigation_bottom', 15, 2 );
-
 /*
  * Component options:
  */
@@ -199,24 +151,11 @@ add_action( 'woocommerce_composited_product_single', __NAMESPACE__ . '\wc_cp_com
 // Composited product thumbnail.
 add_action( 'woocommerce_composited_product_single', __NAMESPACE__ . '\wc_cp_composited_product_thumbnail', 20 );
 
-// Composited product details.
-add_action( 'woocommerce_composited_product_single', __NAMESPACE__ . '\wc_cp_composited_product_single', 30 );
-
 // Composited product details wrapper close.
 add_action( 'woocommerce_composited_product_single', __NAMESPACE__ . '\wc_cp_composited_product_wrapper_close', 100 );
-
-// Composited product - Simple product template data.
-add_action( 'woocommerce_composited_product_simple', __NAMESPACE__ . '\wc_cp_composited_product_simple', 10 );
-
-// Composited product - Variable product template data.
-add_action( 'woocommerce_composited_product_variable', __NAMESPACE__ . '\wc_cp_composited_product_variable', 10 );
 
 // Composited product - Excerpt.
 add_action( 'woocommerce_composited_product_details', __NAMESPACE__ . '\wc_cp_composited_product_excerpt', 10, 3 );
 
 // Composited Simple product - Price.
 add_action( 'woocommerce_composited_product_add_to_cart', __NAMESPACE__ . '\wc_cp_composited_product_price', 8, 3 );
-
-// Composited Variable product - Selected variation.
-add_action( 'woocommerce_composited_single_variation', __NAMESPACE__ . '\wc_cp_composited_single_variation', 10, 3 );
-add_action( 'woocommerce_composited_single_variation', __NAMESPACE__ . '\wc_cp_composited_single_variation_template', 20, 3 );
