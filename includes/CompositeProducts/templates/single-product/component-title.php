@@ -21,13 +21,10 @@ $component_title = $step ? apply_filters( 'woocommerce_composite_step_title', sp
 ?>
 <h2 class="step_title_wrapper component_title <?php echo $is_toggled ? 'component_title_toggled' : ''; ?>" tabindex="-1">
 	<span class="component_title_text step_title_text"><?php echo esc_html( $component_title ); ?></span>
-
 	<?php
 	// Add button to assist screen-readers.
-	if ( $is_toggled ) {
+	if ( $is_toggled ) :
 		?>
 		<button class="component_title_button aria_button" aria-label="<?php echo sprintf( __( 'Toggle %s', 'wpdrift-woocommerce-modules' ), $title ); ?>" aria-expanded="<?php echo $is_open ? 'true' : 'false'; ?>"></button>
-		<?php
-	}
-	?>
+	<?php endif; ?>
 </h2>
