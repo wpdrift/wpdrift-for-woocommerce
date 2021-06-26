@@ -80,22 +80,6 @@ add_action( 'woocommerce_composite_after_components_single', __NAMESPACE__ . '\w
  * Component options:
  */
 
-// Sorting and filtering.
-add_action( 'woocommerce_composite_component_selections_single', __NAMESPACE__ . '\wc_cp_component_options_sorting', 10, 2 );
-add_action( 'woocommerce_composite_component_selections_single', __NAMESPACE__ . '\wc_cp_component_options_filtering', 20, 2 );
-
-// Component options title.
-add_action( 'woocommerce_composite_component_selections_single', __NAMESPACE__ . '\wc_cp_component_options_title', 30, 2 );
-
-// Top Pagination.
-add_action( 'woocommerce_composite_component_selections_single', __NAMESPACE__ . '\wc_cp_component_options_pagination_top', 39, 2 );
-
-// Component options: Dropdowns / Thumbnails / ...
-add_action( 'woocommerce_composite_component_selections_single', __NAMESPACE__ . '\wc_cp_component_options', 40, 2 );
-
-// Pagination.
-add_action( 'woocommerce_composite_component_selections_single', __NAMESPACE__ . '\wc_cp_component_options_pagination_bottom', 41, 2 );
-
 // Current selection in single-page mode.
 add_action( 'woocommerce_composite_component_selections_single', __NAMESPACE__ . '\wc_cp_component_selection', 50, 2 );
 
@@ -116,25 +100,6 @@ add_action( 'woocommerce_composite_after_components_progressive', __NAMESPACE__ 
 /*
  * Component options:
  */
-
-// Current selections block wrapper in progressive mode -- start.
-add_action( 'woocommerce_composite_component_selections_progressive', __NAMESPACE__ . '\wc_cp_component_options_progressive_start', 0, 2 );
-
-// Sorting and filtering.
-add_action( 'woocommerce_composite_component_selections_progressive', __NAMESPACE__ . '\wc_cp_component_options_sorting', 10, 2 );
-add_action( 'woocommerce_composite_component_selections_progressive', __NAMESPACE__ . '\wc_cp_component_options_filtering', 20, 2 );
-
-// Component options title.
-add_action( 'woocommerce_composite_component_selections_progressive', __NAMESPACE__ . '\wc_cp_component_options_title', 30, 2 );
-
-// Top Pagination.
-add_action( 'woocommerce_composite_component_selections_progressive', __NAMESPACE__ . '\wc_cp_component_options_pagination_top', 39, 2 );
-
-// Dropdowns / Thumbnails / ...
-add_action( 'woocommerce_composite_component_selections_progressive', __NAMESPACE__ . '\wc_cp_component_options', 40, 2 );
-
-// Bottom Pagination.
-add_action( 'woocommerce_composite_component_selections_progressive', __NAMESPACE__ . '\wc_cp_component_options_pagination_bottom', 41, 2 );
 
 // Current selections block wrapper in progressive mode -- end.
 add_action( 'woocommerce_composite_component_selections_progressive', __NAMESPACE__ . '\wc_cp_component_options_progressive_end', 45, 2 );
@@ -212,22 +177,6 @@ add_action( 'woocommerce_composite_component_selections_paged', __NAMESPACE__ . 
 // Component options: Current selection details in paged mode - before thumbnails.
 add_action( 'woocommerce_composite_component_selections_paged', __NAMESPACE__ . '\wc_cp_component_selection_paged_top', 0, 2 );
 
-// Component options: Sorting and filtering.
-add_action( 'woocommerce_composite_component_selections_paged', __NAMESPACE__ . '\wc_cp_component_options_sorting', 10, 2 );
-add_action( 'woocommerce_composite_component_selections_paged', __NAMESPACE__ . '\wc_cp_component_options_filtering', 20, 2 );
-
-// Component options title.
-add_action( 'woocommerce_composite_component_selections_paged', __NAMESPACE__ . '\wc_cp_component_options_title', 30, 2 );
-
-// Component options: Top Pagination.
-add_action( 'woocommerce_composite_component_selections_paged', __NAMESPACE__ . '\wc_cp_component_options_pagination_top', 39, 2 );
-
-// Component options: Dropdowns / Thumbnails / ...
-add_action( 'woocommerce_composite_component_selections_paged', __NAMESPACE__ . '\wc_cp_component_options', 40, 2 );
-
-// Component options: Bottom Pagination.
-add_action( 'woocommerce_composite_component_selections_paged', __NAMESPACE__ . '\wc_cp_component_options_pagination_bottom', 41, 2 );
-
 // Component options: Current selection in paged mode - after dropdown.
 add_action( 'woocommerce_composite_component_selections_paged', __NAMESPACE__ . '\wc_cp_component_selection_paged_bottom', 50, 2 );
 
@@ -236,14 +185,6 @@ add_action( 'woocommerce_composite_component_selections_paged', __NAMESPACE__ . 
 
 // Summary added inside the composite-add-to-cart.php template.
 add_action( 'woocommerce_before_add_to_cart_button', __NAMESPACE__ . '\wc_cp_before_add_to_cart_button', 5 );
-
-/*--------------------------------------*/
-/*  Component options template hooks.   */
-/*--------------------------------------*/
-
-add_action( 'woocommerce_composite_component_options_dropdowns', __NAMESPACE__ . '\wc_cp_component_options_dropdown', 10, 2 );
-add_action( 'woocommerce_composite_component_options_thumbnails', __NAMESPACE__ . '\wc_cp_component_options_thumbnails', 10, 2 );
-add_action( 'woocommerce_composite_component_options_radios', __NAMESPACE__ . '\wc_cp_component_options_radios', 10, 2 );
 
 /*--------------------------------------*/
 /*  Composited product template hooks.  */
