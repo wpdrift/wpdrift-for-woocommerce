@@ -209,17 +209,17 @@ class ProductData {
 							continue;
 						}
 
-						echo $loop % 2 === 0 ? '<li>' : '';
+						echo 0 === $loop % 2 ? '<li>' : '';
 
 						?>
-						<label class="bto_layout_label <?php echo $selected_layout == $layout_id ? 'selected' : ''; ?>">
+						<label class="bto_layout_label <?php echo $selected_layout === $layout_id ? 'selected' : ''; ?>">
 							<img class="layout_img" src="<?php echo esc_url( $layout_data['image_src'] ); ?>" />
-							<input <?php echo $selected_layout == $layout_id ? 'checked="checked"' : ''; ?> name="bto_style" type="radio" value="<?php echo esc_attr( $layout_id ); ?>" />
+							<input <?php echo $selected_layout === $layout_id ? 'checked="checked"' : ''; ?> name="bto_style" type="radio" value="<?php echo esc_attr( $layout_id ); ?>" />
 							<?php echo wc_help_tip( '<strong>' . $layout_data['title'] . '</strong> &ndash; ' . $layout_data['description'] ); ?>
 						</label>
 						<?php
 
-						echo $loop % 2 === 1 ? '</li>' : '';
+						echo 1 === $loop % 2 ? '</li>' : '';
 
 						$loop++;
 					}
@@ -616,7 +616,7 @@ class ProductData {
 				<label for="group_show_orderby_<?php echo esc_attr( $id ); ?>">
 					<?php echo __( 'Options Sorting', 'wpdrift-woocommerce-modules' ); ?>
 				</label>
-				<input type="checkbox" class="checkbox"<?php echo ( $show_orderby === 'yes' ? ' checked="checked"' : '' ); ?> name="bto_data[<?php echo esc_attr( $id ); ?>][show_orderby]" <?php echo ( $show_orderby === 'yes' ? 'value="1"' : '' ); ?>/>
+				<input type="checkbox" class="checkbox"<?php echo ( 'yes' === $show_orderby ? ' checked="checked"' : '' ); ?> name="bto_data[<?php echo esc_attr( $id ); ?>][show_orderby]" <?php echo ( 'yes' === $show_orderby ? 'value="1"' : '' ); ?>/>
 				<?php echo wc_help_tip( __( 'Check this option to allow sorting the available Component Options by popularity, rating, newness or price.', 'wpdrift-woocommerce-modules' ) ); ?>
 			</div>
 		</div>
@@ -643,7 +643,7 @@ class ProductData {
 				<label for="group_show_filters_<?php echo esc_attr( $id ); ?>">
 					<?php echo __( 'Options Filtering', 'wpdrift-woocommerce-modules' ); ?>
 				</label>
-				<input type="checkbox" class="checkbox"<?php echo ( $show_filters === 'yes' ? ' checked="checked"' : '' ); ?> name="bto_data[<?php echo esc_attr( $id ); ?>][show_filters]" <?php echo ( $show_filters === 'yes' ? 'value="1"' : '' ); ?>/>
+				<input type="checkbox" class="checkbox"<?php echo ( 'yes' === $show_filters ? ' checked="checked"' : '' ); ?> name="bto_data[<?php echo esc_attr( $id ); ?>][show_filters]" <?php echo ( 'yes' === $show_filters ? 'value="1"' : '' ); ?>/>
 				<?php echo wc_help_tip( __( 'Check this option to configure and display layered attribute filters. Useful for narrowing down Component Options more easily.', 'wpdrift-woocommerce-modules' ) ); ?>
 			</div>
 		</div>
