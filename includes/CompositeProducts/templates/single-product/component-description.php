@@ -17,6 +17,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 ?>
-<div class="component_description"><?php
-	echo $description;
-?></div>
+<div class="component_description">
+	<?php echo wp_kses_post( $description ); ?>
+</div>

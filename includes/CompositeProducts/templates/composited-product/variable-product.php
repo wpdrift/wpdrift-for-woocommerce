@@ -16,8 +16,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-?><div class="details component_data"><?php
-
+?>
+<div class="details component_data">
+<?php
 	/**
 	 * 'woocommerce_composited_product_details' hook.
 	 *
@@ -26,32 +27,40 @@ if ( ! defined( 'ABSPATH' ) ) {
 	 * @hooked wc_cp_composited_product_excerpt - 10
 	 */
 	do_action( 'woocommerce_composited_product_details', $product, $component_id, $composite_product );
+?>
+	<table class="variations" cellspacing="0">
+		<tbody>
+		<?php
 
-	?><table class="variations" cellspacing="0">
-		<tbody><?php
+		foreach ( $attributes as $attribute_name => $options ) {
 
-			foreach ( $attributes as $attribute_name => $options ) {
-
-				?><tr class="attribute_options" data-attribute_label="<?php echo esc_attr( wc_attribute_label( $attribute_name ) ); ?>">
+			?>
+				<tr class="attribute_options" data-attribute_label="<?php echo esc_attr( wc_attribute_label( $attribute_name ) ); ?>">
 					<td class="label">
 						<label for="<?php echo esc_attr( sanitize_title( $attribute_name ) ); ?>"><?php echo wc_attribute_label( $attribute_name ); ?> <abbr class="required" title="<?php _e( 'Required option', 'wpdrift-woocommerce-modules' ); ?>">*</abbr></label>
 					</td>
-					<td class="value"><?php
+					<td class="value">
+					<?php
 
-						echo wc_cp_composited_single_variation_attribute_options( array(
+					echo wc_cp_composited_single_variation_attribute_options(
+						array(
 							'options'    => $options,
 							'attributes' => $attributes,
 							'attribute'  => $attribute_name,
 							'product'    => $product,
-							'component'  => $composite_product->get_component( $component_id )
-						) );
+							'component'  => $composite_product->get_component( $component_id ),
+						)
+					);
+					?>
+					</td>
+				</tr>
+				<?php
+		}
 
-					?></td>
-				</tr><?php
-			}
-
-		?></tbody>
-	</table><?php
+		?>
+		</tbody>
+	</table>
+	<?php
 
 	/**
 	 * 'woocommerce_composited_product_add_to_cart' hook.
@@ -60,7 +69,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	 */
 	do_action( 'woocommerce_composited_product_add_to_cart', $product, $component_id, $composite_product );
 
-	?><div class="single_variation_wrap component_wrap"><?php
+	?>
+	<div class="single_variation_wrap component_wrap">
+	<?php
 
 		/**
 		 * 'woocommerce_composited_single_variation' hook.
@@ -74,5 +85,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 		 */
 		do_action( 'woocommerce_composited_single_variation', $product, $component_id, $composite_product );
 
-	?></div>
+	?>
+	</div>
 </div>

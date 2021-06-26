@@ -17,8 +17,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-?><div id="component_options_<?php echo $component_id; ?>" class="component_options" data-options_data="<?php echo htmlspecialchars( json_encode( $component_options_data ) ); ?>">
-	<div class="component_options_inner cp_clearfix"><?php
+?>
+<div id="component_options_<?php echo esc_attr( $component_id ); ?>" class="component_options" data-options_data="<?php echo htmlspecialchars( json_encode( $component_options_data ) ); ?>">
+	<div class="component_options_inner cp_clearfix">
+		<?php
 
 		/**
 		 * Action 'woocommerce_composite_component_options_{$options_style}'.
@@ -34,5 +36,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 		 */
 		do_action( 'woocommerce_composite_component_options_' . $options_style, $component_id, $product );
 
-	?></div>
+		?>
+	</div>
 </div>

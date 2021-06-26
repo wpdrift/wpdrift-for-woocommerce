@@ -16,4 +16,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-?><div id="component_option_thumbnails_<?php echo $component_id; ?>" class="component_option_thumbnails columns-<?php echo esc_attr( $thumbnail_columns ); ?>" data-component_option_columns="<?php echo esc_attr( $thumbnail_columns ); ?>"></div>
+?>
+<div id="component_option_thumbnails_<?php echo esc_attr( $component_id ); ?>" class="component_option_thumbnails columns-<?php echo esc_attr( $thumbnail_columns ); ?>" data-component_option_columns="<?php echo esc_attr( $thumbnail_columns ); ?>"></div>

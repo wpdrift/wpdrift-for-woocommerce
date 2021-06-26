@@ -16,4 +16,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-?><div id="composite_navigation_<?php echo $product_id; ?>" class="composite_navigation <?php echo esc_attr( $classes ); ?>" style="display:none;"></div>
+?>
+<div id="composite_navigation_<?php echo esc_attr( $product_id ); ?>" class="composite_navigation <?php echo esc_attr( $classes ); ?>" style="display:none;"></div>

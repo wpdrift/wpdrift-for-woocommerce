@@ -17,35 +17,37 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-?><div id="composite_data_<?php echo $product_id; ?>" class="cart composite_data <?php echo isset( $_REQUEST[ 'add-to-cart' ] ) ? 'composite_added_to_cart' : ''; ?>" data-item_id="review" data-composite_settings="<?php echo htmlspecialchars( json_encode( $product->add_to_cart_form_settings() ) ); ?>" data-nav_title="<?php echo esc_attr( __( 'Review Configuration', 'wpdrift-woocommerce-modules' ) ); ?>" data-price_data="<?php echo esc_attr( json_encode( $product->get_composite_price_data() ) ); ?>" data-container_id="<?php echo $product_id; ?>" style="display:none;"><?php
-
+?>
+<div id="composite_data_<?php echo esc_attr( $product_id ); ?>" class="cart composite_data <?php echo isset( $_REQUEST['add-to-cart'] ) ? 'composite_added_to_cart' : ''; ?>" data-item_id="review" data-composite_settings="<?php echo htmlspecialchars( json_encode( $product->add_to_cart_form_settings() ) ); ?>" data-nav_title="<?php echo esc_attr( __( 'Review Configuration', 'wpdrift-woocommerce-modules' ) ); ?>" data-price_data="<?php echo esc_attr( json_encode( $product->get_composite_price_data() ) ); ?>" data-container_id="<?php echo esc_attr( $product_id ); ?>" style="display:none;">
+	<?php
 	/**
 	 * Action 'woocommerce_before_add_to_cart_button'.
 	 *
 	 * @hooked wc_cp_before_add_to_cart_button - 5
 	 */
 	do_action( 'woocommerce_before_add_to_cart_button' );
+	?>
 
-	?><div class="composite_wrap" style="<?php echo apply_filters( 'woocommerce_composite_button_behaviour', 'new', $product ) === 'new' ? '' : 'display:none'; ?>">
+	<div class="composite_wrap" style="<?php echo apply_filters( 'woocommerce_composite_button_behaviour', 'new', $product ) === 'new' ? '' : 'display:none'; ?>">
 		<div class="composite_price"></div>
 		<div class="composite_message" style="display:none;"><ul class="msg woocommerce-info"></ul></div>
-		<div class="composite_availability"><?php
-			// Availability html.
-			echo $availability_html;
-		?></div>
-		<div class="composite_button"><?php
-
-			/**
-			 * Action 'woocommerce_composite_add_to_cart_button'.
-			 *
-			 * @hooked wc_cp_add_to_cart_button - 10
-			 */
-			do_action( 'woocommerce_composite_add_to_cart_button' );
-
-			?><input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $product_id ); ?>" />
+		<div class="composite_availability">
+			<?php echo $availability_html; // Availability html. ?>
 		</div>
-	</div><?php
+		<div class="composite_button">
+			<?php
 
-	do_action( 'woocommerce_after_add_to_cart_button' );
+				/**
+				 * Action 'woocommerce_composite_add_to_cart_button'.
+				 *
+				 * @hooked wc_cp_add_to_cart_button - 10
+				 */
+				do_action( 'woocommerce_composite_add_to_cart_button' );
+			?>
+			<input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $product_id ); ?>" />
+		</div>
+	</div>
 
-?></div><?php
+	<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
+</div>
+<?php

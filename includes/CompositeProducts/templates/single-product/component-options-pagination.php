@@ -16,8 +16,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-?><div class="component_pagination cp_clearfix <?php echo esc_attr( $classes ); ?>" data-pagination_data="<?php echo esc_attr( json_encode( $pagination_data ) ); ?>" <?php echo $has_pages ? '' : 'style="display:none"'; ?>><?php
-	if ( $append_options ) {
-		?><button class="button component_options_load_more"><?php echo __( 'Load more&hellip;', 'wpdrift-woocommerce-modules' ); ?></button><?php
-	}
-?></div>
+?>
+<div class="component_pagination cp_clearfix <?php echo esc_attr( $classes ); ?>" data-pagination_data="<?php echo esc_attr( json_encode( $pagination_data ) ); ?>" <?php echo $has_pages ? '' : 'style="display:none"'; ?>>
+	<?php if ( $append_options ) : ?>
+		<button class="button component_options_load_more"><?php echo __( 'Load more&hellip;', 'wpdrift-woocommerce-modules' ); ?></button>
+	<?php endif; ?>
+</div>

@@ -16,8 +16,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-?><div class="component_data woocommerce-error"><?php
-
+?>
+<div class="component_data woocommerce-error">
+	<?php
 	if ( $is_static ) {
 		$html = __( 'This item cannot be purchased at the moment.', 'wpdrift-woocommerce-modules' );
 	} else {
@@ -26,6 +27,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 	}
 
 	echo $html;
-
-?></div>
-
+	?>
+</div>

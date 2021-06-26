@@ -18,7 +18,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use WPdrift\CompositeProducts\Module;
 
-?><div id="component_<?php echo $component_id; ?>" class="<?php echo esc_attr( implode( ' ', $component_classes ) ); ?>" data-nav_title="<?php echo esc_attr( $component->get_title() ); ?>" data-item_id="<?php echo $component_id; ?>" style="display:none;">
+?>
+<div id="component_<?php echo esc_attr( $component_id ); ?>" class="<?php echo esc_attr( implode( ' ', $component_classes ) ); ?>" data-nav_title="<?php echo esc_attr( $component->get_title() ); ?>" data-item_id="<?php echo esc_attr( $component_id ); ?>" style="display:none;">
 
 	<div class="component_title_wrapper">
 	<?php

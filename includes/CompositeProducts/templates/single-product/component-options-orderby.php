@@ -16,15 +16,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-?><div class="component_ordering">
-
+?>
+<div class="component_ordering">
 	<p class="component_section_title">
-		<label class="component_orderby_title"><?php
-		echo __( 'Sort options by', 'wpdrift-woocommerce-modules' );
-		?></label>
+		<label class="component_orderby_title">
+			<?php echo __( 'Sort options by', 'wpdrift-woocommerce-modules' ); ?>
+		</label>
 	</p>
 
-	<select name="component_orderby_<?php echo $component_id; ?>" class="component_orderby component_orderby_<?php echo $component_id; ?> orderby">
+	<select name="component_orderby_<?php echo esc_attr( $component_id ); ?>" class="component_orderby component_orderby_<?php echo esc_attr( $component_id ); ?> orderby">
 		<?php foreach ( $component_ordering_options as $id => $name ) : ?>
 			<option value="<?php echo esc_attr( $id ); ?>" <?php selected( $orderby, $id ); ?>><?php echo esc_html( $name ); ?></option>
 		<?php endforeach; ?>

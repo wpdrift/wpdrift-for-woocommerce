@@ -16,8 +16,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-?><p class="component_section_title">
+?>
+<p class="component_section_title">
 	<label class="select_label">
 		<?php echo __( 'Available options:', 'wpdrift-woocommerce-modules' ); ?>
 	</label>
-</p><?php
+</p>
+<?php

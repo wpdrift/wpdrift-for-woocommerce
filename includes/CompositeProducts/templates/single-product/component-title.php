@@ -16,15 +16,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$component_title = $step ? apply_filters( 'woocommerce_composite_step_title', sprintf( __( '<span class="step_index">%d</span> <span class="step_title">%s</span>', 'wpdrift-woocommerce-modules' ), $step, $title ), $title, $step ) : $title;
+$component_title = $step ? apply_filters( 'woocommerce_composite_step_title', sprintf( __( '<span class="step_index">%1$d</span> <span class="step_title">%2$s</span>', 'wpdrift-woocommerce-modules' ), $step, $title ), $title, $step ) : $title;
 
 ?>
 <h2 class="step_title_wrapper component_title <?php echo $is_toggled ? 'component_title_toggled' : ''; ?>" tabindex="-1">
-	<span class="component_title_text step_title_text"><?php echo $component_title; ?></span><?php
+	<span class="component_title_text step_title_text"><?php echo esc_html( $component_title ); ?></span>
 
+	<?php
 	// Add button to assist screen-readers.
 	if ( $is_toggled ) {
-		?><button class="component_title_button aria_button" aria-label="<?php echo sprintf( __( 'Toggle %s', 'wpdrift-woocommerce-modules' ), $title ); ?>" aria-expanded="<?php echo $is_open ? 'true' : 'false'; ?>"></button><?php
+		?>
+		<button class="component_title_button aria_button" aria-label="<?php echo sprintf( __( 'Toggle %s', 'wpdrift-woocommerce-modules' ), $title ); ?>" aria-expanded="<?php echo $is_open ? 'true' : 'false'; ?>"></button>
+		<?php
 	}
-
-?></h2>
+	?>
+</h2>

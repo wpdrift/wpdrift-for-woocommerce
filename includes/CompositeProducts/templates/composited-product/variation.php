@@ -18,14 +18,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 ?>
 <div class="woocommerce-variation-add-to-cart variations_button quantity_button">
-	<input type="hidden" class="variation_id" name="wccp_variation_id[<?php echo $component_id; ?>]" value=""/><?php
+	<input type="hidden" class="variation_id" name="wccp_variation_id[<?php echo esc_attr( $component_id ); ?>]" value=""/>
+	<?php
 
-	wc_get_template( 'composited-product/quantity.php', array(
-		'quantity_min'      => $quantity_min,
-		'quantity_max'      => $quantity_max,
-		'component_id'      => $component_id,
-		'product'           => $product,
-		'composite_product' => $composite_product
-	), '', Module::instance()->plugin_path() . '/templates/' );
+	wc_get_template(
+		'composited-product/quantity.php',
+		array(
+			'quantity_min'      => $quantity_min,
+			'quantity_max'      => $quantity_max,
+			'component_id'      => $component_id,
+			'product'           => $product,
+			'composite_product' => $composite_product,
+		),
+		'',
+		Module::instance()->plugin_path() . '/templates/'
+	);
 
-?></div>
+	?>
+</div>
