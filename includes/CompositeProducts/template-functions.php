@@ -173,7 +173,7 @@ function wc_cp_add_to_cart_button() {
 
 	if ( isset( $_GET['update-composite'] ) ) {
 		$cart_id = wc_clean( $_GET['update-composite'] );
-		echo '<input type="hidden" name="update-composite" value="' . $cart_id . '" />';
+		echo '<input type="hidden" name="update-composite" value="' . esc_attr( $cart_id ) . '" />';
 	}
 
 	wc_get_template( 'single-product/add-to-cart/composite-quantity-input.php', array(), false, Module::instance()->plugin_path() . '/templates/' );
@@ -633,7 +633,7 @@ function wc_cp_component_selection( $component_id, $product ) {
 	$navigation_style = $product->get_composite_layout_style();
 
 	?>
-	<div class="component_content" data-product_id="<?php echo $component_id; ?>">
+	<div class="component_content" data-product_id="<?php echo esc_attr( $component_id ); ?>">
 		<div class="component_summary cp_clearfix">
 		<?php
 
