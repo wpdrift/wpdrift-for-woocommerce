@@ -25,6 +25,6 @@ $component_title = $step ? apply_filters( 'woocommerce_composite_step_title', sp
 	// Add button to assist screen-readers.
 	if ( $is_toggled ) :
 		?>
-		<button class="component_title_button aria_button" aria-label="<?php echo sprintf( __( 'Toggle %s', 'wpdrift-woocommerce-modules' ), $title ); ?>" aria-expanded="<?php echo $is_open ? 'true' : 'false'; ?>"></button>
+		<button class="component_title_button aria_button" aria-label="<?php echo sprintf( __( 'Toggle %s', 'wpdrift-woocommerce-modules' ), esc_attr( $title ) ); ?>" aria-expanded="<?php echo $is_open ? 'true' : 'false'; ?>"></button>
 	<?php endif; ?>
 </h2>
