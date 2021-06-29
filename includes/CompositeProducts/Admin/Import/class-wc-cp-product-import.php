@@ -55,7 +55,6 @@ class Product_Import {
 	public static function map_columns( $options ) {
 		$options['wc_cp_components']                = __( 'Composite Components (JSON-encoded)', 'wpdrift-woocommerce-modules' );
 		$options['wc_cp_layout']                    = __( 'Composite Layout', 'wpdrift-woocommerce-modules' );
-		$options['wc_cp_editable_in_cart']          = __( 'Composite Cart Editing', 'wpdrift-woocommerce-modules' );
 		$options['wc_cp_sold_individually_context'] = __( 'Composite Sold Individually', 'wpdrift-woocommerce-modules' );
 		$options['wc_cp_shop_price_calc']           = __( 'Composite Catalog Price', 'wpdrift-woocommerce-modules' );
 		$options['wc_cp_add_to_cart_form_location'] = __( 'Composite Form Location', 'wpdrift-woocommerce-modules' );
@@ -72,7 +71,6 @@ class Product_Import {
 	public static function add_columns_to_mapping_screen( $columns ) {
 		$columns[ __( 'Composite Components (JSON-encoded)', 'wpdrift-woocommerce-modules' ) ] = 'wc_cp_components';
 		$columns[ __( 'Composite Layout', 'wpdrift-woocommerce-modules' ) ]                    = 'wc_cp_layout';
-		$columns[ __( 'Composite Cart Editing', 'wpdrift-woocommerce-modules' ) ]              = 'wc_cp_editable_in_cart';
 		$columns[ __( 'Composite Sold Individually', 'wpdrift-woocommerce-modules' ) ]         = 'wc_cp_sold_individually_context';
 		$columns[ __( 'Composite Catalog Price', 'wpdrift-woocommerce-modules' ) ]             = 'wc_cp_shop_price_calc';
 		$columns[ __( 'Composite Form Location', 'wpdrift-woocommerce-modules' ) ]             = 'wc_cp_add_to_cart_form_location';
@@ -80,7 +78,6 @@ class Product_Import {
 		// Always add English mappings.
 		$columns['Composite Components (JSON-encoded)'] = 'wc_cp_components';
 		$columns['Composite Layout']                    = 'wc_cp_layout';
-		$columns['Composite Cart Editing']              = 'wc_cp_editable_in_cart';
 		$columns['Composite Sold Individually']         = 'wc_cp_sold_individually_context';
 		$columns['Composite Catalog Price']             = 'wc_cp_shop_price_calc';
 		$columns['Composite Form Location']             = 'wc_cp_add_to_cart_form_location';
@@ -190,10 +187,6 @@ class Product_Import {
 
 			if ( isset( $data['wc_cp_shop_price_calc'] ) ) {
 				$props['shop_price_calc'] = strval( $data['wc_cp_shop_price_calc'] );
-			}
-
-			if ( isset( $data['wc_cp_editable_in_cart'] ) ) {
-				$props['editable_in_cart'] = 1 === intval( $data['wc_cp_editable_in_cart'] ) ? 'yes' : 'no';
 			}
 
 			if ( isset( $data['wc_cp_add_to_cart_form_location'] ) ) {

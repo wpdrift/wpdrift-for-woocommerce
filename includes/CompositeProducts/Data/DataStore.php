@@ -46,7 +46,6 @@ class DataStore extends WC_Product_Data_Store_CPT {
 		'layout'                    => '_bto_style',
 		'add_to_cart_form_location' => '_bto_add_to_cart_form_location',
 		'shop_price_calc'           => '_bto_shop_price_calc',
-		'editable_in_cart'          => '_bto_edit_in_cart',
 		'sold_individually_context' => '_bto_sold_individually',
 		'min_raw_price'             => '_price',
 		'max_raw_price'             => '_wc_sw_max_price',
@@ -128,11 +127,6 @@ class DataStore extends WC_Product_Data_Store_CPT {
 
 			// Get meta value.
 			$meta_value = $product->$property_get_fn( 'edit' );
-
-			// Sanitize it for storage.
-			if ( 'editable_in_cart' === $property ) {
-				$meta_value = wc_bool_to_string( $meta_value );
-			}
 
 			$updated = update_post_meta( $id, $meta_key, $meta_value );
 

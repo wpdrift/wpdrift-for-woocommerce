@@ -24,7 +24,6 @@ class ProductComposite extends WC_Product {
 		'add_to_cart_form_location' => 'default',  // "Form Location" option.
 		'shop_price_calc'           => 'defaults', // "Catalog Price" option.
 		'layout'                    => 'default',  // "Composite Layout" option.
-		'editable_in_cart'          => false,      // "Edit in cart" option.
 		'sold_individually_context' => 'product',  // Provides context when the "Sold Individually" option is set to 'yes': 'product' or 'configuration'.
 		'min_raw_price'             => '',         // Min raw price of the composite based on raw prices, as stored in the DB.
 		'max_raw_price'             => '',          // Max raw price of the composite based on raw prices, as stored in the DB.
@@ -997,18 +996,6 @@ class ProductComposite extends WC_Product {
 	}
 
 	/**
-	 * Editable-in-cart getter.
-	 *
-	 * @since  1.0.0
-	 *
-	 * @param  string  $context
-	 * @return string
-	 */
-	public function get_editable_in_cart( $context = 'any' ) {
-		return $this->get_prop( 'editable_in_cart', $context );
-	}
-
-	/**
 	 * "Sold Individually" option context.
 	 * Returns 'product' or 'configuration'.
 	 *
@@ -1170,31 +1157,6 @@ class ProductComposite extends WC_Product {
 	public function set_layout( $layout ) {
 		$layout = self::get_layout_option( $layout );
 		$this->set_prop( 'layout', $layout );
-	}
-
-	/**
-	 * Edtiable-in-cart setter.
-	 *
-	 * @since  1.0.0
-	 *
-	 * @param  string  $editable_in_cart
-	 */
-	public function set_editable_in_cart( $editable_in_cart ) {
-
-		$editable_in_cart = wc_string_to_bool( $editable_in_cart );
-		$this->set_prop( 'editable_in_cart', $editable_in_cart );
-
-		if ( $editable_in_cart ) {
-			if ( ! in_array( 'edit_in_cart', $this->supports ) ) {
-				$this->supports[] = 'edit_in_cart';
-			}
-		} else {
-			foreach ( $this->supports as $key => $value ) {
-				if ( 'edit_in_cart' === $value ) {
-					unset( $this->supports[ $key ] );
-				}
-			}
-		}
 	}
 
 	/**
@@ -1469,15 +1431,6 @@ class ProductComposite extends WC_Product {
 		 * @param   ProductComposite  $product
 		 */
 		return apply_filters( 'woocommerce_is_purchasable', $purchasable, $this );
-	}
-
-	/**
-	 * True if the composite is editable in cart.
-	 *
-	 * @return boolean
-	 */
-	public function is_editable_in_cart() {
-		return $this->supports( 'edit_in_cart' );
 	}
 
 	/*

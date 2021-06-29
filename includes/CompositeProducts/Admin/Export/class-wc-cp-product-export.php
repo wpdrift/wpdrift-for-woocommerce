@@ -32,7 +32,6 @@ class Product_Export {
 		// Custom column content.
 		add_filter( 'woocommerce_product_export_product_column_wc_cp_components', array( __CLASS__, 'export_components' ), 10, 2 );
 		add_filter( 'woocommerce_product_export_product_column_wc_cp_layout', array( __CLASS__, 'export_layout' ), 10, 2 );
-		add_filter( 'woocommerce_product_export_product_column_wc_cp_editable_in_cart', array( __CLASS__, 'export_editable_in_cart' ), 10, 2 );
 		add_filter( 'woocommerce_product_export_product_column_wc_cp_sold_individually_context', array( __CLASS__, 'export_sold_individually_context' ), 10, 2 );
 		add_filter( 'woocommerce_product_export_product_column_wc_cp_shop_price_calc', array( __CLASS__, 'export_shop_price_calc' ), 10, 2 );
 		add_filter( 'woocommerce_product_export_product_column_wc_cp_add_to_cart_form_location', array( __CLASS__, 'export_add_to_cart_form_location' ), 10, 2 );
@@ -47,7 +46,6 @@ class Product_Export {
 	public static function add_columns( $columns ) {
 		$columns['wc_cp_components']                = __( 'Composite Components (JSON-encoded)', 'wpdrift-woocommerce-modules' );
 		$columns['wc_cp_layout']                    = __( 'Composite Layout', 'wpdrift-woocommerce-modules' );
-		$columns['wc_cp_editable_in_cart']          = __( 'Composite Cart Editing', 'wpdrift-woocommerce-modules' );
 		$columns['wc_cp_sold_individually_context'] = __( 'Composite Sold Individually', 'wpdrift-woocommerce-modules' );
 		$columns['wc_cp_shop_price_calc']           = __( 'Composite Catalog Price', 'wpdrift-woocommerce-modules' );
 		$columns['wc_cp_add_to_cart_form_location'] = __( 'Composite Form Location', 'wpdrift-woocommerce-modules' );
@@ -161,22 +159,6 @@ class Product_Export {
 
 		if ( $product->is_type( 'composite' ) ) {
 			$value = $product->get_layout( 'edit' );
-		}
-
-		return $value;
-	}
-
-	/**
-	 * "Composite Cart Editing" column content.
-	 *
-	 * @param  mixed       $value
-	 * @param  WC_Product  $product
-	 * @return mixed       $value
-	 */
-	public static function export_editable_in_cart( $value, $product ) {
-
-		if ( $product->is_type( 'composite' ) ) {
-			$value = $product->get_editable_in_cart( 'edit' ) ? 1 : 0;
 		}
 
 		return $value;

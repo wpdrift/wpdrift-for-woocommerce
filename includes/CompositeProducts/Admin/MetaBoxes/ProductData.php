@@ -45,7 +45,6 @@ class ProductData {
 	 * Hook in.
 	 */
 	public static function init() {
-
 		// Creates the admin Components panel tabs.
 		add_action( 'woocommerce_product_data_tabs', array( __CLASS__, 'composite_product_data_tabs' ) );
 
@@ -181,7 +180,6 @@ class ProductData {
 		self::composite_layout( $composite_product_object );
 		self::composite_form_location( $composite_product_object );
 		self::composite_shop_price_calc( $composite_product_object );
-		// self::composite_edit_in_cart( $composite_product_object );
 	}
 
 	/**
@@ -300,26 +298,6 @@ class ProductData {
 				'label'         => __( 'Catalog Price', 'wpdrift-woocommerce-modules' ),
 				'description'   => $help_tip,
 				'options'       => array_combine( array_keys( $shop_price_calc_options ), wp_list_pluck( $shop_price_calc_options, 'title' ) ),
-				'desc_tip'      => true,
-			)
-		);
-	}
-
-	/**
-	 * Displays the "Edit in Cart" option.
-	 *
-	 * @param  ProductComposite  $composite_product_object
-	 * @return void
-	 */
-	public static function composite_edit_in_cart( $composite_product_object ) {
-
-		woocommerce_wp_checkbox(
-			array(
-				'id'            => '_bto_edit_in_cart',
-				'wrapper_class' => 'components_panel_field',
-				'label'         => __( 'Edit in Cart', 'wpdrift-woocommerce-modules' ),
-				'value'         => $composite_product_object->get_editable_in_cart( 'edit' ) ? 'yes' : 'no',
-				'description'   => __( 'Enable this option to allow changing the configuration of this Composite in the cart.', 'wpdrift-woocommerce-modules' ),
 				'desc_tip'      => true,
 			)
 		);
@@ -1588,10 +1566,9 @@ class ProductData {
 
 		$composite_id = $product->get_id();
 		$props        = array(
-			'layout'           => 'single',
-			'shop_price_calc'  => 'defaults',
-			'editable_in_cart' => false,
-			'composite_data'   => array(),
+			'layout'          => 'single',
+			'shop_price_calc' => 'defaults',
+			'composite_data'  => array(),
 		);
 
 		if ( empty( $posted_composite_data ) ) {
@@ -1612,14 +1589,6 @@ class ProductData {
 
 		if ( isset( $posted_composite_data['_bto_shop_price_calc'] ) ) {
 			$props['shop_price_calc'] = wc_clean( $posted_composite_data['_bto_shop_price_calc'] );
-		}
-
-		/*
-		 * "Edit in cart" option.
-		 */
-
-		if ( ! empty( $posted_composite_data['_bto_edit_in_cart'] ) ) {
-			$props['editable_in_cart'] = true;
 		}
 
 		/*

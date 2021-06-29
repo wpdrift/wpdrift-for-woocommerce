@@ -23,7 +23,6 @@ class RestAPI {
 	private static $product_fields = array(
 		'composite_layout'                    => array( 'get', 'update' ),
 		'composite_add_to_cart_form_location' => array( 'get', 'update' ),
-		'composite_editable_in_cart'          => array( 'get', 'update' ),
 		'composite_sold_individually_context' => array( 'get', 'update' ),
 		'composite_shop_price_calc'           => array( 'get', 'update' ),
 		'composite_components'                => array( 'get', 'update' ),
@@ -153,11 +152,6 @@ class RestAPI {
 				'type'        => 'string',
 				'context'     => array( 'view', 'edit' ),
 				'enum'        => array_keys( ProductComposite::get_add_to_cart_form_location_options() ),
-			),
-			'composite_editable_in_cart'          => array(
-				'description' => __( 'Controls whether the configuration of this product can be modified from the cart page. Applicable to composite-type products.', 'wpdrift-woocommerce-modules' ),
-				'type'        => 'boolean',
-				'context'     => array( 'view', 'edit' ),
 			),
 			'composite_sold_individually_context' => array(
 				'description' => __( 'Sold Individually option context. Applicable to composite-type products.', 'wpdrift-woocommerce-modules' ),
@@ -402,12 +396,6 @@ class RestAPI {
 
 					break;
 
-				case 'composite_editable_in_cart':
-					$product->set_editable_in_cart( wc_string_to_bool( $field_value ) );
-					$product->save();
-
-					break;
-
 				case 'composite_sold_individually_context':
 					$product->set_sold_individually_context( wc_clean( $field_value ) );
 					$product->save();
@@ -570,15 +558,6 @@ class RestAPI {
 
 				if ( 'composite' === $product_type ) {
 					$value = $product->get_add_to_cart_form_location( 'edit' );
-				}
-
-				break;
-
-			case 'composite_editable_in_cart':
-				$value = false;
-
-				if ( 'composite' === $product_type ) {
-					$value = $product->get_editable_in_cart( 'edit' );
 				}
 
 				break;

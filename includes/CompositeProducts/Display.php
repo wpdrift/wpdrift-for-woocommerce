@@ -884,14 +884,6 @@ class Display {
 			$product = $cart_item['data'];
 
 			if ( function_exists( 'is_cart' ) && is_cart() && ! $this->is_cart_widget() && $product->is_type( 'composite' ) ) {
-
-				if ( $product->is_editable_in_cart() ) {
-
-					$edit_in_cart_link = esc_url( add_query_arg( array( 'update-composite' => $cart_item_key ), $product->get_permalink( $cart_item ) ) );
-					$edit_in_cart_text = _x( 'Edit', 'edit in cart link text', 'wpdrift-woocommerce-modules' );
-					$content           = sprintf( _x( '%1$s<br/><a class="edit_composite_in_cart_text edit_in_cart_text" href="%2$s"><small>%3$s</small></a>', 'edit in cart text', 'wpdrift-woocommerce-modules' ), $content, $edit_in_cart_link, $edit_in_cart_text );
-				}
-
 				/**
 				 * 'woocommerce_display_composite_container_cart_item_data' filter.
 				 *
@@ -905,7 +897,6 @@ class Display {
 				}
 			}
 		} elseif ( $composite_container_item = wc_cp_get_composited_cart_item_container( $cart_item ) ) {
-
 			$component_id    = $cart_item['composite_item'];
 			$component       = $composite_container_item['data']->get_component( $component_id );
 			$component_title = $component ? $component->get_title() : '';
