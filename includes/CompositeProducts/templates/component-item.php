@@ -18,14 +18,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 ?>
 <dl class="component">
-	<?php
-		$key = sanitize_text_field( $component_data['key'] );
-	?>
-	<dt class="component-<?php echo sanitize_html_class( $key ); ?>"><?php echo wp_kses_post( $component_data['key'] ); ?>:</dt>
-	<dd class="component-
-	<?php
-	echo sanitize_html_class( $key );
-	echo empty( $component_data['value'] ) ? ' component-hidden' : '';
-	?>
-	"><?php echo wp_kses_post( wpautop( $component_data['value'] ) ); ?></dd>
+	<dt class="component-<?php echo esc_attr( $component_data['key'] ); ?>"><?php echo wp_kses_post( $component_data['key'] ); ?>:</dt>
+	<dd class="component-<?php echo esc_attr( $component_data['key'] ); ?><?php echo empty( $component_data['value'] ) ? ' component-hidden' : ''; ?>"><?php echo wp_kses_post( wpautop( $component_data['value'] ) ); ?></dd>
 </dl>

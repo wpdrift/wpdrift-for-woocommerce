@@ -71,7 +71,7 @@ foreach ( $components as $component ) {
 				$chosen_option_data = $chosen_option->get_product_data();
 
 				if ( ! empty( $chosen_option_data ) ) {
-					echo $chosen_option_data['product_html'];
+					echo wp_kses_post( $chosen_option_data['product_html'] );
 				}
 			}
 			?>
