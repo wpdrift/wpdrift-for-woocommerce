@@ -188,26 +188,6 @@ function wc_cp_add_to_cart_button() {
 /*-----------------------------------------------------------------------------*/
 
 /**
- * Summary widget wrapper end.
- *
- * @since  1.0.0
- *
- * @param  array                 $components
- * @param  ProductComposite  $composite
- * @param  array                 $widget_options
- */
-function wc_cp_summary_widget_details_wrapper_end( $components, $composite, $widget_options ) {
-
-	if ( 'fixed' === $widget_options['display'] ) {
-		?>
-			</div>
-			<span role="button" class="summary_carousel_button next disabled inactive"><button class="aria_button" aria-label="<?php echo __( 'View next steps', 'wpdrift-woocommerce-modules' ); ?>"></button></span>
-		</div>
-		<?php
-	}
-}
-
-/**
  * Summary widget UI wrapper start.
  *
  * @since  1.0.0
