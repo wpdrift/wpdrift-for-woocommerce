@@ -48,11 +48,7 @@ final class Wocommerce_Modules {
 	 */
 	public function __construct() {
 		$this->define_constants();
-		// Autoload classes.
-		require WPDRIFT_WOOCOMMERCE_MODULES_PLUGIN_DIR . '/vendor/autoload.php';
-		require WPDRIFT_WOOCOMMERCE_MODULES_PLUGIN_DIR . '/includes/class-wocommerce-modules-install.php';
-		require WPDRIFT_WOOCOMMERCE_MODULES_PLUGIN_DIR . '/includes/wocommerce-modules-core-functions.php';
-
+		$this->includes();
 	}
 
 	/**
@@ -60,6 +56,17 @@ final class Wocommerce_Modules {
 	 */
 	private function define_constants() {
 		$this->define( 'WPDRIFT_WOOCOMMERCE_MODULES_SUPPORT_URL', 'https://github.com/wpdrift/wpdrift-for-woocommerce/issues' );
+	}
+
+	/**
+	 * Include required files used in admin and on the frontend.
+	 * @return [type] [description]
+	 */
+	private function includes() {
+		// Autoload classes.
+		require woocommerce_modules()->plugin_path() . '/vendor/autoload.php';
+		require woocommerce_modules()->plugin_path() . '/includes/class-wocommerce-modules-install.php';
+		require woocommerce_modules()->plugin_path() . '/includes/wocommerce-modules-core-functions.php';
 	}
 
 	/**
@@ -285,7 +292,7 @@ final class Wocommerce_Modules {
 	 * @return string
 	 */
 	public function plugin_url() {
-		return untrailingslashit( plugins_url( '/', WPDRIFT_WOOCOMMERCE_MODULES_PLUGIN_FILE ) );
+		return untrailingslashit( plugins_url( '', WPDRIFT_WOOCOMMERCE_MODULES_PLUGIN_FILE ) );
 	}
 
 	/**
