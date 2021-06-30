@@ -11,12 +11,38 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Wocommerce_Modules_Install {
 	/**
+	 * The single instance of the class.
+	 * @var [type]
+	 */
+	protected static $_instance = null;
+
+	/**
+	 * Main Wocommerce_Modules_Install instance.
+	 * Ensures only one instance of Wocommerce_Modules_Install is loaded or can be loaded.
+	 *
+	 * @return [type] [description]
+	 */
+	public static function instance() {
+		if ( is_null( self::$_instance ) ) {
+			self::$_instance = new self();
+		}
+		return self::$_instance;
+	}
+
+	/**
+	 * Floating_Video_Shortcodes constructor.
+	 */
+	public function __construct() {
+		$this->hooks();
+	}
+
+	/**
 	 * Init hooks.
 	 * @return [type] [description]
 	 */
-	public static function init() {
+	private function hooks() {
 		// Show row meta on the plugin screen.
-		add_filter( 'plugin_row_meta', array( __CLASS__, 'plugin_row_meta' ), 10, 2 );
+		add_filter( 'plugin_row_meta', [ $this, 'plugin_row_meta' ], 10, 2 );
 	}
 
 	/**
@@ -26,8 +52,7 @@ class Wocommerce_Modules_Install {
 	 * @param   mixed  $file
 	 * @return  array
 	 */
-	public static function plugin_row_meta( $links, $file ) {
-
+	public function plugin_row_meta( $links, $file ) {
 		if ( woocommerce_modules()->plugin_basename() === $file ) {
 			$row_meta = array(
 				'docs'    => '<a href="https://wpdrift.com/wpdrift-for-woocommerce/">' . __( 'Documentation', 'wpdrift-woocommerce-modules' ) . '</a>',

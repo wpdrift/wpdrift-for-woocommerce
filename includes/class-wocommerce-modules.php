@@ -106,9 +106,9 @@ final class Wocommerce_Modules {
 			return;
 		}
 
-		// Classes.
-		Wocommerce_Modules_Install::init();
-		CompositeProducts\Module::instance();
+		// Init classes.
+		$this->install            = Wocommerce_Modules_Install::instance();
+		$this->composite_products = CompositeProducts\Module::instance();
 	}
 
 	/**
