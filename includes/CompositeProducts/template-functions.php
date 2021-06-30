@@ -279,29 +279,6 @@ function wc_cp_final_step_scroll_target( $components, $product ) {
 	}
 }
 
-/**
- * No js notice.
- *
- * @param  array                 $components
- * @param  ProductComposite  $product
- */
-function wc_cp_no_js_msg( $components, $product ) {
-
-	?>
-	<p class="cp-no-js-msg">
-		<span id="cp-no-js-msg">
-			<script type="text/javascript">
-				var el = document.getElementById( 'cp-no-js-msg' );
-				el.innerHTML = "<?php _e( 'Loading...', 'wpdrift-woocommerce-modules' ); ?>";
-			</script>
-		</span>
-		<noscript>
-			<?php _e( 'JavaScript must be supported by your browser and needs to be enabled in order to view this page.', 'wpdrift-woocommerce-modules' ); ?>
-		</noscript>
-	</p>
-	<?php
-}
-
 /*--------------------------------------------------------*/
 /*                                                        */
 /*  Component selection template functions.               */
