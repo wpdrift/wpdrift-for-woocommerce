@@ -180,33 +180,6 @@ function wc_cp_composited_product_wrapper_close( $component_option ) {
 }
 
 /**
- * Composited product excerpt.
- *
- * @param  WC_Product            $product
- * @param  string                $component_id
- * @param  ProductComposite  $composite
- */
-function wc_cp_composited_product_excerpt( $product, $component_id, $composite ) {
-
-	$product_id = $product->get_id();
-	$component  = $composite->get_component( $component_id );
-
-	if ( ! $component->hide_selected_option_description() ) {
-		wc_get_template(
-			'composited-product/excerpt.php',
-			array(
-				'product_description' => $product->get_short_description(),
-				'product_id'          => $product_id,
-				'component_id'        => $component_id,
-				'composite'           => $composite,
-			),
-			'',
-			Module::instance()->plugin_path() . '/templates/'
-		);
-	}
-}
-
-/**
  * Composited simple product price.
  *
  * @param  WC_Product            $product

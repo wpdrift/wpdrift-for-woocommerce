@@ -32,8 +32,5 @@ add_action( 'woocommerce_composited_product_single', __NAMESPACE__ . '\wc_cp_com
 // Composited product details wrapper close.
 add_action( 'woocommerce_composited_product_single', __NAMESPACE__ . '\wc_cp_composited_product_wrapper_close', 100 );
 
-// Composited product - Excerpt.
-add_action( 'woocommerce_composited_product_details', __NAMESPACE__ . '\wc_cp_composited_product_excerpt', 10, 3 );
-
 // Composited Simple product - Price.
 add_action( 'woocommerce_composited_product_add_to_cart', __NAMESPACE__ . '\wc_cp_composited_product_price', 8, 3 );
