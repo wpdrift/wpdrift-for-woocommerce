@@ -18,9 +18,6 @@ add_action( 'woocommerce_before_single_product_summary', __NAMESPACE__ . '\wc_cp
 add_action( 'woocommerce_after_single_product_summary', __NAMESPACE__ . '\wc_cp_add_to_cart_after_summary', -1000 );
 add_action( 'woocommerce_after_single_product_summary', __NAMESPACE__ . '\wc_cp_wrap_end_product_summary', 1 );
 
-// Single product add-to-cart button template for composite products.
-add_action( 'woocommerce_composite_add_to_cart_button', __NAMESPACE__ . '\wc_cp_add_to_cart_button' );
-
 // After components: Status Messages.
 add_action( 'woocommerce_composite_after_components', __NAMESPACE__ . '\wc_cp_status', 10, 2 );
 
@@ -30,24 +27,6 @@ add_action( 'woocommerce_composite_after_components', __NAMESPACE__ . '\wc_cp_no
 /*----------------------------------------*/
 /*  Single product summary widget hooks.  */
 /*----------------------------------------*/
-
-// Selections wrapper end.
-add_action( 'woocommerce_composite_summary_widget_content', __NAMESPACE__ . '\wc_cp_summary_widget_details_wrapper_end', 15, 3 );
-
-// UI wrapper start.
-add_action( 'woocommerce_composite_summary_widget_content', __NAMESPACE__ . '\wc_cp_summary_widget_ui_wrapper_start', 15, 3 );
-
-// Price.
-add_action( 'woocommerce_composite_summary_widget_content', __NAMESPACE__ . '\wc_cp_summary_widget_price', 20, 2 );
-
-// Availability.
-add_action( 'woocommerce_composite_summary_widget_content', __NAMESPACE__ . '\wc_cp_summary_widget_availability', 40, 2 );
-
-// Button.
-add_action( 'woocommerce_composite_summary_widget_content', __NAMESPACE__ . '\wc_cp_summary_widget_button', 50, 2 );
-
-// UI wrapper end.
-add_action( 'woocommerce_composite_summary_widget_content', __NAMESPACE__ . '\wc_cp_summary_widget_ui_wrapper_end', 100, 3 );
 
 /*---------------------------*/
 /*  Stacked layout hooks.    */
