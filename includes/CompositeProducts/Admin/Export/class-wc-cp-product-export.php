@@ -19,12 +19,10 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @version  1.0.0
  */
 class Product_Export {
-
 	/**
 	 * Hook in.
 	 */
 	public static function init() {
-
 		// Add CSV columns for exporting composite data.
 		add_filter( 'woocommerce_product_export_column_names', array( __CLASS__, 'add_columns' ) );
 		add_filter( 'woocommerce_product_export_product_default_columns', array( __CLASS__, 'add_columns' ) );
@@ -61,7 +59,6 @@ class Product_Export {
 	 * @return string      $value
 	 */
 	public static function export_components( $value, $product ) {
-
 		if ( $product->is_type( 'composite' ) ) {
 
 			$term_ids_exporter    = false;
@@ -156,7 +153,6 @@ class Product_Export {
 	 * @return mixed       $value
 	 */
 	public static function export_layout( $value, $product ) {
-
 		if ( $product->is_type( 'composite' ) ) {
 			$value = $product->get_layout( 'edit' );
 		}
@@ -172,7 +168,6 @@ class Product_Export {
 	 * @return mixed       $value
 	 */
 	public static function export_sold_individually_context( $value, $product ) {
-
 		if ( $product->is_type( 'composite' ) ) {
 			$value = $product->get_sold_individually_context( 'edit' );
 		}
@@ -188,7 +183,6 @@ class Product_Export {
 	 * @return mixed       $value
 	 */
 	public static function export_shop_price_calc( $value, $product ) {
-
 		if ( $product->is_type( 'composite' ) ) {
 			$value = $product->get_shop_price_calc( 'edit' );
 		}
@@ -206,7 +200,6 @@ class Product_Export {
 	 * @return mixed       $value
 	 */
 	public static function export_add_to_cart_form_location( $value, $product ) {
-
 		if ( $product->is_type( 'composite' ) ) {
 			$value = $product->get_add_to_cart_form_location( 'edit' );
 		}

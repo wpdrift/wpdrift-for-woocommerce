@@ -551,18 +551,6 @@ function wc_cp_component_selection_message_paged_bottom( $component_id, $product
 /*----------------------------------------------------------------------------------*/
 
 /**
- * Add Composite Summary on the 'woocommerce_before_add_to_cart_button' hook.
- */
-function wc_cp_before_add_to_cart_button() {
-
-	global $product;
-
-	if ( 'composite' === $product->get_type() ) {
-		wc_cp_summary( $product->get_components(), $product );
-	}
-}
-
-/**
  * Add Review/Summary with current configuration details.
  * The Summary template must be loaded if the summary widget is active.
  *

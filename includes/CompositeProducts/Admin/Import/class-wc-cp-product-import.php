@@ -19,7 +19,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @version  1.0.0
  */
 class Product_Import {
-
 	/**
 	 * Working importer instance.
 	 *
@@ -31,7 +30,6 @@ class Product_Import {
 	 * Hook in.
 	 */
 	public static function init() {
-
 		// Map custom column titles.
 		add_filter( 'woocommerce_csv_product_import_mapping_options', array( __CLASS__, 'map_columns' ) );
 		add_filter( 'woocommerce_csv_product_import_mapping_default_columns', array( __CLASS__, 'add_columns_to_mapping_screen' ) );
@@ -115,7 +113,6 @@ class Product_Import {
 	 * @return array
 	 */
 	public static function parse_components( $parsed_data, $importer ) {
-
 		self::$importer = $importer;
 
 		if ( ! empty( $parsed_data['wc_cp_components'] ) ) {
@@ -172,7 +169,6 @@ class Product_Import {
 	 * @return array
 	 */
 	public static function set_composite_props( $product, $data ) {
-
 		if ( ( $product instanceof WC_Product ) && $product->is_type( 'composite' ) ) {
 
 			$props = array();

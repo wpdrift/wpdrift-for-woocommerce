@@ -163,7 +163,6 @@ class Order {
 	 * @return void
 	 */
 	public static function display_edit_button( $item_id, $item, $product ) {
-
 		if ( self::$order && self::$order->is_editable() && 'line_item' === $item->get_type() ) {
 
 			if ( $product && $product->is_type( 'composite' ) ) {

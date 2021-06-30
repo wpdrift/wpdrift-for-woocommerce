@@ -347,7 +347,6 @@ class Ajax {
 	 * @return void
 	 */
 	public static function ajax_composite_order_item_form() {
-
 		global $product;
 
 		$failure = array(

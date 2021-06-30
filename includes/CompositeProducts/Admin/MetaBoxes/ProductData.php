@@ -1,5 +1,4 @@
 <?php
-
 namespace WPdrift\CompositeProducts\Admin\MetaBoxes;
 
 /**
@@ -134,7 +133,6 @@ class ProductData {
 	 * @return void
 	 */
 	public static function sold_individually_options() {
-
 		global $composite_product_object;
 
 		$sold_individually         = $composite_product_object->get_sold_individually( 'edit' );
@@ -189,8 +187,8 @@ class ProductData {
 	 * @return void
 	 */
 	public static function composite_layout( $composite_product_object ) {
-
-		?><div class="bundle_group bto_clearfix">
+		?>
+		<div class="bundle_group bto_clearfix">
 			<div class="bto_layouts bto_clearfix form-field components_panel_field">
 				<label class="bundle_group_label">
 					<?php _e( 'Layout', 'wpdrift-woocommerce-modules' ); ?>
@@ -238,7 +236,6 @@ class ProductData {
 	 * @return void
 	 */
 	public static function composite_form_location( $composite_product_object ) {
-
 		$options  = ProductComposite::get_add_to_cart_form_location_options();
 		$help_tip = '';
 		$loop     = 0;
@@ -274,7 +271,6 @@ class ProductData {
 	 * @return void
 	 */
 	public static function composite_shop_price_calc( $composite_product_object ) {
-
 		$shop_price_calc_options = ProductComposite::get_shop_price_calc_options();
 		$help_tip                = '';
 		$loop                    = 0;
@@ -311,7 +307,6 @@ class ProductData {
 	 * @return void
 	 */
 	public static function composite_component_options( $composite_data, $composite_id ) {
-
 		global $composite_product_object;
 
 		$selected_layout = $composite_product_object->get_layout( 'edit' );
@@ -352,19 +347,17 @@ class ProductData {
 						$i++;
 					}
 				} else {
-
 					?>
-						<div class="bto_boarding__components">
-							<div class="bto_boarding__components__message">
-								<h3><?php _e( 'Components', 'wpdrift-woocommerce-modules' ); ?></h3>
-								<p><?php _e( 'Components are the <a href="https://wpdrift.com/wpdrift-for-woocommerce/" target="_blank">building blocks</a> of every Composite Product.', 'wpdrift-woocommerce-modules' ); ?>
-								<br/><?php _e( 'Ready to start building?', 'wpdrift-woocommerce-modules' ); ?>
-								</p>
-							</div>
+					<div class="bto_boarding__components">
+						<div class="bto_boarding__components__message">
+							<h3><?php _e( 'Components', 'wpdrift-woocommerce-modules' ); ?></h3>
+							<p><?php _e( 'Components are the <a href="https://wpdrift.com/wpdrift-for-woocommerce/" target="_blank">building blocks</a> of every Composite Product.', 'wpdrift-woocommerce-modules' ); ?>
+							<br/><?php _e( 'Ready to start building?', 'wpdrift-woocommerce-modules' ); ?>
+							</p>
 						</div>
-						<?php
+					</div>
+					<?php
 				}
-
 				?>
 				</div>
 			</div>
@@ -400,7 +393,6 @@ class ProductData {
 	 * @return array
 	 */
 	public static function get_component_tabs() {
-
 		/**
 		 * Filter the tab sections that appear in every Component metabox.
 		 *
@@ -429,7 +421,6 @@ class ProductData {
 	 * @return void
 	 */
 	public static function component_admin_html( $id, $data, $composite_id, $toggle = 'closed' ) {
-
 		$tabs = self::get_component_tabs();
 
 		include( 'views/html-component.php' );
@@ -444,7 +435,6 @@ class ProductData {
 	 * @return void
 	 */
 	public static function component_select_action_options( $id, $data, $product_id ) {
-
 		$select_action_options = Component::get_select_action_options();
 		$select_action         = isset( $data['select_action'] ) && in_array( $data['select_action'], wp_list_pluck( $select_action_options, 'id' ) ) ? $data['select_action'] : 'view';
 		$help_tip              = '';
@@ -483,7 +473,6 @@ class ProductData {
 	 * @return void
 	 */
 	public static function component_selection_details_options( $id, $data, $product_id ) {
-
 		$hide_product_title       = isset( $data['hide_product_title'] ) && 'yes' === $data['hide_product_title'] ? 'yes' : 'no';
 		$hide_product_description = isset( $data['hide_product_description'] ) && 'yes' === $data['hide_product_description'] ? 'yes' : 'no';
 		$hide_product_thumbnail   = isset( $data['hide_product_thumbnail'] ) && 'yes' === $data['hide_product_thumbnail'] ? 'yes' : 'no';
@@ -542,7 +531,6 @@ class ProductData {
 	 * @return void
 	 */
 	public static function component_subtotal_visibility_options( $id, $data, $product_id ) {
-
 		$hide_in_product = isset( $data['hide_subtotal_product'] ) && 'yes' === $data['hide_subtotal_product'] ? 'yes' : 'no';
 		$hide_in_cart    = isset( $data['hide_subtotal_cart'] ) && 'yes' === $data['hide_subtotal_cart'] ? 'yes' : 'no';
 		$hide_in_orders  = isset( $data['hide_subtotal_orders'] ) && 'yes' === $data['hide_subtotal_orders'] ? 'yes' : 'no';

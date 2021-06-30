@@ -135,9 +135,6 @@ add_action( 'woocommerce_composite_component_selections_paged', __NAMESPACE__ . 
 // Component notices container (dropdowns and radios).
 add_action( 'woocommerce_composite_component_selections_paged', __NAMESPACE__ . '\wc_cp_component_selection_message_paged_bottom', 60, 2 );
 
-// Summary added inside the composite-add-to-cart.php template.
-add_action( 'woocommerce_before_add_to_cart_button', __NAMESPACE__ . '\wc_cp_before_add_to_cart_button', 5 );
-
 /*--------------------------------------*/
 /*  Composited product template hooks.  */
 /*--------------------------------------*/
