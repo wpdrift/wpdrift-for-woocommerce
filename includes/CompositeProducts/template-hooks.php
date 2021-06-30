@@ -31,9 +31,6 @@ add_action( 'woocommerce_composite_after_components', __NAMESPACE__ . '\wc_cp_no
 /*  Single product summary widget hooks.  */
 /*----------------------------------------*/
 
-// Selections wrapper start.
-add_action( 'woocommerce_composite_summary_widget_content', __NAMESPACE__ . '\wc_cp_summary_widget_details_wrapper_start', 5, 3 );
-
 // Content.
 add_action( 'woocommerce_composite_summary_widget_content', __NAMESPACE__ . '\wc_cp_summary_widget_content', 10, 3 );
 
@@ -45,9 +42,6 @@ add_action( 'woocommerce_composite_summary_widget_content', __NAMESPACE__ . '\wc
 
 // Price.
 add_action( 'woocommerce_composite_summary_widget_content', __NAMESPACE__ . '\wc_cp_summary_widget_price', 20, 2 );
-
-// Validation message for default-display widgets.
-add_action( 'woocommerce_composite_summary_widget_content', __NAMESPACE__ . '\wc_cp_summary_widget_message_default', 30, 3 );
 
 // Availability.
 add_action( 'woocommerce_composite_summary_widget_content', __NAMESPACE__ . '\wc_cp_summary_widget_availability', 40, 2 );

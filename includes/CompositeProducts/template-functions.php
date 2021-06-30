@@ -218,26 +218,6 @@ function wc_cp_summary_widget_content( $components, $composite, $widget_options 
 }
 
 /**
- * Summary widget wrapper start.
- *
- * @since  1.0.0
- *
- * @param  array                 $components
- * @param  ProductComposite  $composite
- * @param  array                 $widget_options
- */
-function wc_cp_summary_widget_details_wrapper_start( $components, $composite, $widget_options ) {
-
-	if ( 'fixed' === $widget_options['display'] ) {
-		?>
-		<div class="widget_composite_summary_details_wrapper">
-			<span role="button" class="summary_carousel_button prev disabled inactive"><button class="aria_button" aria-label="<?php echo __( 'View previous steps', 'wpdrift-woocommerce-modules' ); ?>"></button></span>
-			<div class="widget_composite_summary_elements_wrapper">
-			<?php
-	}
-}
-
-/**
  * Summary widget wrapper end.
  *
  * @since  1.0.0
