@@ -311,23 +311,6 @@ function wc_cp_summary_widget_price( $components, $composite ) {
 }
 
 /**
- * Summary widget validation message. Empty element to be populated by the script.
- *
- * @since  1.0.0
- *
- * @param  array                 $components
- * @param  ProductComposite  $composite
- */
-function wc_cp_summary_widget_message( $components, $composite ) {
-
-	?>
-	<div class="widget_composite_summary_error">
-		<div class="composite_message" style="display:none;"><ul class="msg woocommerce-info"></ul></div>
-	</div>
-	<?php
-}
-
-/**
  * Summary widget product availability.
  *
  * @since  1.0.0

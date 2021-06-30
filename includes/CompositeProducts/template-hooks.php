@@ -31,9 +31,6 @@ add_action( 'woocommerce_composite_after_components', __NAMESPACE__ . '\wc_cp_no
 /*  Single product summary widget hooks.  */
 /*----------------------------------------*/
 
-// Validation message for fixed-display widgets.
-add_action( 'woocommerce_composite_summary_widget_content', __NAMESPACE__ . '\wc_cp_summary_widget_message_fixed', 0, 3 );
-
 // Selections wrapper start.
 add_action( 'woocommerce_composite_summary_widget_content', __NAMESPACE__ . '\wc_cp_summary_widget_details_wrapper_start', 5, 3 );
 
