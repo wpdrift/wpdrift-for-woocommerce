@@ -14,7 +14,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 add_action( 'woocommerce_before_single_product_summary', __NAMESPACE__ . '\wc_cp_wrap_start_product_summary', 1 );
 
 // Single product form content: Displayed after the Summary.
-add_action( 'woocommerce_after_single_product_summary', __NAMESPACE__ . '\wc_cp_add_to_cart_after_summary', -1000 );
 add_action( 'woocommerce_after_single_product_summary', __NAMESPACE__ . '\wc_cp_wrap_end_product_summary', 1 );
 
 // After components: Status Messages.

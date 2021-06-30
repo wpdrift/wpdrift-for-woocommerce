@@ -13,27 +13,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 /*---------------------------------------------------------*/
 
 /**
- * Add-to-cart template for composite products. Form location: After summary.
- *
- * @since  1.0.0
- */
-function wc_cp_add_to_cart_after_summary() {
-
-	global $product;
-
-	if ( is_composite_product() ) {
-		if ( 'after_summary' === $product->get_add_to_cart_form_location() ) {
-			$classes = implode( ' ', apply_filters( 'woocommerce_composite_form_wrapper_classes', array( 'summary-add-to-cart-form', 'summary-add-to-cart-form-composite' ), $product ) );
-			?>
-			<div class="<?php echo esc_attr( $classes ); ?>">
-				<?php do_action( 'woocommerce_composite_add_to_cart' ); ?>
-			</div>
-			<?php
-		}
-	}
-}
-
-/**
  * [wc_cp_wrap_start_product_summary description]
  * @return [type] [description]
  */
