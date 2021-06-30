@@ -180,34 +180,6 @@ function wc_cp_composited_product_wrapper_close( $component_option ) {
 }
 
 /**
- * Composited simple product price.
- *
- * @param  WC_Product            $product
- * @param  string                $component_id
- * @param  ProductComposite  $composite
- */
-function wc_cp_composited_product_price( $product, $component_id, $composite ) {
-
-	if ( 'simple' === $product->get_type() ) {
-
-		$product_id         = $product->get_id();
-		$component          = $composite->get_component( $component_id );
-		$composited_product = $component->get_option( $product_id );
-
-		if ( $composited_product->is_priced_individually() && false === $component->hide_selected_option_price() && '' !== $product->get_price() ) {
-			wc_get_template(
-				'composited-product/price.php',
-				array(
-					'product' => $product,
-				),
-				'',
-				Module::instance()->plugin_path() . '/templates/'
-			);
-		}
-	}
-}
-
-/**
  * Composited single variation details.
  *
  * @since  1.0.0
