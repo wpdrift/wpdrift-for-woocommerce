@@ -210,17 +210,6 @@ function wc_cp_component_selection_message_paged_bottom( $component_id, $product
 /*----------------------------------------------------------------------------------*/
 
 /**
- * Loading status message.
- */
-function wc_cp_status() {
-	?>
-	<div class="composite_status">
-		<div class="wrapper"></div>
-	</div>
-	<?php
-}
-
-/**
  * Component selection notices container displayed in the component_selections container (progressive layout).
  *
  * @param  string                $component_id

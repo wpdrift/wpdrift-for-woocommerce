@@ -16,9 +16,6 @@ add_action( 'woocommerce_before_single_product_summary', __NAMESPACE__ . '\wc_cp
 // Single product form content: Displayed after the Summary.
 add_action( 'woocommerce_after_single_product_summary', __NAMESPACE__ . '\wc_cp_wrap_end_product_summary', 1 );
 
-// After components: Status Messages.
-add_action( 'woocommerce_composite_after_components', __NAMESPACE__ . '\wc_cp_status', 10, 2 );
-
 // After components: Display no-JS notice regardless of layout.
 add_action( 'woocommerce_composite_after_components', __NAMESPACE__ . '\wc_cp_no_js_msg', 15, 2 );
 
