@@ -11,7 +11,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 /*----------------------------------*/
 
 // Single product form content: Displayed in the Summary.
-// add_action( 'woocommerce_composite_add_to_cart', __NAMESPACE__ . '\wc_cp_add_to_cart' );
 add_action( 'woocommerce_before_single_product_summary', __NAMESPACE__ . '\wc_cp_wrap_start_product_summary', 1 );
 
 // Single product form content: Displayed after the Summary.
