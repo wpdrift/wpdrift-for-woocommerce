@@ -49,6 +49,7 @@ final class Wocommerce_Modules {
 	public function __construct() {
 		$this->define_constants();
 		$this->includes();
+		$this->hooks();
 	}
 
 	/**
@@ -70,33 +71,22 @@ final class Wocommerce_Modules {
 	}
 
 	/**
-	 * Initialize.
+	 * Init hooks.
 	 * @return [type] [description]
 	 */
-	public function init() {
+	private function hooks() {
 		// Load translations hook.
-		add_action( 'init', array( $this, 'load_translation' ) );
+		add_action( 'init', [ $this, 'load_plugin_textdomain' ] );
 		add_action( 'plugins_loaded', array( $this, 'on_plugins_loaded' ) );
 		add_filter( 'woocommerce_locate_template', array( $this, 'locate_template' ), 10, 3 );
 		add_filter( 'wc_get_template_part', array( $this, 'get_template_part' ), 10, 3 );
 	}
 
 	/**
-	 * Plugin base path name getter.
-	 *
-	 * @since  1.0.0
-	 *
-	 * @return string
+	 * Load Localisation files.
 	 */
-	public function plugin_basename() {
-		return plugin_basename( WPDRIFT_WOOCOMMERCE_MODULES_PLUGIN_FILE );
-	}
-
-	/**
-	 * Load textdomain.
-	 */
-	public function load_translation() {
-		load_plugin_textdomain( 'wpdrift-woocommerce-modules', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+	protected function load_plugin_textdomain() {
+		load_plugin_textdomain( 'wpdrift-woocommerce-modules', false, basename( dirname( __DIR__ ) ) . '/languages' );
 	}
 
 	/**
@@ -105,8 +95,6 @@ final class Wocommerce_Modules {
 	 * @return void
 	 */
 	public function on_plugins_loaded() {
-		$this->load_plugin_textdomain();
-
 		if ( ! $this->check_dependencies() ) {
 			add_action( 'admin_init', array( $this, 'deactivate_self' ) );
 			add_action( 'admin_notices', array( $this, 'render_dependencies_notice' ) );
@@ -121,13 +109,6 @@ final class Wocommerce_Modules {
 		// Classes.
 		Wocommerce_Modules_Install::init();
 		CompositeProducts\Module::instance();
-	}
-
-	/**
-	 * Load Localisation files.
-	 */
-	protected function load_plugin_textdomain() {
-		load_plugin_textdomain( 'wpdrift-woocommerce-modules', false, basename( dirname( __DIR__ ) ) . '/languages' );
 	}
 
 	/**
@@ -284,6 +265,17 @@ final class Wocommerce_Modules {
 		if ( ! defined( $name ) ) {
 			define( $name, $value );
 		}
+	}
+
+	/**
+	 * Plugin base path name getter.
+	 *
+	 * @since  1.0.0
+	 *
+	 * @return string
+	 */
+	public function plugin_basename() {
+		return plugin_basename( WPDRIFT_WOOCOMMERCE_MODULES_PLUGIN_FILE );
 	}
 
 	/**

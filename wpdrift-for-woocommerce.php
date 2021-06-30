@@ -37,5 +37,5 @@ function woocommerce_modules() {
 	return Wocommerce_Modules::instance();
 }
 
-// Start the plugin.
-woocommerce_modules()->init();
+// Global for backwards compatibility.
+$GLOBALS['woocommerce_modules'] = woocommerce_modules();
