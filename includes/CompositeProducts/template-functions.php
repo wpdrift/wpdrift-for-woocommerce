@@ -551,43 +551,6 @@ function wc_cp_component_selection_message_paged_bottom( $component_id, $product
 /*----------------------------------------------------------------------------------*/
 
 /**
- * Add Review/Summary with current configuration details.
- * The Summary template must be loaded if the summary widget is active.
- *
- * @param  array                 $components
- * @param  ProductComposite  $product
- */
-function wc_cp_summary( $components, $product ) {
-
-	$navigation_style           = $product->get_composite_layout_style();
-	$navigation_style_variation = $product->get_composite_layout_style_variation();
-
-	/**
-	 * Filter to determine whether the summary will be displayed.
-	 *
-	 * @param  boolean               $show_summary
-	 * @param  string                $layout_id
-	 * @param  string                $layout_variation_id
-	 * @param  ProductComposite  $product
-	 */
-	$show_summary = apply_filters( 'woocommerce_composite_summary_display', 'paged' === $navigation_style, $navigation_style, $navigation_style_variation, $product );
-
-	if ( $show_summary ) {
-		wc_get_template(
-			'single-product/composite-summary.php',
-			array(
-				'product'    => $product,
-				'product_id' => $product->get_id(),
-				'components' => $components,
-				'hidden'     => false,
-			),
-			'',
-			Module::instance()->plugin_path() . '/templates/'
-		);
-	}
-}
-
-/**
  * Loading status message.
  */
 function wc_cp_status() {
