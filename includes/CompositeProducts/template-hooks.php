@@ -31,9 +31,6 @@ add_action( 'woocommerce_composite_after_components', __NAMESPACE__ . '\wc_cp_no
 /*  Single product summary widget hooks.  */
 /*----------------------------------------*/
 
-// Content.
-add_action( 'woocommerce_composite_summary_widget_content', __NAMESPACE__ . '\wc_cp_summary_widget_content', 10, 3 );
-
 // Selections wrapper end.
 add_action( 'woocommerce_composite_summary_widget_content', __NAMESPACE__ . '\wc_cp_summary_widget_details_wrapper_end', 15, 3 );
 

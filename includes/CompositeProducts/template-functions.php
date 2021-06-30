@@ -188,36 +188,6 @@ function wc_cp_add_to_cart_button() {
 /*-----------------------------------------------------------------------------*/
 
 /**
- * Summary widget content.
- *
- * @since  1.0.0
- *
- * @param  array                 $components
- * @param  ProductComposite  $composite
- * @param  array                 $widget_options
- */
-function wc_cp_summary_widget_content( $components, $composite, $widget_options ) {
-
-	?>
-	<div class="widget_composite_summary_elements" data-summary_columns="<?php echo esc_attr( $widget_options['columns'] ); ?>">
-	<?php
-		wc_get_template(
-			'single-product/composite-summary-content.php',
-			array(
-				'summary_columns'  => $widget_options['columns'],
-				'summary_elements' => count( $components ),
-				'components'       => $components,
-				'product'          => $composite,
-			),
-			'',
-			Module::instance()->plugin_path() . '/templates/'
-		);
-	?>
-	</div>
-	<?php
-}
-
-/**
  * Summary widget wrapper end.
  *
  * @since  1.0.0
