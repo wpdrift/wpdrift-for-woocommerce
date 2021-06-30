@@ -383,22 +383,6 @@ function wc_cp_summary_widget_message_default( $components, $composite, $widget_
 	}
 }
 
-/**
- * Summary widget validation message. Empty element to be populated by the script.
- *
- * @since  1.0.0
- *
- * @param  array                 $components
- * @param  ProductComposite  $composite
- * @param  array                 $widget_options
- */
-function wc_cp_summary_widget_message_fixed( $components, $composite, $widget_options ) {
-
-	if ( 'fixed' === $widget_options['display'] ) {
-		wc_cp_summary_widget_message( $components, $composite );
-	}
-}
-
 /*-----------------------------------------------------------------------------*/
 /*                                                                             */
 /*  Composite products single product template functions - Component Options.  */
