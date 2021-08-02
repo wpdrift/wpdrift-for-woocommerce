@@ -65,9 +65,9 @@ final class Wocommerce_Modules {
 	 */
 	private function includes() {
 		// Autoload classes.
-		require woocommerce_modules()->plugin_path() . '/vendor/autoload.php';
-		require woocommerce_modules()->plugin_path() . '/includes/class-wocommerce-modules-install.php';
-		require woocommerce_modules()->plugin_path() . '/includes/wocommerce-modules-core-functions.php';
+		require $this->plugin_path() . '/vendor/autoload.php';
+		require $this->plugin_path() . '/includes/class-wocommerce-modules-install.php';
+		require $this->plugin_path() . '/includes/wocommerce-modules-core-functions.php';
 	}
 
 	/**
@@ -85,7 +85,7 @@ final class Wocommerce_Modules {
 	/**
 	 * Load Localisation files.
 	 */
-	protected function load_plugin_textdomain() {
+	public function load_plugin_textdomain() {
 		load_plugin_textdomain( 'wpdrift-woocommerce-modules', false, basename( dirname( __DIR__ ) ) . '/languages' );
 	}
 
