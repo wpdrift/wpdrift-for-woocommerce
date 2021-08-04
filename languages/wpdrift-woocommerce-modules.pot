@@ -1,11 +1,11 @@
-# Copyright (C) 2021 
-# This file is distributed under the same license as the  package.
+# Copyright (C) 2021 WPdrift
+# This file is distributed under the same license as the WPdrift for WooCommerce package.
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: WPdrift for WooCommerce 1.0.0\n"
 "Report-Msgid-Bugs-To: "
-"https://wordpress.org/support/plugin/wpdrift-woocommerce-modules\n"
-"POT-Creation-Date: 2021-06-28 03:46:49+00:00\n"
+"https://wordpress.org/support/plugin/wpdrift-for-woocommerce\n"
+"POT-Creation-Date: 2021-08-03 10:19:51+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -67,12 +67,12 @@ msgid ""
 msgstr ""
 
 #: includes/CompositeProducts/Admin/Admin.php:208
-#: includes/CompositeProducts/Admin/Order.php:192
+#: includes/CompositeProducts/Admin/Order.php:191
 msgid "Configure"
 msgstr ""
 
 #: includes/CompositeProducts/Admin/Admin.php:209
-#: includes/CompositeProducts/Admin/Order.php:190
+#: includes/CompositeProducts/Admin/Order.php:189
 msgid "Edit"
 msgstr ""
 
@@ -159,380 +159,364 @@ msgstr ""
 msgid "Cheatin&#8217; huh?"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/Ajax.php:478
+#: includes/CompositeProducts/Admin/Ajax.php:477
 msgid "The submitted configuration is invalid."
 msgstr ""
 
-#: includes/CompositeProducts/Admin/Ajax.php:621
+#: includes/CompositeProducts/Admin/Ajax.php:620
 msgid "Any Variation"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/Export/class-wc-cp-product-export.php:48
-#: includes/CompositeProducts/Admin/Import/class-wc-cp-product-import.php:56
-#: includes/CompositeProducts/Admin/Import/class-wc-cp-product-import.php:73
+#: includes/CompositeProducts/Admin/Export/class-wc-cp-product-export.php:45
+#: includes/CompositeProducts/Admin/Import/class-wc-cp-product-import.php:54
+#: includes/CompositeProducts/Admin/Import/class-wc-cp-product-import.php:70
 msgid "Composite Components (JSON-encoded)"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/Export/class-wc-cp-product-export.php:49
-#: includes/CompositeProducts/Admin/Import/class-wc-cp-product-import.php:57
-#: includes/CompositeProducts/Admin/Import/class-wc-cp-product-import.php:74
+#: includes/CompositeProducts/Admin/Export/class-wc-cp-product-export.php:46
+#: includes/CompositeProducts/Admin/Import/class-wc-cp-product-import.php:55
+#: includes/CompositeProducts/Admin/Import/class-wc-cp-product-import.php:71
 msgid "Composite Layout"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/Export/class-wc-cp-product-export.php:50
-#: includes/CompositeProducts/Admin/Import/class-wc-cp-product-import.php:58
-#: includes/CompositeProducts/Admin/Import/class-wc-cp-product-import.php:75
-msgid "Composite Cart Editing"
-msgstr ""
-
-#: includes/CompositeProducts/Admin/Export/class-wc-cp-product-export.php:51
-#: includes/CompositeProducts/Admin/Import/class-wc-cp-product-import.php:59
-#: includes/CompositeProducts/Admin/Import/class-wc-cp-product-import.php:76
+#: includes/CompositeProducts/Admin/Export/class-wc-cp-product-export.php:47
+#: includes/CompositeProducts/Admin/Import/class-wc-cp-product-import.php:56
+#: includes/CompositeProducts/Admin/Import/class-wc-cp-product-import.php:72
 msgid "Composite Sold Individually"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/Export/class-wc-cp-product-export.php:52
-#: includes/CompositeProducts/Admin/Import/class-wc-cp-product-import.php:60
-#: includes/CompositeProducts/Admin/Import/class-wc-cp-product-import.php:77
+#: includes/CompositeProducts/Admin/Export/class-wc-cp-product-export.php:48
+#: includes/CompositeProducts/Admin/Import/class-wc-cp-product-import.php:57
+#: includes/CompositeProducts/Admin/Import/class-wc-cp-product-import.php:73
 msgid "Composite Catalog Price"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/Export/class-wc-cp-product-export.php:53
-#: includes/CompositeProducts/Admin/Import/class-wc-cp-product-import.php:61
-#: includes/CompositeProducts/Admin/Import/class-wc-cp-product-import.php:78
+#: includes/CompositeProducts/Admin/Export/class-wc-cp-product-export.php:49
+#: includes/CompositeProducts/Admin/Import/class-wc-cp-product-import.php:58
+#: includes/CompositeProducts/Admin/Import/class-wc-cp-product-import.php:74
 msgid "Composite Form Location"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:159
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:156
 msgid "Sold individually"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:161
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:158
 msgid "No"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:162
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:159
 msgid "Yes"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:163
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:160
 msgid "Matching configurations only"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:166
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:163
 msgid ""
 "Allow only one of this item (or only one of each unique configuration of "
 "this item) to be bought in a single order."
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:198
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:194
 msgid "Layout"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:263
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:258
 msgid "Form Location"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:300
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:294
 msgid "Catalog Price"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:320
-msgid "Edit in Cart"
-msgstr ""
-
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:322
-msgid ""
-"Enable this option to allow changing the configuration of this Composite in "
-"the cart."
-msgstr ""
-
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:342
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:381
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1332
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:315
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:353
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1298
 msgid "Components"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:346
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:319
 msgid "Close all"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:347
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:320
 msgid "Expand all"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:382
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:354
 msgid ""
 "Components are the <a href=\"https://wpdrift.com/wpdrift-for-woocommerce/\" "
 "target=\"_blank\">building blocks</a> of every Composite Product."
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:383
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:355
 msgid "Ready to start building?"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:395
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:366
 msgid "Add Component"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:435
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:405
 msgid "Basic Settings"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:438
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:408
 msgid "Advanced Settings"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:478
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:446
 msgid "Option Select Action"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:518
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:485
 msgid "Selection Details Visibility"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:522
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:489
 msgid "Title"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:523
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:490
 msgid "Show/hide the title of the selected option."
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:527
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:494
 msgid "Description"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:528
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:495
 msgid "Show/hide the description of the selected option."
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:532
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:499
 msgid "Thumbnail"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:533
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:500
 msgid "Show/hide the thumbnail of the selected option."
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:537
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:504
 msgid "Price"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:538
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:505
 msgid "Show/hide the price of the selected option."
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:576
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:542
 msgid "Subtotal Visibility"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:580
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:546
 msgid "Single-product summary"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:581
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:547
 msgid ""
 "Controls the visibility of the Component subtotal in the single-product "
 "Summary section."
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:585
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:551
 msgid "Cart/checkout"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:586
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:552
 msgid ""
 "Controls the visibility of the Component subtotal in cart/checkout "
 "templates."
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:590
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:556
 msgid "Order details"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:591
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:557
 msgid ""
 "Controls the visibility of the Component subtotal in order details &amp; "
 "e-mail templates."
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:614
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:580
 msgid "Options Sorting"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:617
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:583
 msgid ""
 "Check this option to allow sorting the available Component Options by "
 "popularity, rating, newness or price."
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:641
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:607
 msgid "Options Filtering"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:644
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:610
 msgid ""
 "Check this option to configure and display layered attribute filters. "
 "Useful for narrowing down Component Options more easily."
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:678
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:644
 msgid "Select product attributes&hellip;"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:763
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:729
 msgid "Component Name"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:765
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:731
 msgid "Name or title of this Component."
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:787
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:753
 msgid "Component Description"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:789
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:755
 msgid "Optional short description of this Component."
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:812
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:778
 msgid "Component Image"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:815
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:781
 msgid "Select image"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:819
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:785
 msgid ""
 "Placeholder image to use in configuration summaries. Substituted by the "
 "image of the selected Component Option."
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:820
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:786
 msgid "Remove image"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:841
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:807
 msgid "Select products"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:842
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:808
 msgid "Select categories"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:856
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:822
 msgid "Component Options"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:863
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:829
 msgid ""
 "Product options offered in this Component. Add products individually, or "
 "select a category to include all associated products."
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:892
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:985
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:858
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:951
 #: includes/CompositeProducts/Admin/MetaBoxes/views/html-composite-edit-form.php:52
 msgid "Search for a product&hellip;"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:906
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:872
 msgid "Select categories&hellip;"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:949
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:915
 msgid ""
 "The default, pre-selected Component Option. Must be populated when the "
 "<strong>Catalog Price</strong> display method is set to <strong>Use "
 "Defaults</strong>."
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:982
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:948
 msgid "Default Option"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:995
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:961
 msgid "Choose a product&hellip;"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1025
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:991
 msgid "Min Quantity"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1028
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:994
 msgid "Set a minimum quantity for the selected Component Option."
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1050
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1016
 msgid "Max Quantity"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1053
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1019
 msgid ""
 "Set a maximum quantity for the selected Component Option. Leave the field "
 "empty to allow an unlimited maximum quantity."
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1075
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1041
 msgid "Optional"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1078
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1044
 msgid "Controls whether a Component Option must be selected or not."
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1100
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1066
 msgid "Shipped Individually"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1103
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1069
 msgid ""
 "Enable this option if the Component is <strong>not</strong> physically "
 "assembled or packaged within the Composite."
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1125
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1091
 msgid "Priced Individually"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1128
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1094
 msgid ""
 "Enable this option if the included Component Options must maintain their "
 "individual prices."
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1148
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1114
 msgid "Multiple"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1151
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1117
 msgid "Enable this option if the multiple items can be selected."
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1177
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1143
 msgid "Option Prices"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1214
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1180
 msgid "Discount %"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1217
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1183
 msgid "Discount to apply to the chosen Component Option."
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1237
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1203
 msgid "Options Style"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1286
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1252
 msgid "Options Pagination"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1351
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1317
 msgid ""
 "By default, the sale of a product within a composite has the same effect on "
 "its stock as an individual sale. There are no separate inventory settings "
@@ -541,7 +525,7 @@ msgid ""
 "composited item sales."
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1507
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1473
 msgid ""
 "Your changes have not been saved &ndash; please wait for the "
 "<strong>WooCommerce Composite Products Data Update</strong> routine to "
@@ -549,13 +533,13 @@ msgid ""
 "existing ones."
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1550
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1516
 msgid ""
 "The catalog price of \"%s\" is currently being calculated in the "
 "background. During this time, its price will be hidden."
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1552
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1518
 msgid ""
 "The catalog price of \"%s\" could not be calculated within the default time "
 "limit. For assistance, please check out the <a "
@@ -565,50 +549,50 @@ msgid ""
 "in touch with us</a>."
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1767
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1724
 msgid "Untitled Component"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1784
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1741
 msgid ""
 "You have added %1$s Component Options to \"%2$s\". To reduce the load on "
 "your server, it is recommended to use the <strong>Product "
 "Thumbnails</strong> Options Style, which supports pagination."
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1829
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1836
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1786
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1793
 msgid ""
 "The <strong>Min Quantity</strong> entered for \"%s\" was not valid and has "
 "been reset. Please enter a non-negative integer value."
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1855
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1862
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1812
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1819
 msgid ""
 "The <strong>Max Quantity</strong> you entered for \"%s\" was not valid and "
 "has been reset. Please enter a positive integer value greater than (or "
 "equal to) <strong>Min Quantity</strong>, or leave the field empty."
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1878
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:1835
 msgid ""
 "The <strong>Discount</strong> value you entered for \"%s\" was not valid "
 "and has been reset. Please enter a positive number between 0-100."
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:2093
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:2050
 msgid ""
 "Add at least one <strong>Component</strong> before saving. To add a "
 "Component, go to the <strong>Components</strong> tab and click <strong>Add "
 "Component</strong>."
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:2101
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:2058
 msgid "Please give a valid <strong>Name</strong> to all Components before saving."
 msgstr ""
 
-#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:2105
+#: includes/CompositeProducts/Admin/MetaBoxes/ProductData.php:2062
 msgid ""
 "Add at least one valid <strong>Component Option</strong> to each Component. "
 "Component Options can be added by selecting products individually, or by "
@@ -627,7 +611,7 @@ msgstr ""
 msgid "Remove"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/Order.php:227
+#: includes/CompositeProducts/Admin/Order.php:226
 msgid "Done"
 msgstr ""
 
@@ -682,7 +666,7 @@ msgstr ""
 
 #: includes/CompositeProducts/Cart.php:194
 #: includes/CompositeProducts/Order.php:372
-#: includes/CompositeProducts/RestAPI.php:1082
+#: includes/CompositeProducts/RestAPI.php:1061
 msgid "A composite with this ID does not exist."
 msgstr ""
 
@@ -890,8 +874,8 @@ msgid "(%s%% off)"
 msgstr ""
 
 #: includes/CompositeProducts/Display.php:234
-#: includes/CompositeProducts/ProductComposite.php:624
-#: includes/CompositeProducts/ProductComposite.php:663
+#: includes/CompositeProducts/ProductComposite.php:623
+#: includes/CompositeProducts/ProductComposite.php:662
 msgid "Free!"
 msgstr ""
 
@@ -1028,18 +1012,18 @@ msgid ""
 msgstr ""
 
 #: includes/CompositeProducts/Display.php:728
-#: includes/CompositeProducts/Display.php:1224
+#: includes/CompositeProducts/Display.php:1215
 #: templates/checkout/review-order.php:25
 #: templates/checkout/review-order.php:58
 msgid "Subtotal"
 msgstr ""
 
-#: includes/CompositeProducts/Display.php:1463
-#: includes/CompositeProducts/Display.php:1478
+#: includes/CompositeProducts/Display.php:1454
+#: includes/CompositeProducts/Display.php:1469
 msgid "*"
 msgstr ""
 
-#: includes/CompositeProducts/Display.php:1463
+#: includes/CompositeProducts/Display.php:1454
 msgid "Accurate pricing info available in cart."
 msgstr ""
 
@@ -1048,7 +1032,7 @@ msgid "Composite product"
 msgstr ""
 
 #: includes/CompositeProducts/Order.php:363
-#: includes/CompositeProducts/RestAPI.php:1078
+#: includes/CompositeProducts/RestAPI.php:1057
 msgid "The submitted composite configuration could not be added to this order."
 msgstr ""
 
@@ -1086,304 +1070,298 @@ msgstr ""
 msgid "%s in stock"
 msgstr ""
 
-#: includes/CompositeProducts/ProductComposite.php:808
+#: includes/CompositeProducts/ProductComposite.php:807
 msgid "configuration"
 msgstr ""
 
-#: includes/CompositeProducts/ProductComposite.php:808
+#: includes/CompositeProducts/ProductComposite.php:807
 msgid "review"
 msgstr ""
 
-#: includes/CompositeProducts/ProductComposite.php:824
+#: includes/CompositeProducts/ProductComposite.php:823
 msgid "Select options"
 msgstr ""
 
-#: includes/CompositeProducts/ProductComposite.php:824
+#: includes/CompositeProducts/ProductComposite.php:823
 msgid "Read More"
 msgstr ""
 
-#: includes/CompositeProducts/ProductComposite.php:836
+#: includes/CompositeProducts/ProductComposite.php:835
 msgid "Add to cart"
 msgstr ""
 
-#: includes/CompositeProducts/ProductComposite.php:842
+#: includes/CompositeProducts/ProductComposite.php:841
 msgid "Update Cart"
 msgstr ""
 
-#: includes/CompositeProducts/ProductComposite.php:1859
+#: includes/CompositeProducts/ProductComposite.php:1812
 msgid "Use defaults"
 msgstr ""
 
-#: includes/CompositeProducts/ProductComposite.php:1860
+#: includes/CompositeProducts/ProductComposite.php:1813
 msgid ""
 "Displays the price of the default configuration. Requires <strong>Default "
 "Option</strong> to be set in all non-optional Components."
 msgstr ""
 
-#: includes/CompositeProducts/ProductComposite.php:1863
+#: includes/CompositeProducts/ProductComposite.php:1816
 msgid "Calculate from/to"
 msgstr ""
 
-#: includes/CompositeProducts/ProductComposite.php:1864
+#: includes/CompositeProducts/ProductComposite.php:1817
 msgid ""
 "Builds a price string based on the configuration with the lowest/highest "
 "price."
 msgstr ""
 
-#: includes/CompositeProducts/ProductComposite.php:1867
+#: includes/CompositeProducts/ProductComposite.php:1820
 msgid "Hide"
 msgstr ""
 
-#: includes/CompositeProducts/ProductComposite.php:1868
+#: includes/CompositeProducts/ProductComposite.php:1821
 msgid "Hides the catalog price."
 msgstr ""
 
-#: includes/CompositeProducts/ProductComposite.php:1886
+#: includes/CompositeProducts/ProductComposite.php:1839
 msgid "Default"
 msgstr ""
 
-#: includes/CompositeProducts/ProductComposite.php:1887
+#: includes/CompositeProducts/ProductComposite.php:1840
 msgid "The add-to-cart form is displayed inside the single-product summary."
 msgstr ""
 
-#: includes/CompositeProducts/ProductComposite.php:1890
+#: includes/CompositeProducts/ProductComposite.php:1843
 msgid "After summary"
 msgstr ""
 
-#: includes/CompositeProducts/ProductComposite.php:1891
+#: includes/CompositeProducts/ProductComposite.php:1844
 msgid ""
 "The add-to-cart form is displayed after the single-product summary. Usually "
 "allocates the entire page width for displaying form content. Note that some "
 "themes may not support this option."
 msgstr ""
 
-#: includes/CompositeProducts/ProductComposite.php:1909
+#: includes/CompositeProducts/ProductComposite.php:1862
 msgid "Stacked"
 msgstr ""
 
-#: includes/CompositeProducts/ProductComposite.php:1910
+#: includes/CompositeProducts/ProductComposite.php:1863
 msgid "Components are stacked."
 msgstr ""
 
-#: includes/CompositeProducts/ProductComposite.php:1914
+#: includes/CompositeProducts/ProductComposite.php:1867
 msgid "Stacked with featured image"
 msgstr ""
 
-#: includes/CompositeProducts/ProductComposite.php:1915
+#: includes/CompositeProducts/ProductComposite.php:1868
 msgid "Components are stacked on the right with featured image on left."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:146
+#: includes/CompositeProducts/RestAPI.php:145
 msgid "Single-product template layout. Applicable to composite-type products."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:152
+#: includes/CompositeProducts/RestAPI.php:151
 msgid ""
 "Controls the form location of the product in the single-product page. "
 "Applicable to composite-type products."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:158
-msgid ""
-"Controls whether the configuration of this product can be modified from the "
-"cart page. Applicable to composite-type products."
-msgstr ""
-
-#: includes/CompositeProducts/RestAPI.php:163
+#: includes/CompositeProducts/RestAPI.php:157
 msgid "Sold Individually option context. Applicable to composite-type products."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:169
+#: includes/CompositeProducts/RestAPI.php:163
 msgid "Composite catalog price calculation. Applicable to composite-type products."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:175
+#: includes/CompositeProducts/RestAPI.php:169
 msgid ""
 "List of components that this product consists of. Applicable to "
 "composite-type products."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:182
-#: includes/CompositeProducts/RestAPI.php:869
+#: includes/CompositeProducts/RestAPI.php:176
+#: includes/CompositeProducts/RestAPI.php:848
 msgid "Component ID."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:188
+#: includes/CompositeProducts/RestAPI.php:182
 msgid "Title of the component."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:193
+#: includes/CompositeProducts/RestAPI.php:187
 msgid "Description of the component."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:198
+#: includes/CompositeProducts/RestAPI.php:192
 msgid "Query type associated with component options."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:204
+#: includes/CompositeProducts/RestAPI.php:198
 msgid "Product IDs or category IDs to use for populating component options."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:212
+#: includes/CompositeProducts/RestAPI.php:206
 msgid "The product ID of the default/pre-selected component option."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:217
+#: includes/CompositeProducts/RestAPI.php:211
 msgid "Attachment ID of the thumbnail associated with this Component."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:222
+#: includes/CompositeProducts/RestAPI.php:216
 msgid "URL of the thumbnail associated with this Component."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:227
+#: includes/CompositeProducts/RestAPI.php:221
 msgid "Minimum component quantity."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:232
+#: includes/CompositeProducts/RestAPI.php:226
 msgid "Maximum component quantity."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:237
+#: includes/CompositeProducts/RestAPI.php:231
 msgid ""
 "Indicates whether the price of this component is added to the base price of "
 "the composite."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:242
+#: includes/CompositeProducts/RestAPI.php:236
 msgid "Indicates whether this component is shipped separately from the composite."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:247
+#: includes/CompositeProducts/RestAPI.php:241
 msgid "Indicates whether the component is optional."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:252
+#: includes/CompositeProducts/RestAPI.php:246
 msgid ""
 "Discount applied to the component, applicable when Priced Individually is "
 "enabled."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:257
+#: includes/CompositeProducts/RestAPI.php:251
 msgid "Indicates which template to use for displaying component options."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:263
+#: includes/CompositeProducts/RestAPI.php:257
 msgid ""
 "Controls how new Thumbnails are loaded into the Component Options view. "
 "Applicable when the Options Style of this Component is set to Thumbnails."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:269
+#: includes/CompositeProducts/RestAPI.php:263
 msgid ""
 "Controls how Component Option prices are displayed. Applicable when Priced "
 "Individually is enabled for this Component."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:275
+#: includes/CompositeProducts/RestAPI.php:269
 msgid "Whether to display sorting options in this Component."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:280
+#: includes/CompositeProducts/RestAPI.php:274
 msgid "Whether to display filtering options in this Component."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:285
+#: includes/CompositeProducts/RestAPI.php:279
 msgid "Attribute IDs to use for creating Component Option filters."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:293
+#: includes/CompositeProducts/RestAPI.php:287
 msgid "Controls the visibility of product titles in the Component Selection view."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:298
+#: includes/CompositeProducts/RestAPI.php:292
 msgid ""
 "Controls the visibility of product short descriptions in the Component "
 "Selection view."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:303
+#: includes/CompositeProducts/RestAPI.php:297
 msgid "Controls the visibility of product prices in the Component Selection view."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:308
+#: includes/CompositeProducts/RestAPI.php:302
 msgid ""
 "Controls the visibility of product thumbnails in the Component Selection "
 "view."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:313
+#: includes/CompositeProducts/RestAPI.php:307
 msgid ""
 "Controls the visibility of the subtotal associated with this Component in "
 "the single-product page."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:318
+#: includes/CompositeProducts/RestAPI.php:312
 msgid ""
 "Controls the visibility of the subtotal associated with this Component in "
 "the cart page."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:323
+#: includes/CompositeProducts/RestAPI.php:317
 msgid ""
 "Controls the visibility of the subtotal associated with this Component in "
 "order-related pages and e-mail notifications."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:467
+#: includes/CompositeProducts/RestAPI.php:455
 msgid "Component ID #%s does not exist."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:779
+#: includes/CompositeProducts/RestAPI.php:758
 msgid "Invalid data - 'quantity_min' cannot be greater than 'quantity_max'."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:789
+#: includes/CompositeProducts/RestAPI.php:768
 msgid "Invalid data - No component options found."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:810
+#: includes/CompositeProducts/RestAPI.php:789
 msgid "Invalid data - Undefined title."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:815
+#: includes/CompositeProducts/RestAPI.php:794
 msgid "Invalid data - Bad thumbnail ID/URL."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:847
+#: includes/CompositeProducts/RestAPI.php:826
 msgid "ID of parent line item, applicable if the item is part of a composite."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:853
+#: includes/CompositeProducts/RestAPI.php:832
 msgid ""
 "IDs of composited line items, applicable if the item is a composite "
 "container."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:862
+#: includes/CompositeProducts/RestAPI.php:841
 msgid ""
 "Composite product configuration array. Must be defined when adding a "
 "composite-type line item to an order, to ensure components are added to the "
 "order as well."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:874
+#: includes/CompositeProducts/RestAPI.php:853
 msgid "Chosen product ID."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:879
+#: includes/CompositeProducts/RestAPI.php:858
 msgid "Chosen product quantity."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:884
+#: includes/CompositeProducts/RestAPI.php:863
 msgid "Chosen variation ID, if applicable."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:889
+#: includes/CompositeProducts/RestAPI.php:868
 msgid "Chosen variation data to pass into 'WC_Order::add_product', if applicable."
 msgstr ""
 
-#: includes/CompositeProducts/RestAPI.php:894
+#: includes/CompositeProducts/RestAPI.php:873
 msgid "Additional arguments to pass into 'WC_Order::add_product', if applicable."
 msgstr ""
 
@@ -1409,25 +1387,7 @@ msgid ""
 "cart)."
 msgstr ""
 
-#: includes/CompositeProducts/template-functions.php:234
-msgid "View previous steps"
-msgstr ""
-
-#: includes/CompositeProducts/template-functions.php:254
-msgid "View next steps"
-msgstr ""
-
-#: includes/CompositeProducts/template-functions.php:696
-msgid "Loading..."
-msgstr ""
-
-#: includes/CompositeProducts/template-functions.php:700
-msgid ""
-"JavaScript must be supported by your browser and needs to be enabled in "
-"order to view this page."
-msgstr ""
-
-#: includes/CompositeProducts/template-functions.php:890
+#: includes/CompositeProducts/template-functions.php:233
 msgid "Clear"
 msgstr ""
 
@@ -1436,7 +1396,6 @@ msgid "Product placeholder image"
 msgstr ""
 
 #: includes/CompositeProducts/templates/single-product/component-title.php:19
-#: includes/CompositeProducts/templates/single-product/composite-summary.php:57
 msgid ""
 "<span class=\"step_index\">%1$d</span> <span "
 "class=\"step_title\">%2$s</span>"
@@ -1446,30 +1405,22 @@ msgstr ""
 msgid "Toggle %s"
 msgstr ""
 
-#: includes/CompositeProducts/templates/single-product/composite-summary.php:50
-msgid "Your Configuration"
-msgstr ""
-
-#: includes/CompositeProducts/templates/single-product/composite-summary.php:56
-msgid "Review Configuration"
-msgstr ""
-
-#: includes/class-wocommerce-modules-install.php:33
+#: includes/class-wocommerce-modules-install.php:58
 msgid "Documentation"
 msgstr ""
 
-#: includes/class-wocommerce-modules-install.php:34
+#: includes/class-wocommerce-modules-install.php:59
 msgid "Support"
 msgstr ""
 
-#: includes/class-wocommerce-modules.php:168
+#: includes/class-wocommerce-modules.php:156
 #. translators: URL of WooCommerce plugin
 msgid ""
 "The WPdrift for WooCommerce plugin requires <a href=\"%s\">WooCommerce</a> "
 "3.6 or greater to be installed and active."
 msgstr ""
 
-#: includes/class-wocommerce-modules.php:174
+#: includes/class-wocommerce-modules.php:162
 #. translators: 1: URL of WordPress.org, 2: URL of WooCommerce plugin
 msgid ""
 "The WPdrift for WooCommerce plugin requires both <a "
@@ -1477,7 +1428,7 @@ msgid ""
 "href=\"%2$s\">WooCommerce</a> 3.6 or greater to be installed and active."
 msgstr ""
 
-#: includes/class-wocommerce-modules.php:186
+#: includes/class-wocommerce-modules.php:174
 msgid ""
 "You have installed a development version of WPdrift for WooCommerce which "
 "requires files to be built. From the plugin directory, run <code>npm "
@@ -1485,7 +1436,7 @@ msgid ""
 "the files."
 msgstr ""
 
-#: includes/class-wocommerce-modules.php:189
+#: includes/class-wocommerce-modules.php:177
 #. translators: 1: URL of GitHub Repository build page
 msgid ""
 "Or you can download a pre-built version of the plugin by visiting <a "
@@ -1498,6 +1449,26 @@ msgstr ""
 
 #: templates/checkout/review-order.php:105
 msgid "Total"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "WPdrift for WooCommerce"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://wpdrift.com/wpdrift-for-woocommerce/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "A collection of modules for your WooCommerce website."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "WPdrift"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://wpdrift.com/"
 msgstr ""
 
 #: includes/CompositeProducts/Admin/Admin.php:178
@@ -1565,7 +1536,7 @@ msgctxt "enhanced select"
 msgid "Searching&hellip;"
 msgstr ""
 
-#: includes/CompositeProducts/Admin/Ajax.php:484
+#: includes/CompositeProducts/Admin/Ajax.php:483
 msgctxt "edit composite in order: formatted validation message"
 msgid "%1$s %2$s"
 msgstr ""
@@ -1632,8 +1603,8 @@ msgid "From: %s"
 msgstr ""
 
 #: includes/CompositeProducts/Display.php:229
-#: includes/CompositeProducts/Display.php:929
-#: includes/CompositeProducts/Display.php:1284
+#: includes/CompositeProducts/Display.php:920
+#: includes/CompositeProducts/Display.php:1275
 #: includes/CompositeProducts/Product.php:933
 msgctxt "qty string"
 msgid " &times; %s"
@@ -1745,21 +1716,9 @@ msgid "%1$s, %2$s"
 msgstr ""
 
 #: includes/CompositeProducts/Display.php:728
-#: includes/CompositeProducts/Display.php:1224
+#: includes/CompositeProducts/Display.php:1215
 msgctxt "component subtotal"
 msgid "%1$s: %2$s"
-msgstr ""
-
-#: includes/CompositeProducts/Display.php:891
-msgctxt "edit in cart link text"
-msgid "Edit"
-msgstr ""
-
-#: includes/CompositeProducts/Display.php:892
-msgctxt "edit in cart text"
-msgid ""
-"%1$s<br/><a class=\"edit_composite_in_cart_text edit_in_cart_text\" "
-"href=\"%2$s\"><small>%3$s</small></a>"
 msgstr ""
 
 #: includes/CompositeProducts/Helpers.php:219
@@ -1807,8 +1766,8 @@ msgctxt "price suffix"
 msgid " &ndash; %s"
 msgstr ""
 
-#: includes/CompositeProducts/ProductComposite.php:615
-#: includes/CompositeProducts/ProductComposite.php:630
+#: includes/CompositeProducts/ProductComposite.php:614
+#: includes/CompositeProducts/ProductComposite.php:629
 msgctxt "Price range: from"
 msgid "%1$s%2$s"
 msgstr ""

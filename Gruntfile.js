@@ -32,7 +32,7 @@ module.exports = function( grunt ) {
 				options: {
 					domainPath: '/languages',
 					exclude: [ '\.git/*', 'bin/*', 'node_modules/*', 'tests/*' ],
-					mainFile: 'wpdrift-woocommerce-modules.php',
+					mainFile: 'wpdrift-for-woocommerce.php',
 					potFilename: 'wpdrift-woocommerce-modules.pot',
 					potHeaders: {
 						poedit: true,
