@@ -2,7 +2,7 @@
 **Contributors:** WPdrift, upnrunn, kishores, bhoot  
 **Tags:** wpdrift, woocommerce, composite-products, product-bundles, composite-popup  
 **Requires at least:** 5.2  
-**Tested up to:** 5.7.1  
+**Tested up to:** 5.8  
 **Requires PHP:** 5.6  
 **Stable tag:** 1.0.0  
 **License:** GPLv3 or later  
@@ -69,5 +69,5 @@ The manual installation method involves downloading the plugin and uploading it 
 
 ## Changelog ##
 
-### 1.0.0 - 2021-06-12 ###
+### 1.0.0 - August 2021 ###
 * Initial release.

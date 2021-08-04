@@ -7,9 +7,9 @@
  * Author URI:           https://wpdrift.com/
  * Version:              1.0.0
  * Requires at least:    5.2
- * Tested up to:         5.7.1
+ * Tested up to:         5.8
  * WC requires at least: 3.6
- * WC tested up to:      5.2.2
+ * WC tested up to:      5.5.2
  * Text Domain:          wpdrift-woocommerce-modules
  * Domain Path:          /languages
  *
